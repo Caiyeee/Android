@@ -11,6 +11,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -44,21 +45,21 @@ public class FigureAdapter extends RecyclerView.Adapter<FigureAdapter.MyViewHold
 
     class MyViewHolder extends RecyclerView.ViewHolder
     {
-        TextView name_tv;
-        TextView life_tv;
-        TextView gender_tv;
-        TextView origin_tv;
-        TextView maincountry_tv;
+        EditText name_tv;
+        EditText life_tv;
+        EditText gender_tv;
+        EditText origin_tv;
+        EditText maincountry_tv;
         ImageView pic_iv;
 
         public MyViewHolder(View view)
         {
             super(view);
-            name_tv=(TextView)view.findViewById(R.id.figure_name);
-            life_tv = (TextView)view.findViewById(R.id.figure_life);
-            gender_tv = (TextView)view.findViewById(R.id.figure_gender);
-            origin_tv = (TextView)view.findViewById(R.id.figure_origin);
-            maincountry_tv = (TextView)view.findViewById(R.id.figure_maincountry);
+            name_tv=(EditText)view.findViewById(R.id.figure_name);
+            life_tv = (EditText)view.findViewById(R.id.figure_life);
+            gender_tv = (EditText)view.findViewById(R.id.figure_gender);
+            origin_tv = (EditText)view.findViewById(R.id.figure_origin);
+            maincountry_tv = (EditText)view.findViewById(R.id.figure_maincountry);
             pic_iv=(ImageView) view.findViewById(R.id.figure_pic);
         }
     }
