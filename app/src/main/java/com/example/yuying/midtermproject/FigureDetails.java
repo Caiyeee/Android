@@ -50,7 +50,6 @@ public class FigureDetails extends AppCompatActivity {
             cancelButton.setVisibility(View.VISIBLE);
         }
 
-
         final ImageButton editButton = (ImageButton)findViewById(R.id.editButton);
         editButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,18 +60,15 @@ public class FigureDetails extends AppCompatActivity {
                 editButton.setVisibility(View.INVISIBLE);
                 name_tv.setFocusableInTouchMode(true);
                 name_tv.setFocusable(true);
-                name_tv.requestFocus();
                 life_tv.setFocusable(true);
                 life_tv.setFocusableInTouchMode(true);
-                life_tv.requestFocus();
                 gender_tv.setFocusableInTouchMode(true);
                 gender_tv.setFocusable(true);
-                gender_tv.requestFocus();
                 origin_tv.setFocusable(true);
                 origin_tv.setFocusableInTouchMode(true);
-                origin_tv.requestFocus();
                 maincountry_tv.setFocusable(true);
                 maincountry_tv.setFocusableInTouchMode(true);
+                maincountry_tv.setSelection(figure.getMainCountry().length());
                 maincountry_tv.requestFocus();
             }
         });
@@ -100,9 +96,32 @@ public class FigureDetails extends AppCompatActivity {
                 maincountry_tv.setFocusable(false);
                 maincountry_tv.setFocusableInTouchMode(false);
                 repo.update(figure);
-                setResult(1,null);
             }
         });
+        cancelButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                saveButton.setVisibility(View.INVISIBLE);
+                cancelButton.setVisibility(View.INVISIBLE);
+                editButton.setVisibility(View.INVISIBLE);
+                name_tv.setText(figure.getName());
+                origin_tv.setText(figure.getOrigin());
+                gender_tv.setText(figure.getGender());
+                life_tv.setText(figure.getLife());
+                maincountry_tv.setText(figure.getMainCountry());
+                name_tv.setFocusableInTouchMode(false);
+                name_tv.setFocusable(false);
+                life_tv.setFocusable(false);
+                life_tv.setFocusableInTouchMode(false);
+                gender_tv.setFocusableInTouchMode(false);
+                gender_tv.setFocusable(false);
+                origin_tv.setFocusable(false);
+                origin_tv.setFocusableInTouchMode(false);
+                maincountry_tv.setFocusable(false);
+                maincountry_tv.setFocusableInTouchMode(false);
+            }
+        });
+
 
 
 
