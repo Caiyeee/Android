@@ -53,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
                 FigureList.set(position,figure);
                 mAdapter.notifyDataSetChanged();
             }
+
         });
     }
 }
