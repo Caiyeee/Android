@@ -22,7 +22,9 @@ public class FigureDetails extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.figure_details);
         final FigureRepo repo=new FigureRepo(this);
-        final Figure figure=(Figure)getIntent().getSerializableExtra("figure");
+        final Intent intent=getIntent();
+        final Figure figure=(Figure)intent.getSerializableExtra("figure");
+        final int position =intent.getIntExtra("position",0);
 
 
         final EditText name_tv=(EditText)findViewById(R.id.figure_name);
@@ -100,7 +102,10 @@ public class FigureDetails extends AppCompatActivity {
                 maincountry_tv.setFocusable(false);
                 maincountry_tv.setFocusableInTouchMode(false);
                 repo.update(figure);
-                setResult(1,null);
+                Intent intent1=new Intent();
+                intent.putExtra("position",position);
+                setResult(1,intent);
+                finish();
             }
         });
 
