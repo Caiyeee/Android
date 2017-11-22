@@ -21,10 +21,9 @@ public class FigureDetails extends AppCompatActivity {
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.figure_details);
-        final Intent intent=getIntent();
         final FigureRepo repo=new FigureRepo(this);
-        final Figure figure=(Figure)intent.getSerializableExtra("figure");
-        final int position=intent.getIntExtra("position",0);
+        final Figure figure=(Figure)getIntent().getSerializableExtra("figure");
+
 
         final EditText name_tv=(EditText)findViewById(R.id.figure_name);
         final EditText life_tv = (EditText)findViewById(R.id.figure_life);
@@ -101,12 +100,7 @@ public class FigureDetails extends AppCompatActivity {
                 maincountry_tv.setFocusable(false);
                 maincountry_tv.setFocusableInTouchMode(false);
                 repo.update(figure);
-
-                /* 更新数据库，并更改主界面的显示,position表示在列表中的位置 */
-                Intent intent=new Intent();
-                intent.putExtra("position",position);
-                setResult(1,intent);
-                finish();
+                setResult(1,null);
             }
         });
 
