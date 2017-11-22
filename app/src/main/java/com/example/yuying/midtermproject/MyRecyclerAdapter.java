@@ -66,7 +66,7 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter<MyRecyclerAdapter.Vi
     public void onBindViewHolder(ViewHolder holder, final int position)
     {
         holder.name.setText(String.valueOf(Figures.get(position).getName()));
-        holder.maincountry.setText(String.valueOf(Figures.get(position).getMainCountry()));
+        holder.maincountry.setText(String.valueOf(Figures.get(position).getID()));
         if(mOnItemClickListener!=null)
         {
             holder.itemView.setOnClickListener(new View.OnClickListener()
