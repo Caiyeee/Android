@@ -77,11 +77,8 @@ public class FigureRepo {
                 figure.setGender(cursor.getString(cursor.getColumnIndex(Figure.KEY_Gender)));
                 figure.setLife(cursor.getString(cursor.getColumnIndex(Figure.KEY_Life)));
                 figure.setOrigin(cursor.getString(cursor.getColumnIndex(Figure.KEY_Origin)));
-               figure.setMainCountry(cursor.getString(cursor.getColumnIndex(Figure.KEY_MainCountry)));
-               figure.setPic(cursor.getInt(cursor.getColumnIndex(Figure.KEY_Pic)));
-//                HashMap<String,String> figure=new HashMap<String,String>();
-//                figure.put(Figure.KEY_ID,cursor.getString(cursor.getColumnIndex(Figure.KEY_ID)));
-//                figure.put(Figure.KEY_Name,cursor.getString(cursor.getColumnIndex(Figure.KEY_Name)));
+                figure.setMainCountry(cursor.getString(cursor.getColumnIndex(Figure.KEY_MainCountry)));
+                figure.setPic(cursor.getInt(cursor.getColumnIndex(Figure.KEY_Pic)));
                 FigureList.add(figure);
             }while(cursor.moveToNext());
         }
@@ -90,7 +87,7 @@ public class FigureRepo {
         return FigureList;
     }
 
-    public Figure getStudentById(int ID){
+    public Figure getFigureById(int ID){
         SQLiteDatabase db=dbHelper.getReadableDatabase();
         String selectQuery="SELECT "+
                 Figure.KEY_ID+","+
