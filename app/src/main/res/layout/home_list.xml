@@ -2,28 +2,43 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:background="@color/white"
-    android:layout_height="100dp"
-    android:weightSum="1"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:weightSum="2"
     android:id="@+id/list">
 
-    <TextView
-        android:id="@+id/name"
-        android:layout_width="wrap_content"
-        android:layout_height="80dp"
-        android:gravity="center|start"
-        android:text="姓名"
-        android:textSize="20sp"
-        android:layout_marginLeft="15dp"
-        android:textColor="@color/black"/>
 
-    <TextView
-        android:id="@+id/maincountry"
+    <RelativeLayout
         android:layout_width="wrap_content"
-        android:layout_height="80dp"
-        android:gravity="center|start"
-        android:text="主效势力"
-        android:textSize="20sp"
-        android:layout_marginLeft="35dp"
-        android:textColor="@color/black"/>
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_marginBottom="5dp">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="100dp"
+            android:id="@+id/figure_pic"
+            android:src="@mipmap/zhugeliang"
+            android:layout_marginLeft="10dp"/>
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="诸葛亮"
+            android:textSize="20sp"
+            android:layout_toRightOf="@+id/figure_pic"
+            android:layout_marginLeft="5dp"
+            android:textColor="@color/black"
+            android:layout_centerVertical="true"/>
+        <TextView
+            android:id="@+id/country"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="蜀国"
+            android:textSize="20sp"
+            android:layout_toRightOf="@+id/name"
+            android:layout_marginLeft="20dp"
+            android:textColor="@color/black"
+            android:layout_centerVertical="true"/>
+    </RelativeLayout>
 
 </LinearLayout>
