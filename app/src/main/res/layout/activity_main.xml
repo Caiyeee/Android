@@ -5,20 +5,40 @@
     android:layout_height="match_parent"
     android:focusableInTouchMode="true">
 
-    <SearchView
-        android:layout_height="50dp"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:id="@+id/searchView"
-        android:iconifiedByDefault="false"
-        android:queryHint="请输入搜索内容">
-    </SearchView>
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:id="@+id/topbar">
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@mipmap/add"
+            android:id="@+id/add_icon"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="8dp"/>
+
+
+        <SearchView
+            android:layout_height="50dp"
+            android:layout_width="320dp"
+            android:id="@+id/searchView"
+            android:iconifiedByDefault="false"
+            android:queryHint="请输入搜索内容"
+            android:textColor="@color/grayText">
+        </SearchView>
+
+    </RelativeLayout>
+
 
     <com.jude.rollviewpager.RollPagerView
         android:id="@+id/rollpagerview"
         android:layout_width="match_parent"
         android:layout_height="180dp"
         app:rollviewpager_play_delay="5000"
-        android:layout_below="@+id/searchView">
+        android:layout_below="@+id/topbar">
     </com.jude.rollviewpager.RollPagerView>
 
     <android.support.v7.widget.RecyclerView
@@ -32,8 +52,9 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/lv"
-        android:layout_below="@+id/searchView"
+        android:layout_below="@+id/topbar"
         android:background="@color/black">
     </ListView>
+
 
 </RelativeLayout>
