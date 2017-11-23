@@ -1,25 +1,43 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
-    android:weightSum="800">
+    android:focusableInTouchMode="true">
 
     <com.jude.rollviewpager.RollPagerView
         android:id="@+id/rollpagerview"
         android:layout_width="match_parent"
         android:layout_height="180dp"
-        app:rollviewpager_play_delay="5000">
+        app:rollviewpager_play_delay="5000"
+        android:layout_below="@+id/searchView">
     </com.jude.rollviewpager.RollPagerView>
+
+    <SearchView
+        android:layout_height="50dp"
+        android:layout_width="match_parent"
+        android:id="@+id/searchView"
+        android:iconifiedByDefault="false"
+        android:queryHint="请输入搜索内容">
+
+    </SearchView>
 
     <android.support.v7.widget.RecyclerView
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/rv"
-        android:layout_weight="3"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/home_pic"
+        android:layout_height="match_parent"
         android:layout_alignParentLeft="true"
-         />
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/searchView" />
 
-</LinearLayout>
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/lv"
+        android:layout_below="@+id/searchView"
+        android:background="@color/black">
+
+
+    </ListView>
+</RelativeLayout>

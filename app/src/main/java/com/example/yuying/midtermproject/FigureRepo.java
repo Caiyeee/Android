@@ -6,7 +6,6 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 /**
  * Created by zhemeng on 2017/11/20.
@@ -136,7 +135,7 @@ public class FigureRepo {
                 + " WHERE " +
                 Figure.KEY_ID + "=?";
         int iCount=0;
-        Figure figure=new Figure();
+        Figure figure = new Figure();
         Cursor cursor=db.rawQuery(selectQuery,new String[]{String.valueOf(ID)});
         if(cursor.moveToFirst()){
             do{

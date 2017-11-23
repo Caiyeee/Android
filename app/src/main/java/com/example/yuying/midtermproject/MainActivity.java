@@ -5,13 +5,19 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
+import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.SearchView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-    private List<Figure> FigureList;
+    private ArrayList<Figure> FigureList;
+    private ListView mListView;
+    private SearchView mSearchView;
     private MyRecyclerAdapter mAdapter;
     private RecyclerView mRecyclerView;
     private FigureRepo repo;
@@ -21,6 +27,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         repo=new FigureRepo(this);
         FigureList=new ArrayList<Figure>();
+        mListView = (ListView) findViewById(R.id.lv);
+        mListView.setVisibility(View.INVISIBLE);
+        mSearchView = (SearchView) findViewById(R.id.searchView);
         mRecyclerView = (RecyclerView) findViewById(R.id.rv);
 
         //  取出数据库中所有人物；
@@ -53,6 +62,33 @@ public class MainActivity extends AppCompatActivity {
                 mAdapter.notifyDataSetChanged();
             }
         });
+
+        /* 查询人物 */
+        mSearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            // 当点击搜索按钮时触发该方法
+           @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            // 当搜索内容改变时触发该方法
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                mListView.setVisibility(View.VISIBLE);
+                mRecyclerView.setVisibility(View.INVISIBLE);
+                if (!TextUtils.isEmpty(newText))
+                {
+                    Object[] obj=searchItem(newText);
+                    updateLayout(obj);
+                }else{
+                    mListView.clearTextFilter();
+                    mListView.setVisibility(View.INVISIBLE);
+                    mRecyclerView.setVisibility(View.VISIBLE);
+                    mListView.clearTextFilter();
+                }
+                return false;
+            }
+        });
     }
 
     @Override
@@ -71,5 +107,23 @@ public class MainActivity extends AppCompatActivity {
         /* 新添人物 */
 
         /* 删除人物 */
+    }
+
+    //过滤规则
+    public Object[] searchItem(String keywords)
+    {
+        ArrayList<String> mSearchList = new ArrayList<String>();
+        ArrayList<Figure> figureList = new ArrayList<Figure>();
+        figureList = repo.getFigureLike(keywords);
+        for(int i = 0; i < figureList.size(); i++)
+        {
+            mSearchList.add(figureList.get(i).getName());
+        }
+        return mSearchList.toArray();
+    }
+
+    public void updateLayout(Object[] obj)
+    {
+        mListView.setAdapter(new ArrayAdapter<Object>(getApplicationContext(), android.R.layout.simple_expandable_list_item_1, obj));
     }
 }
