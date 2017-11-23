@@ -105,19 +105,20 @@ public class MainActivity extends AppCompatActivity {
 
             // 当搜索内容改变时触发该方法
             @Override
-            public boolean onQueryTextChange(String newText) {
+            public boolean onQueryTextChange(String newText)
+            {
                 if (!TextUtils.isEmpty(newText))
                 {
                     mListView.setVisibility(View.VISIBLE);
                     mRecyclerView.setVisibility(View.INVISIBLE);
                     mRollPagerView.setVisibility(View.INVISIBLE);
                     mImageView.setVisibility(View.INVISIBLE);
-                //    Object[] obj = searchItem(newText);
                     MyListViewAdapter sAdapter = searchItem(newText);
                     updateLayout(sAdapter);
                     mSearchView.setMaxWidth(1200);
-                  //  updateLayout(obj);
-                }else{
+                }
+                else
+                {
                     mListView.clearTextFilter();
                     mListView.setVisibility(View.INVISIBLE);
                     mRecyclerView.setVisibility(View.VISIBLE);
@@ -130,10 +131,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-       /* EditText textView = (EditText) mSearchView.findViewById(android.support.v7.appcompat.R.id.search_src_text);
-        mSearchView.setQueryHint(this.getString(R.string.searchHint));
-        textView.setTextColor(Color.GRAY);*/
-
+        //搜索框提示字体的颜色
         SearchView hsearchView = (SearchView)findViewById(R.id.searchView);
         //设置输入字体颜色
         if(hsearchView == null) { return;}
@@ -157,28 +155,9 @@ public class MainActivity extends AppCompatActivity {
 //            Toast.makeText(MainActivity.this,"修改第"+String.valueOf(position+1)+"个人物"+figure.getID(), Toast.LENGTH_SHORT).show();
         }
 
-        /* 新添人物 */
-
-        /* 删除人物 */
     }
 
-    //过滤规则
-/*    public Object[] searchItem(String keywords)
-    {
-        ArrayList<String> mSearchList = new ArrayList<String>();
-        ArrayList<Figure> figureList = new ArrayList<Figure>();
-        figureList = repo.getFigureLike(keywords);
-        for(int i = 0; i < figureList.size(); i++)
-        {
-            mSearchList.add(figureList.get(i).getName());
-        }
-        return mSearchList.toArray();
-    }
-
-    public void updateLayout(Object[] obj)
-    {
-        mListView.setAdapter(new ArrayAdapter<Object>(getApplicationContext(), android.R.layout.simple_expandable_list_item_1, obj));
-    }*/
+    //人物查询
     public MyListViewAdapter searchItem(String keywords)
     {
         selsctFigureList = new ArrayList<Figure>();
@@ -186,7 +165,7 @@ public class MainActivity extends AppCompatActivity {
         MyListViewAdapter sadapter = new MyListViewAdapter(this,selsctFigureList);
         return sadapter;
     }
-
+    //查询界面更新
     public void updateLayout(MyListViewAdapter sAdapter)
     {
         mListView.setAdapter(sAdapter);
