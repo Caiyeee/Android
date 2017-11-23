@@ -1,7 +1,7 @@
 <resources>
-    <string name="app_name">MidTermProject</string>
-    <string name="life">生卒年月</string>
-    <string name="origin">籍贯</string>
-    <string name="gender">性别</string>
-    <string name="maincountry">主效势力</string>
+    <string name="app_name">MidTermProject: </string>
+    <string name="life">生卒年月: </string>
+    <string name="origin">籍贯: </string>
+    <string name="gender">性别: </string>
+    <string name="maincountry">主效势力: </string>
 </resources>

@@ -113,7 +113,7 @@ public class MainActivity extends AppCompatActivity {
             figure=repo.getFigureById(figure.getID());
             FigureList.set(position,figure);
             mAdapter.notifyDataSetChanged();
-            Toast.makeText(MainActivity.this,"修改第"+String.valueOf(position+1)+"个人物"+figure.getID(), Toast.LENGTH_SHORT).show();
+//            Toast.makeText(MainActivity.this,"修改第"+String.valueOf(position+1)+"个人物"+figure.getID(), Toast.LENGTH_SHORT).show();
         }
 
         /* 新添人物 */
