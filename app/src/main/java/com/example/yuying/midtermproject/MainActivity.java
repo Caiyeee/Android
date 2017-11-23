@@ -45,9 +45,9 @@ public class MainActivity extends AppCompatActivity {
         mRollPagerView.setAdapter(new TestNormalAdapter());//设置适配器
 
         //  取出数据库中所有人物；
-        //FigureList=repo.getFigureList();
-        FigureList=repo.getFigureLike("吴");
-        Toast.makeText(MainActivity.this,"共选择人物数目："+ String.valueOf(FigureList.size()), Toast.LENGTH_LONG).show();
+        FigureList=repo.getFigureList();
+        //FigureList=repo.getFigureLike("吴");
+        //Toast.makeText(MainActivity.this,"共选择人物数目："+ String.valueOf(FigureList.size()), Toast.LENGTH_LONG).show();
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setHasFixedSize(true);
