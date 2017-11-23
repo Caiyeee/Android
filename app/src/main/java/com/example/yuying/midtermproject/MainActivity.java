@@ -7,12 +7,17 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import com.jude.rollviewpager.RollPagerView;
+import com.jude.rollviewpager.adapter.StaticPagerAdapter;
+import com.jude.rollviewpager.hintview.ColorPointHintView;
 
 public class MainActivity extends AppCompatActivity {
     private ArrayList<Figure> FigureList;
@@ -21,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
     private MyRecyclerAdapter mAdapter;
     private RecyclerView mRecyclerView;
     private FigureRepo repo;
+    private RollPagerView mRollPagerView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,6 +37,12 @@ public class MainActivity extends AppCompatActivity {
         mListView.setVisibility(View.INVISIBLE);
         mSearchView = (SearchView) findViewById(R.id.searchView);
         mRecyclerView = (RecyclerView) findViewById(R.id.rv);
+
+        //设置主页轮播图
+        mRollPagerView = (RollPagerView)findViewById(R.id.rollpagerview);
+        mRollPagerView.setPlayDelay(3000);//设置播放时间间隔
+         mRollPagerView.setAnimationDurtion(500);
+        mRollPagerView.setAdapter(new TestNormalAdapter());//设置适配器
 
         //  取出数据库中所有人物；
         //FigureList=repo.getFigureList();
@@ -125,5 +137,24 @@ public class MainActivity extends AppCompatActivity {
     public void updateLayout(Object[] obj)
     {
         mListView.setAdapter(new ArrayAdapter<Object>(getApplicationContext(), android.R.layout.simple_expandable_list_item_1, obj));
+    }
+
+    //关于轮播图的设置
+    private class TestNormalAdapter extends StaticPagerAdapter {
+        private int[] imgs = {
+                R.mipmap.sanguo1,
+                R.mipmap.sanguo2,
+                R.mipmap.sanguo3
+        };
+        @Override
+        public View getView(ViewGroup container, int position) {
+            ImageView view = new ImageView(container.getContext());
+            view.setImageResource(imgs[position]);
+            view.setScaleType(ImageView.ScaleType.FIT_XY);
+            view.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+            return view;
+        }
+        @Override
+        public int getCount(){ return imgs.length; }
     }
 }
