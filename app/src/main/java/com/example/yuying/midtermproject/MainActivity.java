@@ -5,19 +5,33 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
+import com.jude.rollviewpager.RollPagerView;
+import com.jude.rollviewpager.adapter.StaticPagerAdapter;
+import com.jude.rollviewpager.hintview.ColorPointHintView;
 
 public class MainActivity extends AppCompatActivity {
     private List<Figure> FigureList;
     private MyRecyclerAdapter mAdapter;
     private RecyclerView mRecyclerView;
+    private RollPagerView mRollPagerView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //设置主页轮播图
+        mRollPagerView = (RollPagerView)findViewById(R.id.rollpagerview);
+        mRollPagerView.setPlayDelay(3000);//设置播放时间间隔
+        mRollPagerView.setAnimationDurtion(500);
+        mRollPagerView.setAdapter(new TestNormalAdapter());//设置适配器
+
         final FigureRepo repo=new FigureRepo(this);
         mRecyclerView = (RecyclerView) findViewById(R.id.rv);
 
@@ -55,5 +69,26 @@ public class MainActivity extends AppCompatActivity {
             }
 
         });
+    }
+
+    //关于轮播图的设置
+    private class TestNormalAdapter extends StaticPagerAdapter {
+        private int[] imgs = {
+                R.mipmap.sanguo1,
+                R.mipmap.sanguo2,
+                R.mipmap.sanguo3
+        };
+        @Override
+        public View getView(ViewGroup container, int position) {
+            ImageView view = new ImageView(container.getContext());
+            view.setImageResource(imgs[position]);
+            view.setScaleType(ImageView.ScaleType.FIT_XY);
+            view.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+            return view;
+        }
+        @Override
+        public int getCount() {
+            return imgs.length;
+        }
     }
 }
