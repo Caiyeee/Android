@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
         FigureList=new ArrayList<Figure>();
         mRecyclerView = (RecyclerView) findViewById(R.id.rv);
 
-        //   取出数据库中所有人物；
+        //  取出数据库中所有人物；
         FigureList=repo.getFigureList();
 
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(this);

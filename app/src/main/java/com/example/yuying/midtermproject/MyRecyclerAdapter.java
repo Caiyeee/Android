@@ -4,6 +4,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -42,14 +43,16 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter<MyRecyclerAdapter.Vi
 
     public static class ViewHolder extends RecyclerView.ViewHolder
     {
+        public ImageView pic;
         public TextView name;
-        public TextView maincountry;
+        public TextView country;
 
         public ViewHolder(View view)
         {
             super(view);
             name = (TextView) view.findViewById(R.id.name);
-            maincountry = (TextView) view.findViewById(R.id.maincountry);
+            country = (TextView) view.findViewById(R.id.country);
+            pic = (ImageView) view.findViewById(R.id.figure_pic);
         }
     }
 
@@ -67,7 +70,9 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter<MyRecyclerAdapter.Vi
     public void onBindViewHolder(ViewHolder holder, final int position)
     {
         holder.name.setText(String.valueOf(Figures.get(position).getName()));
-        holder.maincountry.setText(String.valueOf(Figures.get(position).getID()));
+        holder.country.setText(String.valueOf(Figures.get(position).getMainCountry()));
+        holder.pic.setImageResource(Figures.get(position).getPic());
+
         if(mOnItemClickListener!=null)
         {
             holder.itemView.setOnClickListener(new View.OnClickListener()

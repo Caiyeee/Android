@@ -39,4 +39,5 @@ dependencies {
     compile 'com.android.support:design:26.0.2'
     compile 'org.greenrobot:eventbus:3.0.0'
     testCompile 'junit:junit:4.12'
+    compile 'com.jude:rollviewpager:1.2.9'
 }
