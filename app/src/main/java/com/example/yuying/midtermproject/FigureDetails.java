@@ -10,6 +10,8 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
 /**
  * Created by Yuying on 2017/11/20.
  *人物详情界面
@@ -41,16 +43,16 @@ public class FigureDetails extends AppCompatActivity {
         pic_iv.setImageResource(figure.getPic());
 
         // 实现更新功能
-        final Button saveButton = (Button)findViewById(R.id.save);
-        final Button cancelButton = (Button)findViewById(R.id.cancel);
+        final ImageButton saveButton = (ImageButton)findViewById(R.id.save);
         final ImageButton backButton = (ImageButton) findViewById(R.id.back);
+        final TextView editInfo = (TextView)findViewById(R.id.editInfo);
         // 初始化图标
         if(!isEdit) {
-          saveButton.setVisibility(View.INVISIBLE);
-          cancelButton.setVisibility(View.INVISIBLE);
+           saveButton.setVisibility(View.INVISIBLE);
+            editInfo.setVisibility(View.INVISIBLE);
         }else {
             saveButton.setVisibility(View.VISIBLE);
-            cancelButton.setVisibility(View.VISIBLE);
+            editInfo.setVisibility(View.VISIBLE);
         }
 
 
@@ -60,8 +62,8 @@ public class FigureDetails extends AppCompatActivity {
             public void onClick(View v) {
                 isEdit = true;
                 saveButton.setVisibility(View.VISIBLE);
-                cancelButton.setVisibility(View.VISIBLE);
                 editButton.setVisibility(View.INVISIBLE);
+                editInfo.setVisibility(View.VISIBLE);
                 name_tv.setFocusableInTouchMode(true);
                 name_tv.requestFocus();
                 life_tv.setFocusable(true);
@@ -82,13 +84,13 @@ public class FigureDetails extends AppCompatActivity {
             public void onClick(View v) {
                 isEdit = false;
                 saveButton.setVisibility(View.INVISIBLE);
-                cancelButton.setVisibility(View.INVISIBLE);
+                editButton.setVisibility(View.VISIBLE);
+                editInfo.setVisibility(View.INVISIBLE);
                 figure.setName(name_tv.getText().toString());
                 figure.setLife(life_tv.getText().toString());
                 figure.setGender(gender_tv.getText().toString());
                 figure.setOrigin(origin_tv.getText().toString());
                 figure.setMainCountry(maincountry_tv.getText().toString());
-                editButton.setVisibility(View.INVISIBLE);
                 name_tv.setFocusableInTouchMode(false);
                 name_tv.setFocusable(false);
                 life_tv.setFocusable(false);
@@ -103,29 +105,6 @@ public class FigureDetails extends AppCompatActivity {
             }
         });
 
-        cancelButton.setOnClickListener(new View.OnClickListener() {
-             @Override
-            public void onClick(View v) {
-                                saveButton.setVisibility(View.INVISIBLE);
-                                cancelButton.setVisibility(View.INVISIBLE);
-                                editButton.setVisibility(View.VISIBLE);
-                                name_tv.setText(figure.getName());
-                                origin_tv.setText(figure.getOrigin());
-                                gender_tv.setText(figure.getGender());
-                                life_tv.setText(figure.getLife());
-                                maincountry_tv.setText(figure.getMainCountry());
-                                name_tv.setFocusableInTouchMode(false);
-                                name_tv.setFocusable(false);
-                                life_tv.setFocusable(false);
-                                life_tv.setFocusableInTouchMode(false);
-                                gender_tv.setFocusableInTouchMode(false);
-                                gender_tv.setFocusable(false);
-                                origin_tv.setFocusable(false);
-                                origin_tv.setFocusableInTouchMode(false);
-                               maincountry_tv.setFocusable(false);
-                                maincountry_tv.setFocusableInTouchMode(false);
-                           }
-         });
 
 
         backButton.setOnClickListener(new View.OnClickListener() {
