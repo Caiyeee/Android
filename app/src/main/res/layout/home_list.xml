@@ -14,7 +14,7 @@
         android:layout_weight="1"
         android:layout_marginBottom="5dp">
         <ImageView
-            android:layout_width="wrap_content"
+            android:layout_width="50dp"
             android:layout_height="100dp"
             android:id="@+id/figure_pic"
             android:src="@mipmap/zhugeliang"
@@ -26,7 +26,7 @@
             android:text="诸葛亮"
             android:textSize="20sp"
             android:layout_toRightOf="@+id/figure_pic"
-            android:layout_marginLeft="5dp"
+            android:layout_marginLeft="25dp"
             android:textColor="@color/black"
             android:layout_centerVertical="true"/>
         <TextView
@@ -36,7 +36,7 @@
             android:text="蜀国"
             android:textSize="20sp"
             android:layout_toRightOf="@+id/name"
-            android:layout_marginLeft="20dp"
+            android:layout_marginLeft="25dp"
             android:textColor="@color/black"
             android:layout_centerVertical="true"/>
     </RelativeLayout>
