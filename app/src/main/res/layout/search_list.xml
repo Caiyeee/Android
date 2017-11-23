@@ -3,50 +3,33 @@
     android:layout_width="match_parent"
     android:background="@color/white"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:weightSum="2"
-    android:id="@+id/list">
-
+    android:orientation="horizontal"
+    android:id="@+id/slist">
 
     <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
+        android:layout_width="fill_parent"
+        android:layout_height="60dp"
         android:layout_marginBottom="5dp">
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="100dp"
-            android:id="@+id/figure_pic"
-            android:src="@mipmap/zhugeliang"
-            android:layout_marginLeft="10dp"/>
+
         <TextView
-            android:id="@+id/name"
+            android:id="@+id/sname"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="诸葛亮"
             android:textSize="20sp"
-            android:layout_toRightOf="@+id/figure_pic"
-            android:layout_marginLeft="5dp"
+            android:layout_marginLeft="50dp"
             android:textColor="@color/black"
             android:layout_centerVertical="true"/>
         <TextView
-            android:id="@+id/country"
+            android:id="@+id/scountry"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="蜀国"
             android:textSize="20sp"
-            android:layout_toRightOf="@+id/name"
+            android:layout_toRightOf="@+id/sname"
             android:layout_marginLeft="20dp"
             android:textColor="@color/black"
             android:layout_centerVertical="true"/>
     </RelativeLayout>
-
-    <ImageView
-        android:layout_width="fill_parent"
-        android:layout_height="3dp"
-        android:background="@color/line"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="5dp" />
 
 </LinearLayout>

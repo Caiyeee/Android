@@ -4,4 +4,5 @@
     <string name="origin">籍贯</string>
     <string name="gender">性别</string>
     <string name="maincountry">主效势力</string>
+    <string name="searchHint">请输入搜索内容</string>
 </resources>

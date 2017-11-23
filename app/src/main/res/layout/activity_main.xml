@@ -30,9 +30,6 @@
             android:textColor="@color/grayText">
         </SearchView>
 
-    </RelativeLayout>
-
-
     <com.jude.rollviewpager.RollPagerView
         android:id="@+id/rollpagerview"
         android:layout_width="match_parent"
@@ -55,6 +52,5 @@
         android:layout_below="@+id/topbar"
         android:background="@color/black">
     </ListView>
-
 
 </RelativeLayout>

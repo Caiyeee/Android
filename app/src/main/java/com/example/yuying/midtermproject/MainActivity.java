@@ -1,6 +1,7 @@
 package com.example.yuying.midtermproject;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -8,19 +9,23 @@ import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SearchView;
+import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.ArrayList;
 import com.jude.rollviewpager.RollPagerView;
 import com.jude.rollviewpager.adapter.StaticPagerAdapter;
-import com.jude.rollviewpager.hintview.ColorPointHintView;
+
+import java.util.ArrayList;
+
+import static com.example.yuying.midtermproject.R.id.searchView;
 
 public class MainActivity extends AppCompatActivity {
     private ArrayList<Figure> FigureList;
+    private ArrayList<Figure> selsctFigureList;
     private ListView mListView;
     private SearchView mSearchView;
     private MyRecyclerAdapter mAdapter;
@@ -35,18 +40,18 @@ public class MainActivity extends AppCompatActivity {
         FigureList=new ArrayList<Figure>();
         mListView = (ListView) findViewById(R.id.lv);
         mListView.setVisibility(View.INVISIBLE);
-        mSearchView = (SearchView) findViewById(R.id.searchView);
+        mSearchView = (SearchView) findViewById(searchView);
         mRecyclerView = (RecyclerView) findViewById(R.id.rv);
 
         //设置主页轮播图
         mRollPagerView = (RollPagerView)findViewById(R.id.rollpagerview);
         mRollPagerView.setPlayDelay(3000);//设置播放时间间隔
-         mRollPagerView.setAnimationDurtion(500);
+        mRollPagerView.setAnimationDurtion(500);
         mRollPagerView.setAdapter(new TestNormalAdapter());//设置适配器
 
         //  取出数据库中所有人物；
         FigureList=repo.getFigureList();
-        //FigureList=repo.getFigureLike("吴");
+      //  FigureList=repo.getFigureLike("吴");
         //Toast.makeText(MainActivity.this,"共选择人物数目："+ String.valueOf(FigureList.size()), Toast.LENGTH_LONG).show();
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
@@ -75,6 +80,18 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+            @Override
+            public void onItemClick(AdapterView<?> adapterView,View view, final int i,long l){
+                Bundle bundle=new Bundle();
+                bundle.putSerializable("figure",selsctFigureList.get(i));
+                Intent intent = new Intent(MainActivity.this, FigureDetails.class);
+                intent.putExtras(bundle);
+                intent.putExtra("position",i);
+                startActivityForResult(intent,0);
+            }
+        });
+
         /* 查询人物 */
         mSearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             // 当点击搜索按钮时触发该方法
@@ -86,21 +103,39 @@ public class MainActivity extends AppCompatActivity {
             // 当搜索内容改变时触发该方法
             @Override
             public boolean onQueryTextChange(String newText) {
-                mListView.setVisibility(View.VISIBLE);
-                mRecyclerView.setVisibility(View.INVISIBLE);
+
                 if (!TextUtils.isEmpty(newText))
                 {
-                    Object[] obj=searchItem(newText);
-                    updateLayout(obj);
+                    mListView.setVisibility(View.VISIBLE);
+                    mRecyclerView.setVisibility(View.INVISIBLE);
+                    mRollPagerView.setVisibility(View.INVISIBLE);
+                //    Object[] obj = searchItem(newText);
+                    MyListViewAdapter sAdapter = searchItem(newText);
+                    updateLayout(sAdapter);
+                  //  updateLayout(obj);
                 }else{
                     mListView.clearTextFilter();
                     mListView.setVisibility(View.INVISIBLE);
                     mRecyclerView.setVisibility(View.VISIBLE);
+                    mRollPagerView.setVisibility(View.VISIBLE);
                     mListView.clearTextFilter();
                 }
                 return false;
             }
         });
+
+       /* EditText textView = (EditText) mSearchView.findViewById(android.support.v7.appcompat.R.id.search_src_text);
+        mSearchView.setQueryHint(this.getString(R.string.searchHint));
+        textView.setTextColor(Color.GRAY);*/
+
+        SearchView hsearchView = (SearchView)findViewById(R.id.searchView);
+        //设置输入字体颜色
+        if(hsearchView == null) { return;}
+        int id = hsearchView.getContext().getResources().getIdentifier("android:id/search_src_text", null, null);
+        TextView textView = (TextView) hsearchView.findViewById(id);
+        textView.setTextColor(Color.BLACK);//字体颜色
+        textView.setTextSize(20);//字体、提示字体大小
+        textView.setHintTextColor(Color.GRAY);//提示字体颜色
     }
 
     @Override
@@ -122,7 +157,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //过滤规则
-    public Object[] searchItem(String keywords)
+/*    public Object[] searchItem(String keywords)
     {
         ArrayList<String> mSearchList = new ArrayList<String>();
         ArrayList<Figure> figureList = new ArrayList<Figure>();
@@ -137,6 +172,18 @@ public class MainActivity extends AppCompatActivity {
     public void updateLayout(Object[] obj)
     {
         mListView.setAdapter(new ArrayAdapter<Object>(getApplicationContext(), android.R.layout.simple_expandable_list_item_1, obj));
+    }*/
+    public MyListViewAdapter searchItem(String keywords)
+    {
+        selsctFigureList = new ArrayList<Figure>();
+        selsctFigureList = repo.getFigureLike(keywords);
+        MyListViewAdapter sadapter = new MyListViewAdapter(this,selsctFigureList);
+        return sadapter;
+    }
+
+    public void updateLayout(MyListViewAdapter sAdapter)
+    {
+        mListView.setAdapter(sAdapter);
     }
 
     //关于轮播图的设置
