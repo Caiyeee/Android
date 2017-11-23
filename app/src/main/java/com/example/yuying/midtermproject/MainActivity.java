@@ -27,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
     private ArrayList<Figure> FigureList;
     private ArrayList<Figure> selsctFigureList;
     private ListView mListView;
+    private ImageView mImageView;
     private SearchView mSearchView;
     private MyRecyclerAdapter mAdapter;
     private RecyclerView mRecyclerView;
@@ -42,6 +43,8 @@ public class MainActivity extends AppCompatActivity {
         mListView.setVisibility(View.INVISIBLE);
         mSearchView = (SearchView) findViewById(searchView);
         mRecyclerView = (RecyclerView) findViewById(R.id.rv);
+        mImageView = (ImageView) findViewById(R.id.add_icon);
+        mSearchView.setMaxWidth(900);
 
         //设置主页轮播图
         mRollPagerView = (RollPagerView)findViewById(R.id.rollpagerview);
@@ -103,22 +106,25 @@ public class MainActivity extends AppCompatActivity {
             // 当搜索内容改变时触发该方法
             @Override
             public boolean onQueryTextChange(String newText) {
-
                 if (!TextUtils.isEmpty(newText))
                 {
                     mListView.setVisibility(View.VISIBLE);
                     mRecyclerView.setVisibility(View.INVISIBLE);
                     mRollPagerView.setVisibility(View.INVISIBLE);
+                    mImageView.setVisibility(View.INVISIBLE);
                 //    Object[] obj = searchItem(newText);
                     MyListViewAdapter sAdapter = searchItem(newText);
                     updateLayout(sAdapter);
+                    mSearchView.setMaxWidth(1200);
                   //  updateLayout(obj);
                 }else{
                     mListView.clearTextFilter();
                     mListView.setVisibility(View.INVISIBLE);
                     mRecyclerView.setVisibility(View.VISIBLE);
                     mRollPagerView.setVisibility(View.VISIBLE);
+                    mImageView.setVisibility(View.VISIBLE);
                     mListView.clearTextFilter();
+                    mSearchView.setMaxWidth(900);
                 }
                 return false;
             }
