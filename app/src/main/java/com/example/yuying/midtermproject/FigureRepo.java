@@ -87,6 +87,41 @@ public class FigureRepo {
         return FigureList;
     }
 
+    public ArrayList<Figure> getFigureLike(String like){
+        SQLiteDatabase db=dbHelper.getReadableDatabase();
+        String selectQuery="SELECT "+
+                Figure.KEY_ID+","+
+                Figure.KEY_Name+","+
+                Figure.KEY_Gender+","+
+                Figure.KEY_Life+","+
+                Figure.KEY_Origin +","+
+                Figure.KEY_MainCountry+","+
+                Figure.KEY_Pic+
+                " FROM "+Figure.TABLE+
+                " where "+
+                Figure.KEY_Name+" like '%"+like+"%' or "+
+                Figure.KEY_MainCountry+" like '%"+like+"%'";
+
+        ArrayList<Figure>  FigureList=new ArrayList<Figure>();
+        Cursor cursor=db.rawQuery(selectQuery,null);
+        if(cursor.moveToFirst()){
+            do{
+                Figure figure=new Figure();
+                figure.setID(cursor.getInt(cursor.getColumnIndex(Figure.KEY_ID)));
+                figure.setName(cursor.getString(cursor.getColumnIndex(Figure.KEY_Name)));
+                figure.setGender(cursor.getString(cursor.getColumnIndex(Figure.KEY_Gender)));
+                figure.setLife(cursor.getString(cursor.getColumnIndex(Figure.KEY_Life)));
+                figure.setOrigin(cursor.getString(cursor.getColumnIndex(Figure.KEY_Origin)));
+                figure.setMainCountry(cursor.getString(cursor.getColumnIndex(Figure.KEY_MainCountry)));
+                figure.setPic(cursor.getInt(cursor.getColumnIndex(Figure.KEY_Pic)));
+                FigureList.add(figure);
+            }while(cursor.moveToNext());
+        }
+        cursor.close();
+        db.close();
+        return FigureList;
+    }
+
     public Figure getFigureById(int ID){
         SQLiteDatabase db=dbHelper.getReadableDatabase();
         String selectQuery="SELECT "+
