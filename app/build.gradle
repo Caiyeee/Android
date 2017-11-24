@@ -40,4 +40,5 @@ dependencies {
     compile 'org.greenrobot:eventbus:3.0.0'
     testCompile 'junit:junit:4.12'
     compile 'com.jude:rollviewpager:1.2.9'
+    compile 'jp.wasabeef:recyclerview-animators:2.2.7'
 }

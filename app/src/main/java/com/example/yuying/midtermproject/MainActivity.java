@@ -18,7 +18,8 @@ import android.widget.Toast;
 
 import com.jude.rollviewpager.RollPagerView;
 import com.jude.rollviewpager.adapter.StaticPagerAdapter;
-
+import jp.wasabeef.recyclerview.adapters.ScaleInAnimationAdapter;
+import jp.wasabeef.recyclerview.animators.OvershootInLeftAnimator;
 import java.util.ArrayList;
 
 import static com.example.yuying.midtermproject.R.id.searchView;
@@ -60,7 +61,12 @@ public class MainActivity extends AppCompatActivity {
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setHasFixedSize(true);
         mAdapter = new MyRecyclerAdapter(FigureList);
-        mRecyclerView.setAdapter(mAdapter);
+ //       mRecyclerView.setAdapter(mAdapter);
+        //设置有动画效果的适配器
+        ScaleInAnimationAdapter animationAdapter = new ScaleInAnimationAdapter(mAdapter);
+        animationAdapter.setDuration(700);
+        mRecyclerView.setAdapter(animationAdapter);
+        mRecyclerView.setItemAnimator(new OvershootInLeftAnimator());
         mAdapter.setOnItemClickListener(new MyRecyclerAdapter.OnItemClickListener() {
             @Override
         /* 点击人物，页面跳转 */
@@ -79,9 +85,12 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this,"移除第" + String.valueOf(position + 1) + "个人物", Toast.LENGTH_SHORT).show();
                 repo.delete(FigureList.get(position).getID());
                 FigureList.remove(position);
-                mAdapter.notifyDataSetChanged();
+      //          mAdapter.notifyDataSetChanged();
+                mAdapter.notifyItemRemoved(position);//有动画的删除
             }
         });
+
+
 
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             @Override

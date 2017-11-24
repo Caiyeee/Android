@@ -35,12 +35,32 @@ public class FigureDetails extends AppCompatActivity {
         final EditText origin_tv = (EditText)findViewById(R.id.figure_origin);
         final EditText maincountry_tv = (EditText)findViewById(R.id.figure_maincountry);
         ImageView pic_iv=(ImageView)findViewById(R.id.figure_pic);
-        name_tv.setText(figure.getName());
-        origin_tv.setText(figure.getOrigin());
-        gender_tv.setText(figure.getGender());
-        life_tv.setText(figure.getLife());
-        maincountry_tv.setText(figure.getMainCountry());
-        pic_iv.setImageResource(figure.getPic());
+        if(position==-1){//新增加的空人物
+            name_tv.setHint("点击此处输入名字");
+            origin_tv.setHint("点击此处输入籍贯");
+            gender_tv.setHint("点击此处输入性别");
+            life_tv.setHint("点击此处输入生卒年月");
+            maincountry_tv.setHint("点击此处输入主效势力");
+            pic_iv.setImageResource(R.mipmap.addition);
+            isEdit = true;
+//            name_tv.setFocusableInTouchMode(true);
+//            name_tv.setFocusable(true);
+//            life_tv.setFocusable(true);
+//            life_tv.setFocusableInTouchMode(true);
+//            gender_tv.setFocusableInTouchMode(true);
+//            gender_tv.setFocusable(true);
+//            origin_tv.setFocusable(true);
+//            origin_tv.setFocusableInTouchMode(true);
+//            maincountry_tv.setFocusable(true);
+//            maincountry_tv.setFocusableInTouchMode(true);
+        } else {
+            name_tv.setText(figure.getName());
+            origin_tv.setText(figure.getOrigin());
+            gender_tv.setText(figure.getGender());
+            life_tv.setText(figure.getLife());
+            maincountry_tv.setText(figure.getMainCountry());
+            pic_iv.setImageResource(R.mipmap.ic_launcher);
+        }
 
         // 实现更新功能
         final ImageButton saveButton = (ImageButton)findViewById(R.id.save);
