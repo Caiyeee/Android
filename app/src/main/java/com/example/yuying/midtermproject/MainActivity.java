@@ -2,6 +2,7 @@ package com.example.yuying.midtermproject;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -18,9 +19,11 @@ import android.widget.Toast;
 
 import com.jude.rollviewpager.RollPagerView;
 import com.jude.rollviewpager.adapter.StaticPagerAdapter;
+
+import java.util.ArrayList;
+
 import jp.wasabeef.recyclerview.adapters.ScaleInAnimationAdapter;
 import jp.wasabeef.recyclerview.animators.OvershootInLeftAnimator;
-import java.util.ArrayList;
 
 import static com.example.yuying.midtermproject.R.id.searchView;
 
@@ -60,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setHasFixedSize(true);
-        mAdapter = new MyRecyclerAdapter(FigureList);
+        mAdapter = new MyRecyclerAdapter(FigureList,this);
  //       mRecyclerView.setAdapter(mAdapter);
         //设置有动画效果的适配器
         ScaleInAnimationAdapter animationAdapter = new ScaleInAnimationAdapter(mAdapter);
@@ -162,6 +165,8 @@ public class MainActivity extends AppCompatActivity {
         textView.setTextColor(Color.BLACK);//字体颜色
         textView.setTextSize(20);//字体、提示字体大小
         textView.setHintTextColor(Color.GRAY);//提示字体颜色
+        Typeface type = Typeface.createFromAsset(getAssets(), "tengkaishu.ttf");
+        textView.setTypeface(type);
     }
 
     @Override

@@ -124,6 +124,7 @@
             android:layout_marginTop="30dp">
 
             <TextView
+                android:id="@+id/befor_life"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
@@ -155,6 +156,7 @@
             android:layout_marginTop="75dp">
 
             <TextView
+                android:id="@+id/before_gender"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
@@ -187,6 +189,7 @@
             android:layout_marginTop="110dp">
 
             <TextView
+                android:id="@+id/before_origin"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
@@ -218,6 +221,7 @@
             android:layout_marginTop="145dp">
 
             <TextView
+                android:id="@+id/before_country"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"

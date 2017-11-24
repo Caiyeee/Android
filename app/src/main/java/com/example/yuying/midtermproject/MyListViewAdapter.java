@@ -1,6 +1,7 @@
 package com.example.yuying.midtermproject;
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -56,6 +57,9 @@ public class MyListViewAdapter extends BaseAdapter {
             holder = new ViewHolder();
             holder.tv1 = (TextView) convertView.findViewById(R.id.sname);
             holder.tv2 = (TextView) convertView.findViewById(R.id.scountry);
+            Typeface type = Typeface.createFromAsset(context.getAssets(), "tengkaishu.ttf");
+            holder.tv1.setTypeface(type);
+            holder.tv2.setTypeface(type);
             convertView.setTag(holder);
         }
         else {

@@ -1,5 +1,7 @@
 package com.example.yuying.midtermproject;
 
+import android.content.Context;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -7,10 +9,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.io.File;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -19,12 +19,14 @@ import java.util.List;
 
 
 public class MyRecyclerAdapter extends RecyclerView.Adapter<MyRecyclerAdapter.ViewHolder> {
+    private Context context;
     private List<Figure> Figures;
     private OnItemClickListener mOnItemClickListener = null;
 
-    public MyRecyclerAdapter(List<Figure> figures)
+    public MyRecyclerAdapter(List<Figure> figures, Context context)
     {
         this.Figures = figures;
+        this.context = context;
     }
 
     @Override
@@ -73,7 +75,10 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter<MyRecyclerAdapter.Vi
     public void onBindViewHolder(ViewHolder holder, final int position)
     {
         holder.name.setText(String.valueOf(Figures.get(position).getName()));
+        Typeface type = Typeface.createFromAsset(context.getAssets(), "tengkaishu.ttf");
+        holder.name.setTypeface(type);
         holder.country.setText(String.valueOf(Figures.get(position).getMainCountry()));
+        holder.country.setTypeface(type);
 
         if(Figures.get(position).getPicPath()!=null){
             Uri tempUri= Uri.fromFile(new File(Figures.get(position).getPicPath()));

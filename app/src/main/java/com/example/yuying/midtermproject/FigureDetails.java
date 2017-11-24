@@ -6,7 +6,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -19,14 +19,11 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import org.w3c.dom.Text;
 
 import java.io.File;
 
@@ -75,6 +72,25 @@ public class FigureDetails extends AppCompatActivity {
         final EditText gender_tv = (EditText)findViewById(R.id.figure_gender);
         final EditText origin_tv = (EditText)findViewById(R.id.figure_origin);
         final EditText maincountry_tv = (EditText)findViewById(R.id.figure_maincountry);
+
+        //修改字体
+        Typeface type = Typeface.createFromAsset(this.getAssets(), "tengkaishu.ttf");
+        name_tv.setTypeface(type);
+        life_tv.setTypeface(type);
+        gender_tv.setTypeface(type);
+        origin_tv.setTypeface(type);
+        maincountry_tv.setTypeface(type);
+
+        TextView tv1 = (TextView) findViewById(R.id.befor_life);
+        TextView tv2 = (TextView) findViewById(R.id.before_gender);
+        TextView tv3 = (TextView) findViewById(R.id.before_origin);
+        TextView tv4 = (TextView) findViewById(R.id.before_country);
+
+        tv1.setTypeface(type);
+        tv2.setTypeface(type);
+        tv3.setTypeface(type);
+        tv4.setTypeface(type);
+
         if(position==-1){//新增加的空人物
             name_tv.setHint("点击此处输入名字");
             origin_tv.setHint("点击此处输入籍贯");
