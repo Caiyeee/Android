@@ -100,7 +100,8 @@ public class FigureDetails extends AppCompatActivity {
             pic_iv.setImageResource(R.mipmap.addition);
             isEdit = true;
             name_tv.setFocusableInTouchMode(true);
-            name_tv.setFocusable(true);
+            name_tv.setSelection(figure.getMainCountry().length());
+            name_tv.requestFocus();
             life_tv.setFocusable(true);
             life_tv.setFocusableInTouchMode(true);
             gender_tv.setFocusableInTouchMode(true);
@@ -148,6 +149,7 @@ public class FigureDetails extends AppCompatActivity {
                 editButton.setVisibility(View.INVISIBLE);
                 editInfo.setVisibility(View.VISIBLE);
                 name_tv.setFocusableInTouchMode(true);
+                name_tv.setSelection(figure.getMainCountry().length());
                 name_tv.requestFocus();
                 life_tv.setFocusable(true);
                 life_tv.setFocusableInTouchMode(true);
@@ -156,9 +158,8 @@ public class FigureDetails extends AppCompatActivity {
                 origin_tv.setFocusable(true);
                 origin_tv.setFocusableInTouchMode(true);
                 maincountry_tv.setFocusable(true);
-                maincountry_tv.setSelection(figure.getMainCountry().length());
                 maincountry_tv.setFocusableInTouchMode(true);
-                maincountry_tv.requestFocus();
+
             }
         });
 
