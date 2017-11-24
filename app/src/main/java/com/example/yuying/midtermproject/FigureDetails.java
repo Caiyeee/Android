@@ -75,7 +75,6 @@ public class FigureDetails extends AppCompatActivity {
         final EditText gender_tv = (EditText)findViewById(R.id.figure_gender);
         final EditText origin_tv = (EditText)findViewById(R.id.figure_origin);
         final EditText maincountry_tv = (EditText)findViewById(R.id.figure_maincountry);
-        ImageView pic_iv=(ImageView)findViewById(R.id.figure_pic);
         if(position==-1){//新增加的空人物
             name_tv.setHint("点击此处输入名字");
             origin_tv.setHint("点击此处输入籍贯");
@@ -108,14 +107,6 @@ public class FigureDetails extends AppCompatActivity {
                 Toast.makeText(FigureDetails.this,"修改过图片", Toast.LENGTH_SHORT).show();
             }
         }
-        pic_iv=(ImageView)findViewById(R.id.figure_pic);
-        name_tv.setText(figure.getName());
-        origin_tv.setText(figure.getOrigin());
-        gender_tv.setText(figure.getGender());
-        life_tv.setText(figure.getLife());
-        maincountry_tv.setText(figure.getMainCountry());
-
-
 
 
         // 实现更新功能
@@ -301,10 +292,10 @@ public class FigureDetails extends AppCompatActivity {
         intent.putExtra("crop", "true");
         // aspectX aspectY 是宽高的比例
         intent.putExtra("aspectX", 1);
-        intent.putExtra("aspectY", 1);
+        intent.putExtra("aspectY", 1.4);
         // outputX outputY 是裁剪图片宽高
-        intent.putExtra("outputX", 150);
-        intent.putExtra("outputY", 150);
+        intent.putExtra("outputX", 70);
+        intent.putExtra("outputY", 120);
         intent.putExtra("return-data", true);
         startActivityForResult(intent, CROP_SMALL_PICTURE);
     }

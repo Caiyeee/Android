@@ -40,7 +40,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
         for(int i = 0; i < 10; i++)
         {
-            Figure figure= new Figure(i,Name[i], Gender[i], Life[i], Origin[i], MainContry[i], Pic[i]);
+            Figure figure= new Figure(i,Name[i], Gender[i], Life[i], Origin[i], MainContry[i], Pic[i],null);
             ContentValues values=new ContentValues();
             //values.put(Figure.KEY_ID,figure.getID());
             values.put(Figure.KEY_Name,figure.getName());
