@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -22,7 +23,7 @@ public class FigureRepo {
         //打开连接，写入数据
         SQLiteDatabase db=dbHelper.getWritableDatabase();
         ContentValues values=new ContentValues();
-        values.put(Figure.KEY_ID,figure.getID());
+       // values.put(Figure.KEY_ID,figure.getID());
         values.put(Figure.KEY_Name,figure.getName());
         values.put(Figure.KEY_Gender,figure.getGender());
         values.put(Figure.KEY_Life,figure.getLife());
@@ -31,6 +32,7 @@ public class FigureRepo {
         values.put(Figure.KEY_Pic,figure.getPic());
         values.put(Figure.KEY_PicPath,figure.getPicPath());
         long ID=db.insert(Figure.TABLE,null,values);
+       // Toast.makeText(FigureRepo.this,"ID: "+String.valueOf(ID), Toast.LENGTH_SHORT).show();
         db.close();
         return (int)ID;
     }
@@ -43,7 +45,6 @@ public class FigureRepo {
     public void update(Figure figure){
         SQLiteDatabase db=dbHelper.getWritableDatabase();
         ContentValues values=new ContentValues();
-        // values.put(Figure.KEY_ID,figure.getID());
         values.put(Figure.KEY_Name,figure.getName());
         values.put(Figure.KEY_Gender,figure.getGender());
         values.put(Figure.KEY_Life,figure.getLife());

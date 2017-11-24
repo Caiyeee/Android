@@ -47,8 +47,8 @@ public class FigureDetails extends AppCompatActivity {
     private String imagePath;
     private Figure figure;
 
-
     Boolean isEdit = false;
+    private int position;
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
@@ -67,7 +67,7 @@ public class FigureDetails extends AppCompatActivity {
         final FigureRepo repo=new FigureRepo(this);
         final Intent intent=getIntent();
         figure=(Figure)intent.getSerializableExtra("figure");
-        final int position =intent.getIntExtra("position",0);
+        position =intent.getIntExtra("position",0);
 
 
         final EditText name_tv=(EditText)findViewById(R.id.figure_name);
@@ -75,6 +75,39 @@ public class FigureDetails extends AppCompatActivity {
         final EditText gender_tv = (EditText)findViewById(R.id.figure_gender);
         final EditText origin_tv = (EditText)findViewById(R.id.figure_origin);
         final EditText maincountry_tv = (EditText)findViewById(R.id.figure_maincountry);
+        ImageView pic_iv=(ImageView)findViewById(R.id.figure_pic);
+        if(position==-1){//新增加的空人物
+            name_tv.setHint("点击此处输入名字");
+            origin_tv.setHint("点击此处输入籍贯");
+            gender_tv.setHint("点击此处输入性别");
+            life_tv.setHint("点击此处输入生卒年月");
+            maincountry_tv.setHint("点击此处输入主效势力");
+            pic_iv.setImageResource(R.mipmap.addition);
+            isEdit = true;
+            name_tv.setFocusableInTouchMode(true);
+            name_tv.setFocusable(true);
+            life_tv.setFocusable(true);
+            life_tv.setFocusableInTouchMode(true);
+            gender_tv.setFocusableInTouchMode(true);
+            gender_tv.setFocusable(true);
+            origin_tv.setFocusable(true);
+            origin_tv.setFocusableInTouchMode(true);
+            maincountry_tv.setFocusable(true);
+            maincountry_tv.setFocusableInTouchMode(true);
+        } else {
+            name_tv.setText(figure.getName());
+            origin_tv.setText(figure.getOrigin());
+            gender_tv.setText(figure.getGender());
+            life_tv.setText(figure.getLife());
+            maincountry_tv.setText(figure.getMainCountry());
+            if(figure.getPicPath()==null)
+                pic_iv.setImageResource(figure.getPic());
+            else {
+                tempUri=Uri.fromFile(new File(figure.getPicPath()));
+                pic_iv.setImageURI(tempUri);
+                Toast.makeText(FigureDetails.this,"修改过图片", Toast.LENGTH_SHORT).show();
+            }
+        }
         pic_iv=(ImageView)findViewById(R.id.figure_pic);
         name_tv.setText(figure.getName());
         origin_tv.setText(figure.getOrigin());
@@ -83,13 +116,7 @@ public class FigureDetails extends AppCompatActivity {
         maincountry_tv.setText(figure.getMainCountry());
 
 
-        if(figure.getPicPath()==null)
-            pic_iv.setImageResource(figure.getPic());
-        else {
-            tempUri=Uri.fromFile(new File(figure.getPicPath()));
-            pic_iv.setImageURI(tempUri);
-            Toast.makeText(FigureDetails.this,"修改过图片", Toast.LENGTH_SHORT).show();
-        }
+
 
         // 实现更新功能
         final ImageButton saveButton = (ImageButton)findViewById(R.id.save);
@@ -140,6 +167,7 @@ public class FigureDetails extends AppCompatActivity {
                 figure.setGender(gender_tv.getText().toString());
                 figure.setOrigin(origin_tv.getText().toString());
                 figure.setMainCountry(maincountry_tv.getText().toString());
+           //     Toast.makeText(FigureDetails.this,"name:"+String.valueOf(figure.getName())+" 主效势力:"+String.valueOf(figure.getMainCountry()), Toast.LENGTH_SHORT).show();
                 name_tv.setFocusableInTouchMode(false);
                 name_tv.setFocusable(false);
                 life_tv.setFocusable(false);
@@ -150,7 +178,16 @@ public class FigureDetails extends AppCompatActivity {
                 origin_tv.setFocusableInTouchMode(false);
                 maincountry_tv.setFocusable(false);
                 maincountry_tv.setFocusableInTouchMode(false);
-                repo.update(figure);
+                if(position==-1){
+                    position = repo.insert(figure);
+                //    Toast.makeText(FigureDetails.this,"position: "+position, Toast.LENGTH_SHORT).show();
+                }
+                else
+                    repo.update(figure);
+
+                Intent intent1=new Intent();
+                intent1.putExtra("position",position);
+                setResult(1,intent1);
             }
         });
 
@@ -159,9 +196,6 @@ public class FigureDetails extends AppCompatActivity {
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent1=new Intent();
-                intent.putExtra("position",position);
-                setResult(1,intent);
                 finish();
             }
         });

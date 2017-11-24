@@ -18,7 +18,6 @@ public class DBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        /* 初始化 */
         //创建数据表
         String CREATE_TABLE_Figures="CREATE TABLE "+Figure.TABLE+"("
                 +Figure.KEY_ID+" INTEGER PRIMARY KEY AUTOINCREMENT,"
@@ -37,10 +36,11 @@ public class DBHelper extends SQLiteOpenHelper {
         final String[] Life = {"155-220","182 - 252","161 - 223","170 - 207","172 - 217","？ - 220","？ - 197","175 - 210","176 - 222","？ - 227"};
         final String[] Origin = {"豫州沛国谯（安徽）","扬州吴郡富春（浙江）","幽州涿郡涿（河北保定）","豫州颍川郡阳翟（河南许昌）","徐州下邳国东城（安徽滁州市）","荆州南阳郡（河南南阳市）","兖州陈留郡己吾（河南商丘市）","扬州庐江郡舒（安徽合肥市）","司隶扶风茂陵（陕西咸阳市）","司隶河东郡杨（山西临汾市）"};
         final String[] MainContry = {"魏国", "吴国", "蜀国", "魏国", "吴国", "蜀国", "魏国", "吴国", "蜀国", "魏国"};
+        final int[] Pic = {R.mipmap.caocao, R.mipmap.sunquan, R.mipmap.liubei, R.mipmap.guojia, R.mipmap.lusu, R.mipmap.huangzhong, R.mipmap.dianwei, R.mipmap.zhouyu, R.mipmap.machao, R.mipmap.xuhuang};
 
         for(int i = 0; i < 10; i++)
         {
-            Figure figure= new Figure(i,Name[i], Gender[i], Life[i], Origin[i], MainContry[i],R.mipmap.zhugeliang,null);
+            Figure figure= new Figure(i,Name[i], Gender[i], Life[i], Origin[i], MainContry[i], Pic[i]);
             ContentValues values=new ContentValues();
             //values.put(Figure.KEY_ID,figure.getID());
             values.put(Figure.KEY_Name,figure.getName());

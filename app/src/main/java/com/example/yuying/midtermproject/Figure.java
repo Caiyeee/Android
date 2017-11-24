@@ -29,7 +29,7 @@ public class Figure implements Serializable{
     //主效势力
     private String MainCountry;
 
-    private int Pic;
+    private int Pic = R.mipmap.nopic;
 
     private String PicPath;
 
