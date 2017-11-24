@@ -1,12 +1,15 @@
 package com.example.yuying.midtermproject;
 
+import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -71,7 +74,12 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter<MyRecyclerAdapter.Vi
     {
         holder.name.setText(String.valueOf(Figures.get(position).getName()));
         holder.country.setText(String.valueOf(Figures.get(position).getMainCountry()));
-        holder.pic.setImageResource(Figures.get(position).getPic());
+
+        if(Figures.get(position).getPicPath()!=null){
+            Uri tempUri= Uri.fromFile(new File(Figures.get(position).getPicPath()));
+            holder.pic.setImageURI(tempUri);
+        } else
+           holder.pic.setImageResource(Figures.get(position).getPic());
 
         if(mOnItemClickListener!=null)
         {

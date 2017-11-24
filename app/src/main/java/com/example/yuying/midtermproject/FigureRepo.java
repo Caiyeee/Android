@@ -29,6 +29,7 @@ public class FigureRepo {
         values.put(Figure.KEY_Origin,figure.getOrigin());
         values.put(Figure.KEY_MainCountry,figure.getMainCountry());
         values.put(Figure.KEY_Pic,figure.getPic());
+        values.put(Figure.KEY_PicPath,figure.getPicPath());
         long ID=db.insert(Figure.TABLE,null,values);
         db.close();
         return (int)ID;
@@ -49,6 +50,7 @@ public class FigureRepo {
         values.put(Figure.KEY_Origin,figure.getOrigin());
         values.put(Figure.KEY_MainCountry,figure.getMainCountry());
         values.put(Figure.KEY_Pic,figure.getPic());
+        values.put(Figure.KEY_PicPath,figure.getPicPath());
         db.update(Figure.TABLE,values,Figure.KEY_ID+"=?",new String[] { String.valueOf(figure.getID()) });
         db.close();
     }
@@ -62,7 +64,8 @@ public class FigureRepo {
                 Figure.KEY_Life+","+
                 Figure.KEY_Origin +","+
                 Figure.KEY_MainCountry+","+
-                Figure.KEY_Pic+
+                Figure.KEY_Pic+","+
+                Figure.KEY_PicPath+
                 " FROM "+Figure.TABLE;
 //        ArrayList<HashMap<String,String>> FigureList=new ArrayList<HashMap<String, String>>();
         ArrayList<Figure>  FigureList=new ArrayList<Figure>();
@@ -78,6 +81,7 @@ public class FigureRepo {
                 figure.setOrigin(cursor.getString(cursor.getColumnIndex(Figure.KEY_Origin)));
                 figure.setMainCountry(cursor.getString(cursor.getColumnIndex(Figure.KEY_MainCountry)));
                 figure.setPic(cursor.getInt(cursor.getColumnIndex(Figure.KEY_Pic)));
+                figure.setPicPath(cursor.getString(cursor.getColumnIndex(Figure.KEY_PicPath)));
                 FigureList.add(figure);
             }while(cursor.moveToNext());
         }
@@ -95,12 +99,12 @@ public class FigureRepo {
                 Figure.KEY_Life+","+
                 Figure.KEY_Origin +","+
                 Figure.KEY_MainCountry+","+
-                Figure.KEY_Pic+
+                Figure.KEY_Pic+","+
+                Figure.KEY_PicPath+
                 " FROM "+Figure.TABLE+
                 " where "+
                 Figure.KEY_Name+" like '%"+like+"%' or "+
                 Figure.KEY_MainCountry+" like '%"+like+"%'";
-
         ArrayList<Figure>  FigureList=new ArrayList<Figure>();
         Cursor cursor=db.rawQuery(selectQuery,null);
         if(cursor.moveToFirst()){
@@ -130,7 +134,8 @@ public class FigureRepo {
                 Figure.KEY_Life+","+
                 Figure.KEY_Origin+","+
                 Figure.KEY_MainCountry+","+
-                Figure.KEY_Pic+
+                Figure.KEY_Pic+","+
+                Figure.KEY_PicPath+
                 " FROM "+Figure.TABLE
                 + " WHERE " +
                 Figure.KEY_ID + "=?";
@@ -146,6 +151,7 @@ public class FigureRepo {
                 figure.setOrigin(cursor.getString(cursor.getColumnIndex(Figure.KEY_Origin)));
                 figure.setMainCountry(cursor.getString(cursor.getColumnIndex(Figure.KEY_MainCountry)));
                 figure.setPic(cursor.getInt(cursor.getColumnIndex(Figure.KEY_Pic)));
+                figure.setPicPath(cursor.getString(cursor.getColumnIndex(Figure.KEY_PicPath)));
             }while(cursor.moveToNext());
         }
         cursor.close();

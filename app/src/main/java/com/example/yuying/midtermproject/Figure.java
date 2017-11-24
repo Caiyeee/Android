@@ -16,6 +16,7 @@ public class Figure implements Serializable{
     public static final String KEY_Origin="Origin";
     public static final String KEY_MainCountry="MainCountry";
     public static final String KEY_Pic="Pic";
+    public static final String KEY_PicPath="PicPath";
     private int ID;
     //姓名
     private String Name;
@@ -30,7 +31,9 @@ public class Figure implements Serializable{
 
     private int Pic;
 
-    public Figure(int ID,String Name, String Gender, String Life, String Origin, String MainCountry,int Pic)
+    private String PicPath;
+
+    public Figure(int ID,String Name, String Gender, String Life, String Origin, String MainCountry,int Pic,String PicPath)
     {
         this.ID=ID;
         this.Name = Name;
@@ -39,6 +42,7 @@ public class Figure implements Serializable{
         this.Origin = Origin;
         this.MainCountry = MainCountry;
         this.Pic=Pic;
+        this.PicPath=PicPath;
     }
     public Figure()
     {    }
@@ -75,6 +79,9 @@ public class Figure implements Serializable{
     public int getPic() {
         return Pic;
     }
+    public String getPicPath(){
+        return PicPath;
+    }
 
     public void setID(int ID) {
         this.ID = ID;
@@ -100,5 +107,10 @@ public class Figure implements Serializable{
 
     public void setPic(int pic) {
         Pic = pic;
+    }
+
+    public void setPicPath(String picPath)
+    {
+        PicPath=picPath;
     }
 }

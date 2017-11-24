@@ -18,6 +18,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
+        /* 初始化 */
         //创建数据表
         String CREATE_TABLE_Figures="CREATE TABLE "+Figure.TABLE+"("
                 +Figure.KEY_ID+" INTEGER PRIMARY KEY AUTOINCREMENT,"
@@ -26,7 +27,9 @@ public class DBHelper extends SQLiteOpenHelper {
                 +Figure.KEY_Origin+" TEXT,"
                 +Figure.KEY_Pic+" INTEGER,"
                 +Figure.KEY_MainCountry+" TEXT,"
-                +Figure.KEY_Life+" TEXT)";
+                +Figure.KEY_PicPath+" TEXT,"
+                +Figure.KEY_Life+" TEXT)"
+                ;
         db.execSQL(CREATE_TABLE_Figures);
         /* 始时往数据库中插入10个人物 */
         final String[] Name = {"曹操", "孙权", "刘备", "郭嘉", "鲁肃", "黄忠", "典韦", "周瑜", "马超", "徐晃"};
@@ -37,7 +40,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
         for(int i = 0; i < 10; i++)
         {
-            Figure figure= new Figure(i,Name[i], Gender[i], Life[i], Origin[i], MainContry[i],R.mipmap.zhugeliang);
+            Figure figure= new Figure(i,Name[i], Gender[i], Life[i], Origin[i], MainContry[i],R.mipmap.zhugeliang,null);
             ContentValues values=new ContentValues();
             //values.put(Figure.KEY_ID,figure.getID());
             values.put(Figure.KEY_Name,figure.getName());
