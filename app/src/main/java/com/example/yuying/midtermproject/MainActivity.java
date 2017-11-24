@@ -89,7 +89,19 @@ public class MainActivity extends AppCompatActivity {
                 mAdapter.notifyItemRemoved(position);//有动画的删除
             }
         });
-
+        /*点击增加按钮*/
+        mImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Figure figure = new Figure();
+                Intent intent = new Intent(MainActivity.this,FigureDetails.class);
+                Bundle bundle = new Bundle();
+                bundle.putInt("position",-1);
+                bundle.putSerializable("figure",figure);
+                intent.putExtras(bundle);
+                startActivityForResult(intent,0);
+            }
+        });
 
 
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
@@ -163,7 +175,11 @@ public class MainActivity extends AppCompatActivity {
             mAdapter.notifyDataSetChanged();
 //            Toast.makeText(MainActivity.this,"修改第"+String.valueOf(position+1)+"个人物"+figure.getID(), Toast.LENGTH_SHORT).show();
         }
-
+        if(requestCode==0&&resultCode==1) {
+            int posi = data.getIntExtra("position",0);
+            FigureList.add(repo.getFigureById(posi));
+            mAdapter.notifyDataSetChanged();
+        }
     }
 
     //人物查询

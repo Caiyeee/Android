@@ -9,6 +9,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.w3c.dom.Text;
 
@@ -19,14 +20,16 @@ import org.w3c.dom.Text;
 
 public class FigureDetails extends AppCompatActivity {
     Boolean isEdit = false;
+    private int position;
+    private Figure figure;
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.figure_details);
         final FigureRepo repo=new FigureRepo(this);
         final Intent intent=getIntent();
-        final Figure figure=(Figure)intent.getSerializableExtra("figure");
-        final int position =intent.getIntExtra("position",0);
+        figure=(Figure)intent.getSerializableExtra("figure");
+        position =intent.getIntExtra("position",0);
 
 
         final EditText name_tv=(EditText)findViewById(R.id.figure_name);
@@ -43,23 +46,23 @@ public class FigureDetails extends AppCompatActivity {
             maincountry_tv.setHint("点击此处输入主效势力");
             pic_iv.setImageResource(R.mipmap.addition);
             isEdit = true;
-//            name_tv.setFocusableInTouchMode(true);
-//            name_tv.setFocusable(true);
-//            life_tv.setFocusable(true);
-//            life_tv.setFocusableInTouchMode(true);
-//            gender_tv.setFocusableInTouchMode(true);
-//            gender_tv.setFocusable(true);
-//            origin_tv.setFocusable(true);
-//            origin_tv.setFocusableInTouchMode(true);
-//            maincountry_tv.setFocusable(true);
-//            maincountry_tv.setFocusableInTouchMode(true);
+            name_tv.setFocusableInTouchMode(true);
+            name_tv.setFocusable(true);
+            life_tv.setFocusable(true);
+            life_tv.setFocusableInTouchMode(true);
+            gender_tv.setFocusableInTouchMode(true);
+            gender_tv.setFocusable(true);
+            origin_tv.setFocusable(true);
+            origin_tv.setFocusableInTouchMode(true);
+            maincountry_tv.setFocusable(true);
+            maincountry_tv.setFocusableInTouchMode(true);
         } else {
             name_tv.setText(figure.getName());
             origin_tv.setText(figure.getOrigin());
             gender_tv.setText(figure.getGender());
             life_tv.setText(figure.getLife());
             maincountry_tv.setText(figure.getMainCountry());
-            pic_iv.setImageResource(R.mipmap.ic_launcher);
+            pic_iv.setImageResource(figure.getPic());
         }
 
         // 实现更新功能
@@ -111,6 +114,7 @@ public class FigureDetails extends AppCompatActivity {
                 figure.setGender(gender_tv.getText().toString());
                 figure.setOrigin(origin_tv.getText().toString());
                 figure.setMainCountry(maincountry_tv.getText().toString());
+           //     Toast.makeText(FigureDetails.this,"name:"+String.valueOf(figure.getName())+" 主效势力:"+String.valueOf(figure.getMainCountry()), Toast.LENGTH_SHORT).show();
                 name_tv.setFocusableInTouchMode(false);
                 name_tv.setFocusable(false);
                 life_tv.setFocusable(false);
@@ -121,7 +125,16 @@ public class FigureDetails extends AppCompatActivity {
                 origin_tv.setFocusableInTouchMode(false);
                 maincountry_tv.setFocusable(false);
                 maincountry_tv.setFocusableInTouchMode(false);
-                repo.update(figure);
+                if(position==-1){
+                    position = repo.insert(figure);
+                //    Toast.makeText(FigureDetails.this,"position: "+position, Toast.LENGTH_SHORT).show();
+                }
+                else
+                    repo.update(figure);
+
+                Intent intent1=new Intent();
+                intent1.putExtra("position",position);
+                setResult(1,intent1);
             }
         });
 
@@ -130,9 +143,6 @@ public class FigureDetails extends AppCompatActivity {
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent1=new Intent();
-                intent.putExtra("position",position);
-                setResult(1,intent);
                 finish();
             }
         });

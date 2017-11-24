@@ -114,7 +114,6 @@
             android:layout_marginTop="-5dp"
             android:background="@null"
             android:focusable="false"
-            android:text="figure_name"
             android:textColor="#000000"
             android:textSize="30sp" />
 
@@ -145,7 +144,6 @@
                 android:layout_marginTop="10dp"
                 android:background="@null"
                 android:focusable="false"
-                android:text="155-220"
                 android:textColor="@color/black"
                 android:textSize="20sp" />
 
@@ -178,7 +176,6 @@
                 android:layout_marginLeft="15dp"
                 android:background="@null"
                 android:focusable="false"
-                android:text="男"
                 android:textColor="@color/black"
                 android:textSize="20sp" />
         </LinearLayout>
@@ -210,7 +207,6 @@
                 android:layout_marginLeft="15dp"
                 android:background="@null"
                 android:focusable="false"
-                android:text="福建"
                 android:textColor="@color/black"
                 android:textSize="20sp" />
         </LinearLayout>
@@ -242,7 +238,6 @@
                 android:layout_marginLeft="15dp"
                 android:background="@null"
                 android:focusable="false"
-                android:text="魏国"
                 android:textColor="@color/black"
                 android:textSize="20sp" />
         </LinearLayout>

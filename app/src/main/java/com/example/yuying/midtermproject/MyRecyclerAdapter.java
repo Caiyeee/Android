@@ -70,7 +70,7 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter<MyRecyclerAdapter.Vi
     public void onBindViewHolder(ViewHolder holder, final int position)
     {
         holder.name.setText(String.valueOf(Figures.get(position).getName()));
-        holder.country.setText(String.valueOf(Figures.get(position).getMainCountry()));
+        holder.country.setText(String.valueOf(Figures.get(position).getID()));
         holder.pic.setImageResource(Figures.get(position).getPic());
 
         if(mOnItemClickListener!=null)
