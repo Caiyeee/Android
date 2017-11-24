@@ -85,8 +85,9 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this,"移除第" + String.valueOf(position + 1) + "个人物", Toast.LENGTH_SHORT).show();
                 repo.delete(FigureList.get(position).getID());
                 FigureList.remove(position);
-      //          mAdapter.notifyDataSetChanged();
-                mAdapter.notifyItemRemoved(position);//有动画的删除
+                //mAdapter.notifyDataSetChanged();
+                mAdapter.notifyItemRangeRemoved(position,FigureList.size());//有动画的删除
+
             }
         });
         /*点击增加按钮*/
@@ -175,6 +176,7 @@ public class MainActivity extends AppCompatActivity {
             mAdapter.notifyDataSetChanged();
 //            Toast.makeText(MainActivity.this,"修改第"+String.valueOf(position+1)+"个人物"+figure.getID(), Toast.LENGTH_SHORT).show();
         }
+        //新添加人物
         if(requestCode==0&&resultCode==1) {
             int posi = data.getIntExtra("position",0);
             FigureList.add(repo.getFigureById(posi));
