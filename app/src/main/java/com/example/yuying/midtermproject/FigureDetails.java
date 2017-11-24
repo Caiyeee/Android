@@ -100,7 +100,7 @@ public class FigureDetails extends AppCompatActivity {
             pic_iv.setImageResource(R.mipmap.addition);
             isEdit = true;
             name_tv.setFocusableInTouchMode(true);
-            name_tv.setSelection(figure.getMainCountry().length());
+            name_tv.setFocusable(true);
             name_tv.requestFocus();
             life_tv.setFocusable(true);
             life_tv.setFocusableInTouchMode(true);
