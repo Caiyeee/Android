@@ -4,7 +4,6 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -118,6 +117,7 @@ public class FigureRepo {
                 figure.setOrigin(cursor.getString(cursor.getColumnIndex(Figure.KEY_Origin)));
                 figure.setMainCountry(cursor.getString(cursor.getColumnIndex(Figure.KEY_MainCountry)));
                 figure.setPic(cursor.getInt(cursor.getColumnIndex(Figure.KEY_Pic)));
+                figure.setPicPath(cursor.getString(cursor.getColumnIndex(Figure.KEY_PicPath)));
                 FigureList.add(figure);
             }while(cursor.moveToNext());
         }

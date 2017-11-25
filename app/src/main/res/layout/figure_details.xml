@@ -8,7 +8,7 @@
     android:orientation="vertical"
     android:weightSum="6"
     android:id="@+id/details"
-    android:background="@mipmap/detail_bk">
+    android:background="@mipmap/bk">
 
     <RelativeLayout
         android:id="@+id/bk"

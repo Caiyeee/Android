@@ -6,14 +6,12 @@ import android.content.Intent;
 import android.content.ServiceConnection;
 import android.graphics.Color;
 import android.graphics.Typeface;
-import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -32,7 +30,6 @@ import java.util.ArrayList;
 import jp.wasabeef.recyclerview.adapters.ScaleInAnimationAdapter;
 import jp.wasabeef.recyclerview.animators.OvershootInLeftAnimator;
 
-import static com.example.yuying.midtermproject.R.id.music;
 import static com.example.yuying.midtermproject.R.id.searchView;
 
 public class MainActivity extends AppCompatActivity {
@@ -58,6 +55,9 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Intent intent1 = new Intent();
+        intent1.setClass(this,SplashScreen.class);
+        startActivity(intent1);
         setContentView(R.layout.activity_main);
         repo=new FigureRepo(this);
         FigureList=new ArrayList<Figure>();
@@ -185,6 +185,7 @@ public class MainActivity extends AppCompatActivity {
                     mRecyclerView.setVisibility(View.INVISIBLE);
                     mRollPagerView.setVisibility(View.INVISIBLE);
                     mImageView.setVisibility(View.INVISIBLE);
+                    mMusic.setVisibility(View.INVISIBLE);
                     MyListViewAdapter sAdapter = searchItem(newText);
                     updateLayout(sAdapter);
                     mSearchView.setMaxWidth(1200);
@@ -196,6 +197,7 @@ public class MainActivity extends AppCompatActivity {
                     mRecyclerView.setVisibility(View.VISIBLE);
                     mRollPagerView.setVisibility(View.VISIBLE);
                     mImageView.setVisibility(View.VISIBLE);
+                    mMusic.setVisibility(View.VISIBLE);
                     mListView.clearTextFilter();
                     mSearchView.setMaxWidth(900);
                 }
@@ -258,9 +260,9 @@ public class MainActivity extends AppCompatActivity {
     //关于轮播图的设置
     private class TestNormalAdapter extends StaticPagerAdapter {
         private int[] imgs = {
-                R.mipmap.sanguo1,
-                R.mipmap.sanguo2,
-                R.mipmap.sanguo3
+                R.mipmap.bk1,
+                R.mipmap.bk2,
+                R.mipmap.bk3
         };
         @Override
         public View getView(ViewGroup container, int position) {
