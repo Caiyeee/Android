@@ -5,7 +5,9 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Build;
@@ -116,11 +118,18 @@ public class FigureDetails extends AppCompatActivity {
             gender_tv.setText(figure.getGender());
             life_tv.setText(figure.getLife());
             maincountry_tv.setText(figure.getMainCountry());
-            if(figure.getPicPath()==null)
-                pic_iv.setImageResource(figure.getPic());
+            if(figure.getPicPath()==null) {
+                Resources res = FigureDetails.this.getResources();
+                Bitmap bmp = BitmapFactory.decodeResource(res, figure.getPic());
+                bmp = ImageUtils.toRoundBitmap(bmp);
+                pic_iv.setImageBitmap(bmp);
+            }
             else {
-                tempUri=Uri.fromFile(new File(figure.getPicPath()));
-                pic_iv.setImageURI(tempUri);
+               // tempUri=Uri.fromFile(new File(figure.getPicPath()));
+              //  pic_iv.setImageURI(tempUri);
+                Bitmap bitmap = BitmapFactory.decodeFile(figure.getPicPath());
+                bitmap= ImageUtils.toRoundBitmap(bitmap);
+                pic_iv.setImageBitmap(bitmap);
                 Toast.makeText(FigureDetails.this,"修改过图片", Toast.LENGTH_SHORT).show();
             }
         }
@@ -311,8 +320,8 @@ public class FigureDetails extends AppCompatActivity {
         intent.putExtra("aspectX", 1);
         intent.putExtra("aspectY", 1.4);
         // outputX outputY 是裁剪图片宽高
-        intent.putExtra("outputX", 70);
-        intent.putExtra("outputY", 120);
+        intent.putExtra("outputX", 300);
+        intent.putExtra("outputY", 420);
         intent.putExtra("return-data", true);
         startActivityForResult(intent, CROP_SMALL_PICTURE);
     }
@@ -327,9 +336,10 @@ public class FigureDetails extends AppCompatActivity {
         if (extras != null) {
             Bitmap photo = extras.getParcelable("data");
             Log.d(TAG,"setImageToView:"+photo);
-           // photo = ImageUtils.toRoundBitmap(photo); // 这个时候的图片已经被处理成圆形的了
-            pic_iv.setImageBitmap(photo);
             uploadPic(photo);
+            photo = ImageUtils.toRoundBitmap(photo); // 这个时候的图片已经被处理成圆形的了
+            pic_iv.setImageBitmap(photo);
+
         }
     }
 

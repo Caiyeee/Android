@@ -7,7 +7,8 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:weightSum="6"
-    android:id="@+id/details">
+    android:id="@+id/details"
+    android:background="@mipmap/detail_bk">
 
     <RelativeLayout
         android:id="@+id/bk"
@@ -19,12 +20,11 @@
 
         <ImageView
             android:id="@+id/figure_pic"
-            android:layout_width="fill_parent"
+            android:layout_width="300dp"
             android:layout_height="400dp"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
+            android:layout_centerHorizontal="true"
             android:layout_alignParentTop="true"
-            android:layout_marginTop="44dp"
+            android:layout_marginTop="50dp"
             android:scaleType="fitXY"
             android:src="@mipmap/zhugeliang" />
 
@@ -101,7 +101,7 @@
         android:layout_height="0dp"
         android:layout_marginTop="10dp"
         android:layout_weight="2"
-        android:background="@color/white">
+        >
 
         <EditText
             android:id="@+id/figure_name"
@@ -114,7 +114,7 @@
             android:layout_marginTop="-5dp"
             android:background="@null"
             android:focusable="false"
-            android:textColor="#000000"
+            android:textColor="#fff"
             android:textSize="30sp" />
 
         <LinearLayout
@@ -132,7 +132,7 @@
                 android:layout_marginLeft="15dp"
                 android:layout_marginTop="10dp"
                 android:text="@string/life"
-                android:textColor="@color/black"
+                android:textColor="#fff"
                 android:textSize="20sp" />
 
             <EditText
@@ -145,7 +145,7 @@
                 android:layout_marginTop="10dp"
                 android:background="@null"
                 android:focusable="false"
-                android:textColor="@color/black"
+                android:textColor="#fff"
                 android:textSize="20sp" />
 
         </LinearLayout>
@@ -165,7 +165,7 @@
                 android:layout_marginLeft="15dp"
                 android:background="@null"
                 android:text="@string/gender"
-                android:textColor="@color/black"
+                android:textColor="#fff"
                 android:textSize="20sp" />
 
             <EditText
@@ -178,7 +178,7 @@
                 android:layout_marginLeft="15dp"
                 android:background="@null"
                 android:focusable="false"
-                android:textColor="@color/black"
+                android:textColor="#fff"
                 android:textSize="20sp" />
         </LinearLayout>
 
@@ -197,7 +197,7 @@
                 android:layout_marginBottom="10dp"
                 android:layout_marginLeft="15dp"
                 android:text="@string/origin"
-                android:textColor="@color/black"
+                android:textColor="#fff"
                 android:textSize="20sp" />
 
             <EditText
@@ -210,7 +210,7 @@
                 android:layout_marginLeft="15dp"
                 android:background="@null"
                 android:focusable="false"
-                android:textColor="@color/black"
+                android:textColor="#fff"
                 android:textSize="20sp" />
         </LinearLayout>
 
@@ -229,7 +229,7 @@
                 android:layout_marginBottom="10dp"
                 android:layout_marginLeft="15dp"
                 android:text="@string/maincountry"
-                android:textColor="@color/black"
+                android:textColor="#fff"
                 android:textSize="20sp" />
 
             <EditText
@@ -242,7 +242,7 @@
                 android:layout_marginLeft="15dp"
                 android:background="@null"
                 android:focusable="false"
-                android:textColor="@color/black"
+                android:textColor="#fff"
                 android:textSize="20sp" />
         </LinearLayout>
 

@@ -34,7 +34,7 @@ public class DBHelper extends SQLiteOpenHelper {
         final String[] Name = {"曹操", "孙权", "刘备", "郭嘉", "鲁肃", "黄忠", "典韦", "周瑜", "马超", "徐晃"};
         final String[] Gender = {"男","男","男","男","男","男","男","男","男","男"};
         final String[] Life = {"155-220","182 - 252","161 - 223","170 - 207","172 - 217","？ - 220","？ - 197","175 - 210","176 - 222","？ - 227"};
-        final String[] Origin = {"豫州沛国谯（安徽）","扬州吴郡富春（浙江）","幽州涿郡涿（河北保定）","豫州颍川郡阳翟（河南许昌）","徐州下邳国东城（安徽滁州市）","荆州南阳郡（河南南阳市）","兖州陈留郡己吾（河南商丘市）","扬州庐江郡舒（安徽合肥市）","司隶扶风茂陵（陕西咸阳市）","司隶河东郡杨（山西临汾市）"};
+        final String[] Origin = {"豫州沛国谯(安徽)","扬州吴郡富春(浙江)","幽州涿郡涿(河北保定)","豫州颍川郡(河南许昌)","徐州下邳国(安徽滁州)","荆州南阳郡(河南南阳)","兖州陈留郡(河南商丘)","扬州庐江郡(安徽合肥)","司隶扶风茂陵(陕西咸阳)","司隶河东郡杨(山西临汾)"};
         final String[] MainContry = {"魏国", "吴国", "蜀国", "魏国", "吴国", "蜀国", "魏国", "吴国", "蜀国", "魏国"};
         final int[] Pic = {R.mipmap.caocao, R.mipmap.sunquan, R.mipmap.liubei, R.mipmap.guojia, R.mipmap.lusu, R.mipmap.huangzhong, R.mipmap.dianwei, R.mipmap.zhouyu, R.mipmap.machao, R.mipmap.xuhuang};
 
