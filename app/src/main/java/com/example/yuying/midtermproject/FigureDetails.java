@@ -1,9 +1,11 @@
 package com.example.yuying.midtermproject;
 
 import android.Manifest;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.ServiceConnection;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
@@ -13,6 +15,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.IBinder;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
@@ -48,6 +51,9 @@ public class FigureDetails extends AppCompatActivity {
 
     Boolean isEdit = false;
     private int position;
+    private ImageButton mMusic;
+    private MusicService musicService;
+
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
@@ -59,6 +65,33 @@ public class FigureDetails extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (isEdit) showChoosePicDialog();
+            }
+        });
+
+        mMusic = (ImageButton) findViewById(R.id.musicplay);
+        Intent intentService = new Intent(FigureDetails.this,MusicService.class);
+        ServiceConnection connection = new ServiceConnection() {
+            @Override
+            public void onServiceConnected(ComponentName name, IBinder service) {
+                MusicService.MusicBinder binder = (MusicService.MusicBinder) service;
+                musicService = binder.getService();;
+            }
+            @Override
+            public void onServiceDisconnected(ComponentName name) {}
+        };
+        bindService(intentService,connection, Context.BIND_AUTO_CREATE);
+
+        //音乐播放暂停/开始按钮
+        mMusic.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(musicService.isPlay()){
+                    musicService.playMusic(false);
+                    mMusic.setBackgroundResource(R.mipmap.play);
+                } else {
+                    musicService.playMusic(true);
+                    mMusic.setBackgroundResource(R.mipmap.stop);
+                }
             }
         });
 
@@ -133,7 +166,12 @@ public class FigureDetails extends AppCompatActivity {
                 Toast.makeText(FigureDetails.this,"修改过图片", Toast.LENGTH_SHORT).show();
             }
         }
-
+        //判断音乐的播放状态来设置图标
+        if(intent.getBooleanExtra("music",false)==false){
+            mMusic.setBackgroundResource(R.mipmap.play);
+        } else if(intent.getBooleanExtra("music",true)==true){
+            mMusic.setBackgroundResource(R.mipmap.stop);
+        }
 
         // 实现更新功能
         final ImageButton saveButton = (ImageButton)findViewById(R.id.save);
@@ -217,17 +255,6 @@ public class FigureDetails extends AppCompatActivity {
             }
         });
 
-
-
-
-//        //删除
-//        repo.delete(figure.getID());
-//        //更新
-
-        //repo.insert(figure)
-
-
-
     }
 
 
@@ -284,6 +311,12 @@ public class FigureDetails extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        //判断音乐的播放状态来设置图标
+        if(musicService.isPlay()){
+            mMusic.setBackgroundResource(R.mipmap.stop);
+        } else {
+            mMusic.setBackgroundResource(R.mipmap.play);
+        }
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == RESULT_OK) { // 如果返回码是可以用的
             switch (requestCode) {
@@ -318,10 +351,10 @@ public class FigureDetails extends AppCompatActivity {
         intent.putExtra("crop", "true");
         // aspectX aspectY 是宽高的比例
         intent.putExtra("aspectX", 1);
-        intent.putExtra("aspectY", 1.4);
+        intent.putExtra("aspectY", 1.5);
         // outputX outputY 是裁剪图片宽高
-        intent.putExtra("outputX", 300);
-        intent.putExtra("outputY", 420);
+        intent.putExtra("outputX", 100);
+        intent.putExtra("outputY", 150);
         intent.putExtra("return-data", true);
         startActivityForResult(intent, CROP_SMALL_PICTURE);
     }

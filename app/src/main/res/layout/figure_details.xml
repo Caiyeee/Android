@@ -66,6 +66,16 @@
             app:srcCompat="@mipmap/edit" />
 
         <ImageButton
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:id="@+id/musicplay"
+            android:background="@mipmap/stop"
+            android:layout_toLeftOf="@+id/save"
+            android:layout_alignBottom="@+id/textView5"
+            android:layout_marginBottom="5dp"
+            android:layout_marginRight="8dp"/>
+
+        <ImageButton
             android:id="@+id/save"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

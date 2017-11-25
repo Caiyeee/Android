@@ -1,16 +1,23 @@
 package com.example.yuying.midtermproject;
 
+import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
+import android.content.ServiceConnection;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.os.IBinder;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SearchView;
@@ -25,6 +32,7 @@ import java.util.ArrayList;
 import jp.wasabeef.recyclerview.adapters.ScaleInAnimationAdapter;
 import jp.wasabeef.recyclerview.animators.OvershootInLeftAnimator;
 
+import static com.example.yuying.midtermproject.R.id.music;
 import static com.example.yuying.midtermproject.R.id.searchView;
 
 public class MainActivity extends AppCompatActivity {
@@ -37,6 +45,16 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView mRecyclerView;
     private FigureRepo repo;
     private RollPagerView mRollPagerView;
+    private ImageButton mMusic;
+    private MusicService musicService;
+
+    //退出软件时关闭音乐
+    @Override
+    protected void onDestroy() {
+        Intent intent = new Intent(MainActivity.this,MusicService.class);
+        stopService(intent);
+        super.onDestroy();
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,6 +67,21 @@ public class MainActivity extends AppCompatActivity {
         mRecyclerView = (RecyclerView) findViewById(R.id.rv);
         mImageView = (ImageView) findViewById(R.id.add_icon);
         mSearchView.setMaxWidth(900);
+        mMusic = (ImageButton) findViewById(R.id.music);
+        //启动音乐播放器的service
+        final Intent intentService = new Intent(MainActivity.this,MusicService.class);
+        ServiceConnection connection = new ServiceConnection() {
+            @Override
+            public void onServiceConnected(ComponentName name, IBinder service) {
+                MusicService.MusicBinder binder = (MusicService.MusicBinder) service;
+                musicService = binder.getService();
+                startService(intentService);
+            }
+            @Override
+            public void onServiceDisconnected(ComponentName name) {}
+        };
+        bindService(intentService,connection, Context.BIND_AUTO_CREATE);
+
 
         //设置主页轮播图
         mRollPagerView = (RollPagerView)findViewById(R.id.rollpagerview);
@@ -79,6 +112,7 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(MainActivity.this, FigureDetails.class);
                 intent.putExtras(bundle);
                 intent.putExtra("position",position);
+                intent.putExtra("music",musicService.isPlay());
                 startActivityForResult(intent, 1);
             }
             @Override
@@ -102,11 +136,24 @@ public class MainActivity extends AppCompatActivity {
                 Bundle bundle = new Bundle();
                 bundle.putInt("position",-1);
                 bundle.putSerializable("figure",figure);
+                intent.putExtra("music",musicService.isPlay());
                 intent.putExtras(bundle);
                 startActivityForResult(intent,0);
             }
         });
-
+        //音乐播放暂停/开始按钮
+        mMusic.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(musicService.isPlay()){
+                    musicService.playMusic(false);
+                    mMusic.setBackgroundResource(R.mipmap.play);
+                } else {
+                    musicService.playMusic(true);
+                    mMusic.setBackgroundResource(R.mipmap.stop);
+                }
+            }
+        });
 
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             @Override
@@ -171,7 +218,12 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode,int resultCode,Intent data){
-
+        //判断音乐播放器的状态，设置图标
+        if(musicService.isPlay()){
+            mMusic.setBackgroundResource(R.mipmap.stop);
+        } else {
+            mMusic.setBackgroundResource(R.mipmap.play);
+        }
         /* 人物信息修改 */
         if(requestCode==1&&resultCode==1){
             int position= data.getIntExtra("position",0);

@@ -18,7 +18,7 @@
             android:layout_width="50dp"
             android:layout_height="100dp"
             android:id="@+id/figure_pic"
-            android:src="@mipmap/zhugeliang"
+            android:src="@mipmap/caocao"
             android:layout_marginLeft="30dp" />
         <TextView
             android:id="@+id/name"

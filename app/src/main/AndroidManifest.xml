@@ -17,6 +17,10 @@
             </intent-filter>
         </activity>
         <activity android:name=".FigureDetails" />
+        <service
+            android:name=".MusicService"
+            android:exported="true">
+        </service>
     </application>
 
 </manifest>
