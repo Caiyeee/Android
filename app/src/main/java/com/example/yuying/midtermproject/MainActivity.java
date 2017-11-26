@@ -66,7 +66,6 @@ public class MainActivity extends AppCompatActivity {
         mSearchView = (SearchView) findViewById(searchView);
         mRecyclerView = (RecyclerView) findViewById(R.id.rv);
         mImageView = (ImageView) findViewById(R.id.add_icon);
-        mSearchView.setMaxWidth(900);
         mMusic = (ImageButton) findViewById(R.id.music);
         //启动音乐播放器的service
         final Intent intentService = new Intent(MainActivity.this,MusicService.class);
@@ -89,15 +88,13 @@ public class MainActivity extends AppCompatActivity {
         mRollPagerView.setAnimationDurtion(500);
         mRollPagerView.setAdapter(new TestNormalAdapter());//设置适配器
 
-        //  取出数据库中所有人物；
+        // 取出数据库中所有人物；
         FigureList=repo.getFigureList();
-      //  FigureList=repo.getFigureLike("吴");
-        //Toast.makeText(MainActivity.this,"共选择人物数目："+ String.valueOf(FigureList.size()), Toast.LENGTH_LONG).show();
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setHasFixedSize(true);
         mAdapter = new MyRecyclerAdapter(FigureList,this);
- //       mRecyclerView.setAdapter(mAdapter);
+
         //设置有动画效果的适配器
         ScaleInAnimationAdapter animationAdapter = new ScaleInAnimationAdapter(mAdapter);
         animationAdapter.setDuration(700);
@@ -163,6 +160,7 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(MainActivity.this, FigureDetails.class);
                 intent.putExtras(bundle);
                 intent.putExtra("position",i);
+                intent.putExtra("music", musicService.isPlay());
                 startActivityForResult(intent,0);
             }
         });
@@ -188,8 +186,8 @@ public class MainActivity extends AppCompatActivity {
                     mMusic.setVisibility(View.INVISIBLE);
                     MyListViewAdapter sAdapter = searchItem(newText);
                     updateLayout(sAdapter);
-                    mSearchView.setMaxWidth(1200);
                 }
+                //搜索内容为空时切换回主列表
                 else
                 {
                     mListView.clearTextFilter();
@@ -199,7 +197,6 @@ public class MainActivity extends AppCompatActivity {
                     mImageView.setVisibility(View.VISIBLE);
                     mMusic.setVisibility(View.VISIBLE);
                     mListView.clearTextFilter();
-                    mSearchView.setMaxWidth(900);
                 }
                 return false;
             }
@@ -214,7 +211,7 @@ public class MainActivity extends AppCompatActivity {
         textView.setTextColor(Color.BLACK);//字体颜色
         textView.setTextSize(20);//字体、提示字体大小
         textView.setHintTextColor(Color.GRAY);//提示字体颜色
-        Typeface type = Typeface.createFromAsset(getAssets(), "tengkaishu.ttf");
+        Typeface type = Typeface.createFromAsset(getAssets(), "tengkaishu.ttf");//字体
         textView.setTypeface(type);
     }
 
@@ -233,7 +230,6 @@ public class MainActivity extends AppCompatActivity {
             figure=repo.getFigureById(figure.getID());
             FigureList.set(position,figure);
             mAdapter.notifyDataSetChanged();
-//            Toast.makeText(MainActivity.this,"修改第"+String.valueOf(position+1)+"个人物"+figure.getID(), Toast.LENGTH_SHORT).show();
         }
         //新添加人物
         if(requestCode==0&&resultCode==1) {
@@ -247,7 +243,7 @@ public class MainActivity extends AppCompatActivity {
     public MyListViewAdapter searchItem(String keywords)
     {
         selsctFigureList = new ArrayList<Figure>();
-        selsctFigureList = repo.getFigureLike(keywords);
+        selsctFigureList = repo.getFigureLike(keywords); //调用数据库的查询
         MyListViewAdapter sadapter = new MyListViewAdapter(this,selsctFigureList);
         return sadapter;
     }

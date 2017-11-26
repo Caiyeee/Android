@@ -28,7 +28,6 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.io.File;
 
@@ -163,7 +162,7 @@ public class FigureDetails extends AppCompatActivity {
                 Bitmap bitmap = BitmapFactory.decodeFile(figure.getPicPath());
                 bitmap= ImageUtils.toRoundBitmap(bitmap);
                 pic_iv.setImageBitmap(bitmap);
-                Toast.makeText(FigureDetails.this,"修改过图片", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(FigureDetails.this,"修改过图片", Toast.LENGTH_SHORT).show();
             }
         }
         //判断音乐的播放状态来设置图标
@@ -353,8 +352,8 @@ public class FigureDetails extends AppCompatActivity {
         intent.putExtra("aspectX", 1);
         intent.putExtra("aspectY", 1.5);
         // outputX outputY 是裁剪图片宽高
-        intent.putExtra("outputX", 100);
-        intent.putExtra("outputY", 150);
+        intent.putExtra("outputX", 200);
+        intent.putExtra("outputY", 300);
         intent.putExtra("return-data", true);
         startActivityForResult(intent, CROP_SMALL_PICTURE);
     }
@@ -388,7 +387,7 @@ public class FigureDetails extends AppCompatActivity {
             // 拿着imagePath上传了
             // ...
             figure.setPicPath(imagePath);
-            Toast.makeText(FigureDetails.this,"修改路径成功", Toast.LENGTH_SHORT).show();
+           // Toast.makeText(FigureDetails.this,"修改路径成功", Toast.LENGTH_SHORT).show();
             Log.d(TAG,"imagePath:"+imagePath);
         }
     }
@@ -401,7 +400,7 @@ public class FigureDetails extends AppCompatActivity {
 
         } else {
             // 没有获取 到权限，从新请求，或者关闭app
-            Toast.makeText(this, "需要存储权限", Toast.LENGTH_SHORT).show();
+           // Toast.makeText(this, "需要存储权限", Toast.LENGTH_SHORT).show();
         }
     }
 }
