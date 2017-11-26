@@ -28,6 +28,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.File;
 
@@ -162,7 +163,7 @@ public class FigureDetails extends AppCompatActivity {
                 Bitmap bitmap = BitmapFactory.decodeFile(figure.getPicPath());
                 bitmap= ImageUtils.toRoundBitmap(bitmap);
                 pic_iv.setImageBitmap(bitmap);
-                //Toast.makeText(FigureDetails.this,"修改过图片", Toast.LENGTH_SHORT).show();
+                // Toast.makeText(FigureDetails.this,"修改过图片", Toast.LENGTH_SHORT).show();
             }
         }
         //判断音乐的播放状态来设置图标
