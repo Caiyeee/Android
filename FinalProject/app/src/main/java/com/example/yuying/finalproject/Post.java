@@ -12,6 +12,7 @@ public class Post extends BmobObject {
     private String title;
     private String content;
     private String address;
+    private String weather;
     private Number isClear;
 
     public User getUser() { return author; }
@@ -28,7 +29,11 @@ public class Post extends BmobObject {
 
     public String getAddress() { return  address; }
 
-    public void setAuthor(String address) { this.address = address;}
+    public void setAddress() { this.address = address; }
+
+    public String getWeather() { return  weather; }
+
+    public void setWeather(String weather) { this.weather = weather; }
 
     public Number getIsClear () { return isClear; }
 
