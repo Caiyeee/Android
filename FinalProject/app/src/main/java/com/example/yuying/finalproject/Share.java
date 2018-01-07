@@ -13,5 +13,5 @@ public class Share extends BmobObject {
     public User getUser() { return user; }
     public void setUser( User user ) { this.user = user; }
     public String getPc() { return pc; }
-    public void setPc() { this.pc = pc; }
+    public void setPc(String pc) { this.pc = pc; }
 }
