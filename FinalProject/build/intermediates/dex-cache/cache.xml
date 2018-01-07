@@ -3,12 +3,12 @@
 
     <item
         is-multidex="true"
-        jar="C:\Users\Yuying\.android\build-cache\844e851134bded2efdb8d55deec7cbd2dbce93a0\output\jars\classes.jar"
+        jar="C:\Users\Yuying\OneDrive\Documents\Android\FinalProject\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
         jumboMode="true"
         optimize="true"
         revision="26.0.2"
-        sha1="46b64293efb94feb03e6270d400f95b2664513f6">
-        <dex dex="C:\Users\Yuying\OneDrive\Documents\Android\FinalProject\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_8ffab6e8502a8c4ac9c7d3a5162b8f1bc5c34d4a\classes.dex" />
+        sha1="4f2b919adf32447696adfc740a8f608de68445de">
+        <dex dex="C:\Users\Yuying\OneDrive\Documents\Android\FinalProject\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_23e75ddb3622d0fceee2d74755423bba7b610705\classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -21,120 +21,12 @@
     </item>
     <item
         is-multidex="true"
-        jar="C:\Users\Yuying\.android\build-cache\2c8bd68a88ca782577a874fdf39522899c7e5b5d\output\jars\classes.jar"
+        jar="C:\Users\Yuying\.android\build-cache\d40a52d3ae46ad00f9ecb217d3c953a9be0fbf62\output\jars\classes.jar"
         jumboMode="true"
         optimize="true"
         revision="26.0.2"
-        sha1="2c12397a785c3b1868fbebeffc9553457b27803f">
-        <dex dex="C:\Users\Yuying\OneDrive\Documents\Android\FinalProject\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_579bbd391a8c61c81457f6837756535397a90f17\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Yuying\.android\build-cache\1471ed5b9ff2491fc567a678f8d8fa9540617062\output\jars\libs\BmobSDK_3.5.5_20170420.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="26.0.2"
-        sha1="f67cfc97fcbde8b4764f01135b10afa716ae1a40">
-        <dex dex="C:\Users\Yuying\OneDrive\Documents\Android\FinalProject\app\build\intermediates\transforms\dex\debug\folders\1000\10\BmobSDK_3.5.5_20170420_152cf47cdd5d1c951785d69a173d661abb7320cc\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Yuying\.android\build-cache\1471ed5b9ff2491fc567a678f8d8fa9540617062\output\jars\libs\rxjava-1.1.6.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="26.0.2"
-        sha1="79f0c1e382e8b62e91064ef6b71130dda83f338e">
-        <dex dex="C:\Users\Yuying\OneDrive\Documents\Android\FinalProject\app\build\intermediates\transforms\dex\debug\folders\1000\10\rxjava-1.1.6_4c0b5b3c0feca55df125725ae2945d39b0795f33\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Yuying\.gradle\caches\modules-2\files-2.1\cn.bmob.android\bmob-push\0.8\2fe391ed9034cd023de1da05cb8da77e08b46245\bmob-push-0.8.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="26.0.2"
-        sha1="2fe391ed9034cd023de1da05cb8da77e08b46245">
-        <dex dex="C:\Users\Yuying\OneDrive\Documents\Android\FinalProject\app\build\intermediates\transforms\dex\debug\folders\1000\10\bmob-push-0.8_dc6877991f09d0a5a6b4612f38f1770793dce7f2\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Yuying\.gradle\caches\modules-2\files-2.1\cn.bmob.android\http-legacy\1.0\5320fd78dd7f154e586970d4f02befc9b58432aa\http-legacy-1.0.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="26.0.2"
-        sha1="5320fd78dd7f154e586970d4f02befc9b58432aa">
-        <dex dex="C:\Users\Yuying\OneDrive\Documents\Android\FinalProject\app\build\intermediates\transforms\dex\debug\folders\1000\10\http-legacy-1.0_94dca14ff97147336065905ecb7aea303765e95f\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Yuying\.android\build-cache\5fe4dd7bc7e1b6f682b6d521d63509361bfbaf31\output\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="26.0.2"
-        sha1="21a28ff219324575b509d7c471487450d0c04584">
-        <dex dex="C:\Users\Yuying\OneDrive\Documents\Android\FinalProject\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_f8a4e2b407cf5733fc450533c4561c5542217e2e\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Yuying\.android\build-cache\1471ed5b9ff2491fc567a678f8d8fa9540617062\output\jars\libs\rxandroid-1.2.0.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="26.0.2"
-        sha1="84127ad71f76445b8215afceb38e8b05f58eafa6">
-        <dex dex="C:\Users\Yuying\OneDrive\Documents\Android\FinalProject\app\build\intermediates\transforms\dex\debug\folders\1000\10\rxandroid-1.2.0_f40aa2218ac23c3a0262df30245f6dea5daa3645\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Yuying\OneDrive\Documents\Android\FinalProject\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="26.0.2"
-        sha1="518963e96dade668aeee529965c687ecb64f8ee2">
-        <dex dex="C:\Users\Yuying\OneDrive\Documents\Android\FinalProject\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_23e75ddb3622d0fceee2d74755423bba7b610705\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Yuying\.android\build-cache\1471ed5b9ff2491fc567a678f8d8fa9540617062\output\jars\libs\okhttp-3.3.1.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="26.0.2"
-        sha1="e009af854d43130a9a13bcba900ddd1124e835d5">
-        <dex dex="C:\Users\Yuying\OneDrive\Documents\Android\FinalProject\app\build\intermediates\transforms\dex\debug\folders\1000\10\okhttp-3.3.1_a2438a2bebf230fae2f2ee554c16a5d64e830b0a\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Yuying\.android\build-cache\1471ed5b9ff2491fc567a678f8d8fa9540617062\output\jars\libs\okio-1.7.0.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="26.0.2"
-        sha1="f64e0f80ef26fbc722b4bc9f024370d5b1e8f6d6">
-        <dex dex="C:\Users\Yuying\OneDrive\Documents\Android\FinalProject\app\build\intermediates\transforms\dex\debug\folders\1000\10\okio-1.7.0_0bb7af016b4c5fd1be056f9ef42fece15556dc80\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Yuying\.gradle\caches\modules-2\files-2.1\cn.bmob.android\bmob-sms\1.0.1\df9db564e2842696a68deca39b0186aebf3dc07c\bmob-sms-1.0.1.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="26.0.2"
-        sha1="df9db564e2842696a68deca39b0186aebf3dc07c">
-        <dex dex="C:\Users\Yuying\OneDrive\Documents\Android\FinalProject\app\build\intermediates\transforms\dex\debug\folders\1000\10\bmob-sms-1.0.1_b41a9cd9f344a902ba97ac0aeeabb4471a503ebf\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Yuying\.android\build-cache\1471ed5b9ff2491fc567a678f8d8fa9540617062\output\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="26.0.2"
-        sha1="ac71d1248d0f3577b39093396e6ff35582a5d7a4">
-        <dex dex="C:\Users\Yuying\OneDrive\Documents\Android\FinalProject\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_63f3432ee50aa1e753fad45e6ed288d89c8cfa14\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Yuying\.android\build-cache\844e851134bded2efdb8d55deec7cbd2dbce93a0\output\jars\libs\BmobNewIM_2.0.5_20160601.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="26.0.2"
-        sha1="b535a2906149ccebadc4b1cab0126130916842ea">
-        <dex dex="C:\Users\Yuying\OneDrive\Documents\Android\FinalProject\app\build\intermediates\transforms\dex\debug\folders\1000\10\BmobNewIM_2.0.5_20160601_ec3688472dbbda8539558ec5976b5fd31f4444ab\classes.dex" />
+        sha1="a38dc57bd3a0900f291f38e4786cde461aece5a9">
+        <dex dex="C:\Users\Yuying\OneDrive\Documents\Android\FinalProject\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_1bd3be6e5550cb79f56a95b61632d8b0b95cea41\classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -144,24 +36,6 @@
         revision="26.0.2"
         sha1="3be78ebc2706b2e1fe2f12d5726887a92d6c183b">
         <dex dex="C:\Users\Yuying\OneDrive\Documents\Android\FinalProject\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run_b482f61a3930c706cfbf0817c2e1f897ece4b905\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Yuying\.android\build-cache\1471ed5b9ff2491fc567a678f8d8fa9540617062\output\jars\libs\gson-2.6.2.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="26.0.2"
-        sha1="cea3a9be08d0dcf89783b2cc87c8787fdb2a0d12">
-        <dex dex="C:\Users\Yuying\OneDrive\Documents\Android\FinalProject\app\build\intermediates\transforms\dex\debug\folders\1000\10\gson-2.6.2_0164fffe459d14b7234fd51e0ca16857e96ca417\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Yuying\.android\build-cache\844e851134bded2efdb8d55deec7cbd2dbce93a0\output\jars\libs\androidasync-2.1.6.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="26.0.2"
-        sha1="4c88f1359a331cff1ea593267d1f63dca63b364b">
-        <dex dex="C:\Users\Yuying\OneDrive\Documents\Android\FinalProject\app\build\intermediates\transforms\dex\debug\folders\1000\10\androidasync-2.1.6_d48c4c3b37d51bf40da3ee9a75db9763dea2aaf3\classes.dex" />
     </item>
 
 </items>
