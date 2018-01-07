@@ -209,6 +209,25 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+      
+      // 根据ObjectId查询，返回对象
+      BmobQuery<Post> query = new BmobQuery<Post>();
+query.getObject(postId, new QueryListener<GameScore>() {
+    @Override
+    public void done(Post object, BmobException e) {
+        if(e==null){
+            //获得playerName的信息
+            object.getPlayerName();
+            //获得数据的objectId信息
+            object.getObjectId();
+            //获得createdAt数据创建时间（注意是：createdAt，不是createAt）
+            object.getCreatedAt();
+        }else{
+            Log.i("bmob","失败："+e.getMessage()+","+e.getErrorCode());
+        }
+    }
+
+});
 
     }
 
@@ -218,6 +237,5 @@ public class MainActivity extends AppCompatActivity {
         Toast.makeText(getApplicationContext(), string, Toast.LENGTH_LONG).show();
     }
 }
-
 ```
 
