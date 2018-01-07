@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="false"
+        jar="C:\Users\zhemeng\.android\build-cache\97e7f0fae334e264cdbe0a90b05d8dff187cef27\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.2"
+        sha1="c4f45092eee6cdf1a5dbd597b2b6819be652ce2e">
+        <dex dex="D:\Android\FinalProject\app\build\intermediates\pre-dexed\debug\classes_696114032d965fa4e1a530308145af8da2efc384.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\zhemeng\.android\build-cache\47b101f4e716dee5a6722c3814a6548a9bc903e5\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.2"
+        sha1="21a28ff219324575b509d7c471487450d0c04584">
+        <dex dex="D:\Android\FinalProject\app\build\intermediates\pre-dexed\debug\classes_4a021c8967f86dd9124b22a14d97087f56c53650.jar" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\zhemeng\.android\build-cache\f2f81ae09d67326f2d601214d1defd5f0b5edf8a\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="cddcd0fb93bc70e27325f2f715b2710332004ebb">
+        <dex dex="D:\Android\FinalProject\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_540cd2072a547f3fb00edde3b42654f67627ab05\classes.dex" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\zhemeng\.android\build-cache\ad74445116d5e54fb69d6cafeb8ee0f4a4da10dd\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.2"
+        sha1="44ee06abb66da30f5855e6bf54574e64cdcd982a">
+        <dex dex="D:\Android\FinalProject\app\build\intermediates\pre-dexed\debug\classes_bb5bc0db800516480014b88fb4e794969f360c58.jar" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\Android\FinalProject\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="3be78ebc2706b2e1fe2f12d5726887a92d6c183b">
+        <dex dex="D:\Android\FinalProject\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run_ad48d5e0dfd6e8d68c98e910d09c80f527ace3d9\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\zhemeng\.android\build-cache\b7a56047c41f201724cba5b2cb08e09c6fc994e7\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="6a022bf00ccd0948a8180c505e8e458bbddd43a6">
+        <dex dex="D:\Android\FinalProject\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_603655e80584d215049ea483c79715b3ce9e033d\classes.dex" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\zhemeng\AppData\Local\Android\Sdk\extras\m2repository\com\android\support\constraint\constraint-layout-solver\1.0.2\constraint-layout-solver-1.0.2.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.2"
+        sha1="b9cd8fc6bd15cb915735d34535db30ece0c44603">
+        <dex dex="D:\Android\FinalProject\app\build\intermediates\pre-dexed\debug\constraint-layout-solver-1.0.2_d447627e497030e7384afa1ce491735f7de0ed4e.jar" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\Android\FinalProject\app\libs\BaiduLBS_Android.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="921eac32e5ef9177cad57cb66aa594766549cebd">
+        <dex dex="D:\Android\FinalProject\app\build\intermediates\transforms\dex\debug\folders\1000\2\BaiduLBS_Android_86c3a8647d910e15234b3b36a86820a43edef1d4\classes.dex" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\zhemeng\.android\build-cache\b7a56047c41f201724cba5b2cb08e09c6fc994e7\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.2"
+        sha1="6a022bf00ccd0948a8180c505e8e458bbddd43a6">
+        <dex dex="D:\Android\FinalProject\app\build\intermediates\pre-dexed\debug\classes_603655e80584d215049ea483c79715b3ce9e033d.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\zhemeng\.android\build-cache\f8a9e32580fd76f57a81560e96fa44d03a9cb229\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.2"
+        sha1="47471eb19df288158b00b8d9cfa41bce7373f5cc">
+        <dex dex="D:\Android\FinalProject\app\build\intermediates\pre-dexed\debug\classes_c7bfaac76f24d4fa52bccf11833f4853c0c2f7f6.jar" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\zhemeng\.android\build-cache\97e7f0fae334e264cdbe0a90b05d8dff187cef27\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="c4f45092eee6cdf1a5dbd597b2b6819be652ce2e">
+        <dex dex="D:\Android\FinalProject\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_696114032d965fa4e1a530308145af8da2efc384\classes.dex" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\zhemeng\.android\build-cache\22196b43200367ac974ec24298ef9f626104d831\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.2"
+        sha1="fcd01fd11233459f546c437ec927e9b61bf7caf1">
+        <dex dex="D:\Android\FinalProject\app\build\intermediates\pre-dexed\debug\classes_49a07f048108dc7ffb6ab5aafcca860390b3ccea.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\zhemeng\AppData\Local\Android\Sdk\extras\android\m2repository\com\android\support\support-annotations\26.0.0-alpha1\support-annotations-26.0.0-alpha1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.2"
+        sha1="023ee503b631f69511e335a061ea008f8da60f40">
+        <dex dex="D:\Android\FinalProject\app\build\intermediates\pre-dexed\debug\support-annotations-26.0.0-alpha1_3288e77f6706d90eed7e9bcbd21e15cf1d67a8ad.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\zhemeng\.android\build-cache\fe45069e79ee78b91c43b123d9246ae6f20ed8cf\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.2"
+        sha1="9935891f23923f39d002087085d9696568a9f657">
+        <dex dex="D:\Android\FinalProject\app\build\intermediates\pre-dexed\debug\classes_ed6f19c408a967b417bf1f4c5a7c99b603701b94.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\zhemeng\.android\build-cache\1c6ad54b8385e32ad392f6d46ff6abc6f59a89d1\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.2"
+        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
+        <dex dex="D:\Android\FinalProject\app\build\intermediates\pre-dexed\debug\classes_94fb696fc253039aaed34a5cd8742feed49a7d24.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\zhemeng\.android\build-cache\fb834fe6093ed79f1014a9352f1e09c0f4d9fa82\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.2"
+        sha1="88246166d5afb106f532f6e6deae683c66b42c89">
+        <dex dex="D:\Android\FinalProject\app\build\intermediates\pre-dexed\debug\classes_7c9568fab3e896cd51bf529d96524d0d1e9c56e9.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\zhemeng\.android\build-cache\0549e48e1ebbf60190ddf33362f257352805317c\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.2"
+        sha1="2e92aa0163544a804a0b34f169ca61801770839a">
+        <dex dex="D:\Android\FinalProject\app\build\intermediates\pre-dexed\debug\classes_3689fcc48f47f69519d895ac25b1c6984b89327a.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\zhemeng\.android\build-cache\d29369b2d7b9b9da1e0b3dcc65b93ee4842fff0e\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.2"
+        sha1="8df0e365e40beb151bc42dee20817721a6cab7b0">
+        <dex dex="D:\Android\FinalProject\app\build\intermediates\pre-dexed\debug\classes_4229d7261856ad8bb75632e8f460222873f0c91b.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\zhemeng\.android\build-cache\f2f81ae09d67326f2d601214d1defd5f0b5edf8a\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.2"
+        sha1="cddcd0fb93bc70e27325f2f715b2710332004ebb">
+        <dex dex="D:\Android\FinalProject\app\build\intermediates\pre-dexed\debug\classes_540cd2072a547f3fb00edde3b42654f67627ab05.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\zhemeng\.android\build-cache\7b414402e994666c3ef2534e88a84cd16cb9da7e\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.2"
+        sha1="18d31838aa4fcc768a8a0516e22cc13b94655d89">
+        <dex dex="D:\Android\FinalProject\app\build\intermediates\pre-dexed\debug\classes_f4006e57c8e1998c30e7d5a2058db7aa8d80d596.jar" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\Android\FinalProject\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="6c4189bf6c5b756ae15dd18312e6a01a31e3766b">
+        <dex dex="D:\Android\FinalProject\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_b2c047822be51ff94379df2b1ed1895d94ac43c2\classes.dex" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\zhemeng\.android\build-cache\0f75e6a6590ad04130a36eee1b495532e1e7763a\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.2"
+        sha1="952944218ecedea1554a513dec0c14d570642843">
+        <dex dex="D:\Android\FinalProject\app\build\intermediates\pre-dexed\debug\classes_8fce0c5f76259e447f50d088ca52de590cd1665f.jar" />
+    </item>
+
+</items>
