@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!--填充背景色 -->
+    <solid android:color="#ffffff" />
+
+    <!--描边 他需要 2个参数，颜色 第二参数 宽度 -->
+    <stroke
+        android:width="2dp"
+        android:color="@color/colorGrey" />
+
+    <!-- 设置弧度  Radius设置所有角的弧度 -->
+    <corners
+    android:bottomLeftRadius="15dp"
+    android:bottomRightRadius="15dp"
+    android:topLeftRadius="15dp"
+    android:topRightRadius="15dp" />
+
+
+    <!--内容与边框的间距-->
+    <padding
+        android:bottom="15dp"
+        android:left="15dp"
+        android:right="15dp"
+        android:top="15dp" />
+
+    <!--如果设置了渐变色 那么背景颜色将不显示 -->
+
+    </shape>
