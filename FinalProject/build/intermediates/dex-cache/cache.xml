@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="false"
+        jar="C:\Users\lizhicai\.android\build-cache\12be2889f38bf27c8e3a0ef9ef2ae71b701164b0\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.2"
+        sha1="21a28ff219324575b509d7c471487450d0c04584">
+        <dex dex="E:\Android\Android\FinalProject\app\build\intermediates\pre-dexed\debug\classes_69c069ed3fcf0d6fbab8e185d9061832bee87153.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\lizhicai\.android\build-cache\41c7928ec870c96edd7b6b62ddcd3ee100e228f1\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.2"
+        sha1="6a022bf00ccd0948a8180c505e8e458bbddd43a6">
+        <dex dex="E:\Android\Android\FinalProject\app\build\intermediates\pre-dexed\debug\classes_7b8a75fdbf27ea11ccaa9fc99dca89d90da3675e.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\lizhicai\.android\build-cache\3e3155530bab787c938c2567bd30079c3ca4bcf2\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.2"
+        sha1="cddcd0fb93bc70e27325f2f715b2710332004ebb">
+        <dex dex="E:\Android\Android\FinalProject\app\build\intermediates\pre-dexed\debug\classes_6d7ce9285b4000d1e8b68f2b11097b50bc5a9572.jar" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\lizhicai\.android\build-cache\12be2889f38bf27c8e3a0ef9ef2ae71b701164b0\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="21a28ff219324575b509d7c471487450d0c04584">
+        <dex dex="E:\Android\Android\FinalProject\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_69c069ed3fcf0d6fbab8e185d9061832bee87153\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\Android\Android\FinalProject\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="3be78ebc2706b2e1fe2f12d5726887a92d6c183b">
+        <dex dex="E:\Android\Android\FinalProject\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run_2f232fd0468e12550a5ed8763b3f6107a09a1a48\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\Android\Android\FinalProject\app\libs\BaiduLBS_Android.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="921eac32e5ef9177cad57cb66aa594766549cebd">
+        <dex dex="E:\Android\Android\FinalProject\app\build\intermediates\transforms\dex\debug\folders\1000\2\BaiduLBS_Android_fc434aad3d5c771a67cd2798d53797ce37dd6d7e\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\Android\Android\FinalProject\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="20bec87a6bf18a4792e44e17352ba593b306f625">
+        <dex dex="E:\Android\Android\FinalProject\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_d67784596cafdd8dbae624bea084a9b1879c80be\classes.dex" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\lizhicai\.android\build-cache\e66d6441d54bcce00bc9392eee7cac9c37a71da4\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.2"
+        sha1="c4f45092eee6cdf1a5dbd597b2b6819be652ce2e">
+        <dex dex="E:\Android\Android\FinalProject\app\build\intermediates\pre-dexed\debug\classes_b355b4567e7f817e605f98bd4bb640440b9152fb.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="E:\Android\Android\FinalProject\app\libs\BaiduLBS_Android.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.2"
+        sha1="921eac32e5ef9177cad57cb66aa594766549cebd">
+        <dex dex="E:\Android\Android\FinalProject\app\build\intermediates\pre-dexed\debug\BaiduLBS_Android_fc434aad3d5c771a67cd2798d53797ce37dd6d7e.jar" />
+    </item>
+
+</items>
