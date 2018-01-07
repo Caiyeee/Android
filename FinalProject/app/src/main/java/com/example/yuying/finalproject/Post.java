@@ -29,7 +29,7 @@ public class Post extends BmobObject {
 
     public String getAddress() { return  address; }
 
-    public void setAddress() { this.address = address; }
+    public void setAddress(String address) { this.address = address; }
 
     public String getWeather() { return  weather; }
 
