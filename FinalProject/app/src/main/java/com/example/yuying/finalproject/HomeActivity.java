@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.Toast;
@@ -43,6 +44,7 @@ public class HomeActivity extends AppCompatActivity {
     private MainAdapter mAdapter;
     private SearchView mSearchView;
     private ListView mListView;
+    private List<Post> selectPostList;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -189,6 +191,16 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
+        //查询列表的点击事件
+        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+            @Override
+            public void onItemClick(AdapterView<?> adapterView,View view, final int i,long l){
+                Intent intent = new Intent(HomeActivity.this, DiaryEditor.class);
+                intent.putExtra("postID",selectPostList.get(i).getObjectId());
+                startActivityForResult(intent,0);
+            }
+        });
+
         // 查询
         mSearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             // 当点击搜索按钮时触发该方法
@@ -224,10 +236,10 @@ public class HomeActivity extends AppCompatActivity {
 
     }
 
-    //人物查询
+    //查询
     public MyListViewAdapter searchItem(final String keywords)
     {
-        final List<Post> selsctPostList = new ArrayList<Post>();
+        selectPostList = new ArrayList<Post>();
         User user = BmobUser.getCurrentUser(User.class);
         BmobQuery<Post> query = new BmobQuery<Post>();
         query.addWhereEqualTo("author", user);   // 查询当前用户的所有帖子
@@ -239,17 +251,17 @@ public class HomeActivity extends AppCompatActivity {
                 if(e == null) {
                     for(int i = 0; i < list.size(); i++) {
                         if(list.get(i).getContent().contains(keywords) || list.get(i).getTitle().contains(keywords) ){
-                            selsctPostList.add(list.get(i));
+                            selectPostList.add(list.get(i));
                         }
                     }
-                    for(int i = 0; i < selsctPostList.size();i++)
-                        Log.d("内容",selsctPostList.get(i).getContent());
+                    for(int i = 0; i < selectPostList.size();i++)
+                        Log.d("内容",selectPostList.get(i).getContent());
 
                 }
             }
         });
 
-        MyListViewAdapter sadapter = new MyListViewAdapter(this,selsctPostList);
+        MyListViewAdapter sadapter = new MyListViewAdapter(this,selectPostList);
         return sadapter;
     }
 

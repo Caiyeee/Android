@@ -43,12 +43,16 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
 
     public static class ViewHolder extends RecyclerView.ViewHolder
     {
+        public TextView postname1;
+        public TextView posttime1;
         public TextView postname;
         public TextView posttime;
 
         public ViewHolder(View view)
         {
             super(view);
+            postname1 = (TextView) view.findViewById(R.id.txt_content1);
+            posttime1 = (TextView) view.findViewById(R.id.txt_time1);
             posttime = (TextView) view.findViewById(R.id.txt_time);
             postname = (TextView) view.findViewById(R.id.txt_content);
         }
@@ -67,8 +71,18 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(ViewHolder holder, final int position)
     {
-        holder.postname.setText(String.valueOf(Posts.get(position).getTitle()));
-        holder.posttime.setText(String.valueOf(Posts.get(position).getCreatedAt()));
+        if(position % 2 == 0){
+            holder.postname.setVisibility(View.INVISIBLE);
+            holder.posttime.setVisibility(View.INVISIBLE);
+            holder.postname1.setText(String.valueOf(Posts.get(position).getTitle()));
+            holder.posttime1.setText(String.valueOf(Posts.get(position).getCreatedAt()));
+        }
+        else{
+            holder.postname1.setVisibility(View.INVISIBLE);
+            holder.posttime1.setVisibility(View.INVISIBLE);
+            holder.postname.setText(String.valueOf(Posts.get(position).getTitle()));
+            holder.posttime.setText(String.valueOf(Posts.get(position).getCreatedAt()));
+        }
 
         if(mOnItemClickListener!=null)
         {
