@@ -111,7 +111,8 @@ public class MainActivity extends AppCompatActivity {
                 /*Toast.makeText(MainActivity.this, "clicked label: " + position, Toast.LENGTH_SHORT).show();
                 rfabHelper.toggleContent();*/
                 if(position == 0){
-
+                    intent = new Intent(MainActivity.this, DiaryEditor.class);
+                    intent.putExtra("postID","3bb1ed13f2");
                     startActivityForResult(intent, 0);
                 }
             }
@@ -122,6 +123,7 @@ public class MainActivity extends AppCompatActivity {
                 rfabHelper.toggleContent();*/
                if(position == 0){
                    intent = new Intent(MainActivity.this, DiaryEditor.class);
+                   intent.putExtra("postID","");
                    startActivityForResult(intent, 0);
                }
             }

@@ -52,9 +52,11 @@ import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlPullParserFactory;
 
+import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.BmobUser;
 import cn.bmob.v3.datatype.BmobFile;
 import cn.bmob.v3.exception.BmobException;
+import cn.bmob.v3.listener.QueryListener;
 import cn.bmob.v3.listener.SaveListener;
 import cn.bmob.v3.listener.UpdateListener;
 import cn.bmob.v3.listener.UploadFileListener;
@@ -83,6 +85,7 @@ public class DiaryEditor extends AppCompatActivity {
 
     /* 时间，位置，天气 */
     private int hour;
+    private String weather;
     private String searchCity;
     private LocationClient mLocationClient = null;
     private LocationClientOption mOption;
@@ -91,6 +94,8 @@ public class DiaryEditor extends AppCompatActivity {
 
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        /* 新创建日记时，postID="" */
+        postID=getIntent().getStringExtra("postID");
         /* 加载布局 */
         setContentView(R.layout.diary_editor);
         editor_btns=(HorizontalScrollView) findViewById(R.id.editor_btns);
@@ -130,17 +135,33 @@ public class DiaryEditor extends AppCompatActivity {
         //mEditor.setInputEnabled(false);
         if(postID.equals("")){
              /* 新创建日记 mypost*/
-             mypost=new Post();
+            mypost=new Post();
             enableEdit();
             mEditor.setPlaceholder("Insert text here...");
             /*  get到天气，时间，位置，并setView*/
             getMyLocation();
-
+            mypost.setWeather(weather);
         }else{
             /* 查看日记，设置显示内容 */
             disableEdit();
-            editor_title.setText("");
-            mEditor.setHtml(mypost.getContent());
+            BmobQuery<Post> query = new BmobQuery<Post>();
+            query.getObject(postID, new QueryListener<Post>() {
+                @Override
+                public void done(Post object, BmobException e) {
+                    if(e==null){
+                        mypost=object;
+                        editor_title.setText(mypost.getTitle());
+                        editor_time.setText(mypost.getCreatedAt());
+                        editor_location.setText(mypost.getAddress());
+                        setEditor_weather(mypost.getWeather());
+                        mEditor.setHtml(mypost.getContent());
+                        toast(mypost.getContent());
+                        Log.e("diary content",mypost.getContent());
+                    }else{
+                        Log.i("bmob","失败："+e.getMessage()+","+e.getErrorCode());
+                    }
+                }
+            });
         }
     }
 
@@ -191,6 +212,7 @@ public class DiaryEditor extends AppCompatActivity {
                             public void done(String objectId, BmobException e) {
                                 if (e == null) {
                                     postID = objectId;
+                                    editor_time.setText(mypost.getCreatedAt());
                                     toast("添加日记成功");
                                 } else {
                                     toast("添加日记失败");
@@ -502,8 +524,8 @@ public class DiaryEditor extends AppCompatActivity {
         intent.putExtra("aspectX", 1);
         intent.putExtra("aspectY", 1.5);
         // outputX outputY 是裁剪图片宽高
-        intent.putExtra("outputX", 200);
-        intent.putExtra("outputY", 300);
+//        intent.putExtra("outputX", 200);
+//        intent.putExtra("outputY", 300);
         intent.putExtra("return-data", true);
         startActivityForResult(intent, CROP_SMALL_PICTURE);
     }
@@ -568,6 +590,29 @@ public class DiaryEditor extends AppCompatActivity {
         Toast.makeText(getApplicationContext(), string, Toast.LENGTH_LONG).show();
     }
 
+
+    void setEditor_weather(String weatherDescribe ){
+        for(int i = 0; i < weatherDescribe.length(); i++) {
+            if(weatherDescribe.charAt(i) == '晴' && hour >= 6 && hour <= 18){
+                editor_weather.setImageResource(R.mipmap.sun);
+            }
+            else if(weatherDescribe.charAt(i) == '晴' && (hour < 6 || hour > 18)){
+                editor_weather.setImageResource(R.mipmap.moon);
+            }
+            else if(weatherDescribe.charAt(i) == '云' && hour >= 6 && hour <= 18){
+                editor_weather.setImageResource(R.mipmap.cloudday);
+            }
+            else if(weatherDescribe.charAt(i) == '云' && (hour < 6 || hour > 18)){
+                editor_weather.setImageResource(R.mipmap.cloudnight);
+            }
+            else if(weatherDescribe.charAt(i) == '雨' && hour >= 6 && hour <= 18){
+                editor_weather.setImageResource(R.mipmap.rainday);
+            }
+            else{
+                editor_weather.setImageResource(R.mipmap.rainnight);
+            }
+        }
+    }
 
     //获取日期和时间
     void getTime() {
@@ -639,7 +684,7 @@ public class DiaryEditor extends AppCompatActivity {
                     String first_day = (data).get(7);
                     String[] tag_first = first_day.split("[ ]");
                     String weatherDescribe = tag_first[0];
-
+                    weather=weatherDescribe;
                     /*weatherDescribe 数据库存储天气情况*/
 
                     //获取天气图标
