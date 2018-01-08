@@ -6,9 +6,13 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ListView;
+import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -40,6 +44,8 @@ public class MainActivity extends AppCompatActivity {
     private TextView username, password;
     private RecyclerView mainrecyclerView;
     private MainAdapter mAdapter;
+    private SearchView mSearchView;
+    private ListView mListView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +58,10 @@ public class MainActivity extends AppCompatActivity {
         rfaLayout = (RapidFloatingActionLayout) findViewById(R.id.activity_main_rfal);
         rfaBtn = (RapidFloatingActionButton) findViewById(R.id.activity_main_rfab);
         mainrecyclerView = (RecyclerView) findViewById(R.id.mainrecycler);
+        mListView = (ListView) findViewById(R.id.lv);
+        mListView.setVisibility(View.INVISIBLE);
+        mSearchView = (SearchView) findViewById(R.id.searchView);
+        mSearchView.setVisibility(View.INVISIBLE);
 
         rfaBtn.setVisibility(View.INVISIBLE);
         rfaLayout.setVisibility(View.INVISIBLE);
@@ -172,6 +182,7 @@ public class MainActivity extends AppCompatActivity {
                             log.setVisibility(View.INVISIBLE);
                             username.setVisibility(View.INVISIBLE);
                             password.setVisibility(View.INVISIBLE);
+                            mSearchView.setVisibility(View.VISIBLE);
                             User user_ = BmobUser.getCurrentUser(User.class);
                             BmobQuery<Post> query = new BmobQuery<Post>();
                             query.addWhereEqualTo("author", user_);   // 查询当前用户的所有帖子
@@ -236,6 +247,71 @@ public class MainActivity extends AppCompatActivity {
                 });
             }
         });
+
+        // 查询
+        mSearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            // 当点击搜索按钮时触发该方法
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+                return false;
+            }
+            // 当搜索内容改变时触发该方法
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                if(!TextUtils.isEmpty(newText)) {
+                    mListView.setVisibility(View.VISIBLE);
+                    mainrecyclerView.setVisibility(View.INVISIBLE);
+                    MyListViewAdapter sAdapter = searchItem(newText);
+                    updateLayout(sAdapter);
+                    Log.i("a", "aa");
+                }
+                // 搜索内容为空时切换会主列表
+                else {
+                    mListView.clearTextFilter();
+                    mListView.setVisibility(View.INVISIBLE);
+                    mainrecyclerView.setVisibility(View.VISIBLE);
+                    mListView.clearTextFilter();
+                    Log.i("b", "bb");
+
+                }
+                return false;
+            }
+        });
+
+    }
+
+    //人物查询
+    public MyListViewAdapter searchItem(final String keywords)
+    {
+        final List<Post> selsctPostList = new ArrayList<Post>();
+        User user = BmobUser.getCurrentUser(User.class);
+        BmobQuery<Post> query = new BmobQuery<Post>();
+        query.addWhereEqualTo("author", user);   // 查询当前用户的所有帖子
+        query.addWhereNotEqualTo("isClear", 1);
+        query.order("-updateAt");
+        query.findObjects(new FindListener<Post>() {
+            @Override
+            public void done(List<Post> list, BmobException e) {
+                if(e == null) {
+                    for(int i = 0; i < list.size(); i++) {
+                        if(list.get(i).getContent().contains(keywords) || list.get(i).getTitle().contains(keywords) ){
+                            selsctPostList.add(list.get(i));
+                        }
+                    }
+                    for(int i = 0; i < selsctPostList.size();i++)
+                        Log.d("内容",selsctPostList.get(i).getContent());
+
+                }
+            }
+        });
+
+        MyListViewAdapter sadapter = new MyListViewAdapter(this,selsctPostList);
+        return sadapter;
+    }
+    //查询界面更新
+    public void updateLayout(MyListViewAdapter sAdapter)
+    {
+        mListView.setAdapter(sAdapter);
     }
 
     public void toast(String string) {
