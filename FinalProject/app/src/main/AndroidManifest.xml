@@ -39,6 +39,7 @@
         </activity>
         <activity android:name=".DiaryEditor"/>
         <activity android:name=".EditActivity"></activity>
+        <activity android:name=".HomeActivity"></activity>
 
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
