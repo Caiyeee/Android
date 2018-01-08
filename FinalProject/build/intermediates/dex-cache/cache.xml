@@ -7,17 +7,8 @@
         jumboMode="true"
         optimize="true"
         revision="26.0.2"
-        sha1="04fa09fb8fc44461051abf81a677ffd94da63c42">
+        sha1="091abdbcaa5afe78a6e316006b29f65d9ec1e4f7">
         <dex dex="C:\Users\Yuying\OneDrive\Documents\Android\FinalProject\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_23e75ddb3622d0fceee2d74755423bba7b610705\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Yuying\OneDrive\Documents\Android\FinalProject\app\libs\BaiduLBS_Android.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="26.0.2"
-        sha1="921eac32e5ef9177cad57cb66aa594766549cebd">
-        <dex dex="C:\Users\Yuying\OneDrive\Documents\Android\FinalProject\app\build\intermediates\transforms\dex\debug\folders\1000\2\BaiduLBS_Android_c89f643bd9ca47e5d287cdd14a6d8d2d26ee1da7\classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -27,6 +18,15 @@
         revision="26.0.2"
         sha1="3be78ebc2706b2e1fe2f12d5726887a92d6c183b">
         <dex dex="C:\Users\Yuying\OneDrive\Documents\Android\FinalProject\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run_b482f61a3930c706cfbf0817c2e1f897ece4b905\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Yuying\OneDrive\Documents\Android\FinalProject\app\libs\BaiduLBS_Android.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="921eac32e5ef9177cad57cb66aa594766549cebd">
+        <dex dex="C:\Users\Yuying\OneDrive\Documents\Android\FinalProject\app\build\intermediates\transforms\dex\debug\folders\1000\2\BaiduLBS_Android_c89f643bd9ca47e5d287cdd14a6d8d2d26ee1da7\classes.dex" />
     </item>
 
 </items>

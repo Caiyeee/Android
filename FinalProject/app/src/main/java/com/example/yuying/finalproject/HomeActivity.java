@@ -36,7 +36,6 @@ import cn.bmob.v3.listener.UpdateListener;
  */
 
 public class HomeActivity extends AppCompatActivity {
-    private Intent intent;
     private RapidFloatingActionLayout rfaLayout;
     private RapidFloatingActionButton rfaBtn;
     private RapidFloatingActionHelper rfabHelper;
@@ -50,7 +49,6 @@ public class HomeActivity extends AppCompatActivity {
         Bmob.initialize(this, "eef0e25fd7bc0a669af7fb37315b4a85");
         setContentView(R.layout.activity_home);
 
-        intent = new Intent(HomeActivity.this, EditActivity.class);
         rfaLayout = (RapidFloatingActionLayout) findViewById(R.id.activity_main_rfal);
         rfaBtn = (RapidFloatingActionButton) findViewById(R.id.activity_main_rfab);
         mainrecyclerView = (RecyclerView) findViewById(R.id.mainrecycler);
@@ -77,12 +75,12 @@ public class HomeActivity extends AppCompatActivity {
                         @Override
                         public void onClick(int position) {
                             Intent intentedit = new Intent(HomeActivity.this, DiaryEditor.class);
-                            intentedit.putExtra("objectid", list.get(position).getObjectId());
+                            intentedit.putExtra("postID", list.get(position).getObjectId());
                             startActivityForResult(intentedit, 0);
                         }
 
                         @Override
-                        public void onLongClick(int position) {
+                        public void onLongClick(final int position) {
                             User user = BmobUser.getCurrentUser(User.class);  // 获取当前用户
                             Post myPost = new Post();
                             myPost.setObjectId(list.get(position).getObjectId());
@@ -92,6 +90,7 @@ public class HomeActivity extends AppCompatActivity {
                                 public void done(BmobException e) {
                                     if (e == null) {
                                         toast("删除成功");
+                                        list.remove(position);
                                         mAdapter.notifyDataSetChanged();
                                     } else {
                                         Toast.makeText(HomeActivity.this, "删除失败：" + e.getMessage(), Toast.LENGTH_SHORT).show();
@@ -172,6 +171,8 @@ public class HomeActivity extends AppCompatActivity {
                 /*Toast.makeText(MainActivity.this, "clicked label: " + position, Toast.LENGTH_SHORT).show();
                 rfabHelper.toggleContent();*/
                 if(position == 0){
+                    Intent intent = new Intent(HomeActivity.this, DiaryEditor.class);
+                    intent.putExtra("postID", "");
                     startActivityForResult(intent, 0);
                 }
             }
@@ -181,6 +182,8 @@ public class HomeActivity extends AppCompatActivity {
                /* Toast.makeText(MainActivity.this, "clicked icon: " + position, Toast.LENGTH_SHORT).show();
                 rfabHelper.toggleContent();*/
                 if(position == 0){
+                    Intent intent = new Intent(HomeActivity.this, DiaryEditor.class);
+                    intent.putExtra("postID", "");
                     startActivityForResult(intent, 0);
                 }
             }
