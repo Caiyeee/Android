@@ -102,6 +102,7 @@ public class MainActivity extends AppCompatActivity {
                 /*Toast.makeText(MainActivity.this, "clicked label: " + position, Toast.LENGTH_SHORT).show();
                 rfabHelper.toggleContent();*/
                 if(position == 0){
+
                     startActivityForResult(intent, 0);
                 }
             }
@@ -111,6 +112,7 @@ public class MainActivity extends AppCompatActivity {
                /* Toast.makeText(MainActivity.this, "clicked icon: " + position, Toast.LENGTH_SHORT).show();
                 rfabHelper.toggleContent();*/
                if(position == 0){
+                   intent = new Intent(MainActivity.this, DiaryEditor.class);
                    startActivityForResult(intent, 0);
                }
             }
