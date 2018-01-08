@@ -28,6 +28,7 @@ import cn.bmob.v3.BmobUser;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.FindListener;
 import cn.bmob.v3.listener.SaveListener;
+import cn.bmob.v3.listener.UpdateListener;
 
 public class MainActivity extends AppCompatActivity {
     private Intent intent;
@@ -178,7 +179,7 @@ public class MainActivity extends AppCompatActivity {
                             query.order("-updateAt");
                             query.findObjects(new FindListener<Post>() {
                                 @Override
-                                public void done(List<Post> list, BmobException e) {
+                                public void done(final List<Post> list, BmobException e) {
                                     if(e == null) {
                                         mainrecyclerView.setVisibility(View.VISIBLE);
                                         LinearLayoutManager mLayoutManager = new LinearLayoutManager(MainActivity.this);
@@ -186,6 +187,45 @@ public class MainActivity extends AppCompatActivity {
                                         mainrecyclerView.setHasFixedSize(true);
                                         mAdapter = new MainAdapter(list,MainActivity.this);
                                         mainrecyclerView.setAdapter(mAdapter);
+                                        mAdapter.setOnItemClickListener(new MainAdapter.OnItemClickListener() {
+                                            @Override
+                                            public void onClick(int position) {
+                                                Intent intentedit = new Intent(MainActivity.this, DiaryEditor.class);
+                                                intentedit.putExtra("objectid", list.get(position).getObjectId());
+                                                startActivityForResult(intentedit, 0);
+                                            }
+
+                                            @Override
+                                            public void onLongClick(int position) {
+                                                User user = BmobUser.getCurrentUser(User.class);  // 获取当前用户
+                                                Post myPost = new Post();
+                                                myPost.setObjectId(list.get(position).getObjectId());
+                                                myPost.setIsClear(1);
+                                                myPost.update(list.get(position).getObjectId(), new UpdateListener() {
+                                                    @Override
+                                                    public void done(BmobException e) {
+                                                        if(e==null){
+                                                            toast("删除成功");
+                                                        }else{
+                                                            Toast.makeText(MainActivity.this, "删除失败：" + e.getMessage(), Toast.LENGTH_SHORT).show();
+                                                        }
+                                                    }
+                                                });
+
+                                                // 添加到回收站中
+                                                Dustbin dustbin = new Dustbin();
+                                                dustbin.setPost(myPost);
+                                                dustbin.setUser(user);
+                                                dustbin.save(new SaveListener<String>() {
+                                                    @Override
+                                                    public void done(String s, BmobException e) {
+                                                        if(e == null) {
+                                                            toast("添加到回收站中");
+                                                        }
+                                                    }
+                                                });
+                                            }
+                                        });
                                     }
                                 }
                             });
