@@ -1,6 +1,10 @@
 package com.example.yuying.finalproject;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
@@ -11,8 +15,11 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.HorizontalScrollView;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ImageView;
 import android.widget.Toast;
 import android.Manifest;
@@ -44,7 +51,13 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
+import java.io.OutputStream;
+
 import android.graphics.Color;
+
+import com.wangjie.rapidfloatingactionbutton.RapidFloatingActionButton;
+
+import cn.bmob.v3.b.I;
 
 import com.baidu.location.BDLocation;
 import com.baidu.location.BDLocationListener;
@@ -65,6 +78,10 @@ import cn.bmob.v3.listener.UpdateListener;
 import cn.bmob.v3.listener.UploadFileListener;
 import jp.wasabeef.richeditor.RichEditor;
 
+import static android.R.attr.bitmap;
+import static android.R.attr.title;
+
+
 public class DiaryEditor extends AppCompatActivity {
     private HorizontalScrollView editor_btns;
     private EditText editor_title;
@@ -74,12 +91,22 @@ public class DiaryEditor extends AppCompatActivity {
     private RichEditor mEditor;
     private TextView mPreview;
     private FloatingActionButton btn_list;
-    private FloatingActionButton btn_mode;
+    private Button btn_mode;
     protected static final int CHOOSE_PICTURE = 0;
     protected static final int TAKE_PICTURE = 1;
     private static final int CROP_SMALL_PICTURE = 2;
     protected static Uri tempUri;
     private Boolean isEdit=false;
+    private Button share;
+    private ImageView image;
+    private LinearLayout editorLayout;
+    private LinearLayout imageLayout;
+    private Button saveImage;
+    private Button shareImg;
+    private LinearLayout edit_area;
+    private TextView title_hid;
+    private Button back;
+    private Bitmap bitmap;
     private Boolean FirstPost=true;
     private String userID;
     private String postID="";
@@ -109,7 +136,81 @@ public class DiaryEditor extends AppCompatActivity {
         mEditor = (RichEditor) findViewById(R.id.editor);
         mPreview = (TextView) findViewById(R.id.preview);
         btn_list=(FloatingActionButton) findViewById(R.id.btn_list);
-        btn_mode=(FloatingActionButton)findViewById(R.id.btn_mode);
+        btn_mode=(Button)findViewById(R.id.mode);
+        edit_area = (LinearLayout) findViewById(R.id.edit_area);
+        share = (Button) findViewById(R.id.share);
+        image = (ImageView) findViewById(R.id.make_image);
+        editorLayout = (LinearLayout) findViewById(R.id.editorLayout);
+        imageLayout = (LinearLayout) findViewById(R.id.imageLayout);
+        saveImage = (Button) findViewById(R.id.download);
+        shareImg = (Button) findViewById(R.id.share_img);
+        title_hid = (TextView) findViewById(R.id.title);
+        back = (Button) findViewById(R.id.back);
+
+
+        //把一个layout转换成图片
+        final Runnable runnable = new Runnable() {
+            @Override
+            public void run() {
+                Bitmap cachebmp = loadBitmapFromLinearLayout(edit_area);
+                bitmap = Bitmap.createBitmap(createWatermarkBitmap(cachebmp, "@caiye"));
+                Drawable drawable = new BitmapDrawable(bitmap);
+                image.setBackground(drawable);
+            }
+        };
+        //分享按钮的监听
+        share.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                title_hid.setText(editor_title.getText());
+                editor_title.setVisibility(View.INVISIBLE);
+                title_hid.setVisibility(View.VISIBLE);
+                btn_mode.setVisibility(View.INVISIBLE);
+                share.setVisibility(View.INVISIBLE);
+                editorLayout.setVisibility(View.INVISIBLE);
+                imageLayout.setVisibility(View.VISIBLE);
+                new android.os.Handler().post(runnable);
+            }
+        });
+        //下载图片按钮监听
+        saveImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FileOutputStream fos;
+                try {
+                    // 判断手机设备是否有SD卡
+                    boolean isHasSDCard = Environment.getExternalStorageState().equals(
+                            android.os.Environment.MEDIA_MOUNTED);
+                    if (isHasSDCard) {
+                        // SD卡根目录
+                        File sdRoot = Environment.getExternalStorageDirectory();
+                        File file = new File(sdRoot, editor_title.getText()+".PNG");
+                        fos = new FileOutputStream(file);
+                        toast("已保存至手机根目录");
+                    } else{
+                        Log.i("sdcard","no");
+                        throw new Exception("创建文件失败!");
+                    }
+                    bitmap.compress(Bitmap.CompressFormat.PNG, 90, fos);
+                    fos.flush();
+                    fos.close();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+        //返回按钮监听
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                editor_title.setVisibility(View.VISIBLE);
+                title_hid.setVisibility(View.INVISIBLE);
+                btn_mode.setVisibility(View.VISIBLE);
+                share.setVisibility(View.VISIBLE);
+                editorLayout.setVisibility(View.VISIBLE);
+                imageLayout.setVisibility(View.INVISIBLE);
+            }
+        });
 
         /* 设置事件监听 */
         initEditor();
@@ -117,13 +218,13 @@ public class DiaryEditor extends AppCompatActivity {
         setEditorListener();
 
         /* 测试显示html源码 */
-        toast(user.getUsername());
-        mEditor.setOnTextChangeListener(new RichEditor.OnTextChangeListener() {
-            /* html源码预览 */
-            @Override public void onTextChange(String text) {
-                mPreview.setText(text);
-            }
-        });
+//        toast(user.getUsername());
+//        mEditor.setOnTextChangeListener(new RichEditor.OnTextChangeListener() {
+//            /* html源码预览 */
+//            @Override public void onTextChange(String text) {
+//                mPreview.setText(text);
+//            }
+//        });
     }
 
     public void initEditor(){
@@ -169,6 +270,7 @@ public class DiaryEditor extends AppCompatActivity {
     public void enableEdit() {
         /* 可编辑 */
         isEdit=true;
+        btn_mode.setBackgroundResource(R.mipmap.save);
         editor_title.setEnabled(true);
         editor_btns.setVisibility(View.VISIBLE);
         mPreview.setVisibility(View.VISIBLE);
@@ -180,6 +282,7 @@ public class DiaryEditor extends AppCompatActivity {
     public void disableEdit(){
         /* 禁编辑 */
         isEdit=false;
+        btn_mode.setBackgroundResource(R.mipmap.edit);
         editor_title.setEnabled(false);
         editor_btns.setVisibility(View.GONE);
         mPreview.setVisibility(View.GONE);
@@ -243,7 +346,7 @@ public class DiaryEditor extends AppCompatActivity {
                    } catch (IOException ex) {
                        Log.e("TAG", "Fail to save file.");
                    }*/
-             }
+                }
             }
         });
     }
@@ -335,7 +438,6 @@ public class DiaryEditor extends AppCompatActivity {
 
         findViewById(R.id.action_txt_color).setOnClickListener(new View.OnClickListener() {
             private boolean isChanged;
-
             @Override public void onClick(View v) {
                 mEditor.setTextColor(isChanged ? Color.BLACK : Color.RED);
                 isChanged = !isChanged;
@@ -344,7 +446,6 @@ public class DiaryEditor extends AppCompatActivity {
 
         findViewById(R.id.action_bg_color).setOnClickListener(new View.OnClickListener() {
             private boolean isChanged;
-
             @Override public void onClick(View v) {
                 mEditor.setTextBackgroundColor(isChanged ? Color.TRANSPARENT : Color.YELLOW);
                 isChanged = !isChanged;
@@ -401,14 +502,14 @@ public class DiaryEditor extends AppCompatActivity {
 
         findViewById(R.id.action_insert_image).setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) {
-               // mEditor.insertImage("http://www.1honeywan.com/dachshund/image/7.21/7.21_3_thumb.JPG","dachshund");
+                // mEditor.insertImage("http://www.1honeywan.com/dachshund/image/7.21/7.21_3_thumb.JPG","dachshund");
                 showChoosePicDialog();
             }
         });
 
         findViewById(R.id.action_insert_link).setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) {
-                mEditor.insertLink("https://github.com/wasabeef", "wasabeef");
+                mEditor.insertLink("https://github.com/zyy-7", "github.com");
             }
         });
         findViewById(R.id.action_insert_checkbox).setOnClickListener(new View.OnClickListener() {
@@ -584,14 +685,12 @@ public class DiaryEditor extends AppCompatActivity {
         if (requestCode == 1 && grantResults[0] == PackageManager.PERMISSION_GRANTED) { }
         else {
             // 没有获取 到权限，从新请求，或者关闭app
-             Toast.makeText(this, "需要存储权限", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "需要存储权限", Toast.LENGTH_SHORT).show();
         }
     }
-
     public void toast(String string) {
         Toast.makeText(getApplicationContext(), string, Toast.LENGTH_LONG).show();
     }
-
 
     void setEditor_weather(String weatherDescribe ){
         for(int i = 0; i < weatherDescribe.length(); i++) {
@@ -668,17 +767,17 @@ public class DiaryEditor extends AppCompatActivity {
                 editor_location.setText(location);
 
                 //由定位查询天气，由于每天只有50次的查询机会，因此暂时注释，勿删！！！
-                searchCity = city.substring(0, city.length() - 1);
+              /*  searchCity = city.substring(0, city.length() - 1);
                 ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
                 NetworkInfo networkInfo = cm.getActiveNetworkInfo();
-                sendRequestWithHttpURLConnection();
+                sendRequestWithHttpURLConnection(); */
             }
         });
         mLocationClient.start();
     }
 
     //  子线程中不能直接修改 UI 界面，需要 handler 进行UI 界面的修改
-    private Handler handler = new Handler() {
+     private Handler handler = new Handler() {
         public void handleMessage(Message message) {
             switch (message.what) {
                 case UPDATE_CONTENT:
@@ -789,4 +888,61 @@ public class DiaryEditor extends AppCompatActivity {
         }
         return list;
     }
+
+
+//            private Bitmap loadBitmapFromView(View v) {
+//                int w = v.getWidth();
+//                int h = v.getHeight();
+//
+//                Bitmap bmp = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888);
+//                Canvas c = new Canvas(bmp);
+//
+//                c.drawColor(Color.WHITE);
+//                /** 如果不设置canvas画布为白色，则生成透明 */
+//
+//                v.layout(0, 0, w, h);
+//                v.draw(c);
+//
+//                return bmp;
+//            }
+
+            private Bitmap loadBitmapFromLinearLayout(LinearLayout linearLayout) {
+                int h = 0;
+                for (int i = 0; i < linearLayout.getChildCount(); i++) {
+                    linearLayout.getChildAt(i).measure(0, 0);
+                    h += linearLayout.getChildAt(i).getMeasuredHeight();
+                }
+                linearLayout.measure(0, 0);
+                Bitmap bitmap = Bitmap.createBitmap(linearLayout.getMeasuredWidth(), h, Bitmap.Config.RGB_565);
+                final Canvas canvas = new Canvas(bitmap);
+                //    canvas.drawColor(Color.WHITE);
+                linearLayout.draw(canvas);
+                return bitmap;
+            }
+
+            // 为图片target添加水印
+            private Bitmap createWatermarkBitmap(Bitmap target, String str) {
+                int w = target.getWidth();
+                int h = target.getHeight();
+
+                Bitmap bmp = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888);
+                Canvas canvas = new Canvas(bmp);
+
+                Paint p = new Paint();
+
+                p.setColor(Color.GRAY);// 水印的颜色
+                p.setTextSize(30);// 水印的字体大小
+                p.setAntiAlias(true);// 去锯齿
+
+                canvas.drawBitmap(target, 0, 0, p);
+
+                // 在xx位置开始添加水印
+                canvas.drawText("shudong  " + str, w / 3, h - 30, p);
+
+                canvas.save(Canvas.ALL_SAVE_FLAG);
+                canvas.restore();
+
+                return bmp;
+            }
+
 }
