@@ -24,7 +24,6 @@ import com.wangjie.rapidfloatingactionbutton.contentimpl.labellist.RapidFloating
 import java.util.ArrayList;
 import java.util.List;
 
-import cn.bmob.v3.Bmob;
 import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.BmobUser;
 import cn.bmob.v3.exception.BmobException;
@@ -48,7 +47,6 @@ public class HomeActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Bmob.initialize(this, "eef0e25fd7bc0a669af7fb37315b4a85");
         setContentView(R.layout.activity_home);
 
         rfaLayout = (RapidFloatingActionLayout) findViewById(R.id.activity_main_rfal);
@@ -63,7 +61,7 @@ public class HomeActivity extends AppCompatActivity {
         BmobQuery<Post> query = new BmobQuery<Post>();
         query.addWhereEqualTo("author", user);   // 查询当前用户的所有帖子
         query.addWhereNotEqualTo("isClear", 1);
-        query.order("-updateAt");
+        query.order("-createdAt");
         query.findObjects(new FindListener<Post>() {
             @Override
             public void done(final List<Post> list, BmobException e) {
@@ -175,7 +173,11 @@ public class HomeActivity extends AppCompatActivity {
                 if(position == 0){
                     Intent intent = new Intent(HomeActivity.this, DiaryEditor.class);
                     intent.putExtra("postID", "");
-                    startActivityForResult(intent, 0);
+                    startActivity(intent);
+                }
+                else if(position == 3){
+                    Intent intent = new Intent(HomeActivity.this, DustbinActivity.class);
+                    startActivity(intent);
                 }
             }
 
@@ -186,7 +188,11 @@ public class HomeActivity extends AppCompatActivity {
                 if(position == 0){
                     Intent intent = new Intent(HomeActivity.this, DiaryEditor.class);
                     intent.putExtra("postID", "");
-                    startActivityForResult(intent, 0);
+                    startActivity(intent);
+                }
+                else if(position == 3){
+                    Intent intent = new Intent(HomeActivity.this, DustbinActivity.class);
+                    startActivity(intent);
                 }
             }
         });
@@ -236,7 +242,7 @@ public class HomeActivity extends AppCompatActivity {
 
     }
 
-    //查询
+    //主界面的显示
     public MyListViewAdapter searchItem(final String keywords)
     {
         selectPostList = new ArrayList<Post>();
@@ -244,7 +250,7 @@ public class HomeActivity extends AppCompatActivity {
         BmobQuery<Post> query = new BmobQuery<Post>();
         query.addWhereEqualTo("author", user);   // 查询当前用户的所有帖子
         query.addWhereNotEqualTo("isClear", 1);
-        query.order("-updateAt");
+        query.order("-createdAt");
         query.findObjects(new FindListener<Post>() {
             @Override
             public void done(List<Post> list, BmobException e) {
@@ -256,7 +262,6 @@ public class HomeActivity extends AppCompatActivity {
                     }
                     for(int i = 0; i < selectPostList.size();i++)
                         Log.d("内容",selectPostList.get(i).getContent());
-
                 }
             }
         });
@@ -272,18 +277,18 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     public void toast(String string) {
-        Toast.makeText(getApplicationContext(), string, Toast.LENGTH_LONG).show();
+        Toast.makeText(getApplicationContext(), string, Toast.LENGTH_SHORT).show();
     }
 
     @Override
     protected void onRestart(){
         super.onRestart();
-        toast("restart");
+    //    toast("restart");
         User user = BmobUser.getCurrentUser(User.class);
         BmobQuery<Post> query = new BmobQuery<Post>();
         query.addWhereEqualTo("author", user);   // 查询当前用户的所有帖子
         query.addWhereNotEqualTo("isClear", 1);
-        query.order("-updateAt");
+        query.order("-createdAt");
         query.findObjects(new FindListener<Post>() {
             @Override
             public void done(final List<Post> list, BmobException e) {

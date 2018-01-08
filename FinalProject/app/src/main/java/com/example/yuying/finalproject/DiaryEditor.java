@@ -1,16 +1,25 @@
 package com.example.yuying.finalproject;
-import android.content.Context;
+import android.Manifest;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
+import android.provider.MediaStore;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.content.ContextCompat;
+import android.support.v4.content.FileProvider;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -20,20 +29,17 @@ import android.widget.EditText;
 import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ImageView;
-import android.widget.Toast;
-import android.Manifest;
-import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.graphics.Bitmap;
-import android.net.Uri;
-import android.os.Build;
-import android.os.Environment;
-import android.provider.MediaStore;
-import android.support.annotation.NonNull;
-import android.support.v4.content.ContextCompat;
-import android.support.v4.content.FileProvider;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.baidu.location.BDLocation;
+import com.baidu.location.BDLocationListener;
+import com.baidu.location.LocationClient;
+import com.baidu.location.LocationClientOption;
+
+import org.xmlpull.v1.XmlPullParser;
+import org.xmlpull.v1.XmlPullParserException;
+import org.xmlpull.v1.XmlPullParserFactory;
 
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
@@ -51,23 +57,6 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-import java.io.OutputStream;
-
-import android.graphics.Color;
-
-import com.wangjie.rapidfloatingactionbutton.RapidFloatingActionButton;
-
-import cn.bmob.v3.b.I;
-
-import com.baidu.location.BDLocation;
-import com.baidu.location.BDLocationListener;
-import com.baidu.location.LocationClient;
-import com.baidu.location.LocationClientOption;
-
-import org.xmlpull.v1.XmlPullParser;
-import org.xmlpull.v1.XmlPullParserException;
-import org.xmlpull.v1.XmlPullParserFactory;
-
 import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.BmobUser;
 import cn.bmob.v3.datatype.BmobFile;
@@ -77,9 +66,6 @@ import cn.bmob.v3.listener.SaveListener;
 import cn.bmob.v3.listener.UpdateListener;
 import cn.bmob.v3.listener.UploadFileListener;
 import jp.wasabeef.richeditor.RichEditor;
-
-import static android.R.attr.bitmap;
-import static android.R.attr.title;
 
 
 public class DiaryEditor extends AppCompatActivity {
@@ -320,9 +306,9 @@ public class DiaryEditor extends AppCompatActivity {
                                 if (e == null) {
                                     postID = objectId;
                                     editor_time.setText(mypost.getCreatedAt());
-                                    toast("添加日记成功");
+                           //         toast("添加日记成功");
                                 } else {
-                                    toast("添加日记失败");
+                             //       toast("添加日记失败");
                                 }
                             }
                         });

@@ -21,7 +21,7 @@
             android:layout_marginLeft="25dp"
             android:layout_marginStart="25dp"
             android:text="2011-11-23 23:10"
-            android:textColor="@color/black"
+            android:textColor="@color/colorDardgrey"
             android:textSize="15sp" />
 
         <TextView
