@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -21,7 +23,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cn.bmob.v3.Bmob;
+import cn.bmob.v3.BmobQuery;
+import cn.bmob.v3.BmobUser;
 import cn.bmob.v3.exception.BmobException;
+import cn.bmob.v3.listener.FindListener;
 import cn.bmob.v3.listener.SaveListener;
 
 public class MainActivity extends AppCompatActivity {
@@ -32,6 +37,8 @@ public class MainActivity extends AppCompatActivity {
     private Button reg, log;
     private ImageView img;
     private TextView username, password;
+    private RecyclerView mainrecyclerView;
+    private MainAdapter mAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,9 +50,11 @@ public class MainActivity extends AppCompatActivity {
 
         rfaLayout = (RapidFloatingActionLayout) findViewById(R.id.activity_main_rfal);
         rfaBtn = (RapidFloatingActionButton) findViewById(R.id.activity_main_rfab);
+        mainrecyclerView = (RecyclerView) findViewById(R.id.mainrecycler);
 
         rfaBtn.setVisibility(View.INVISIBLE);
         rfaLayout.setVisibility(View.INVISIBLE);
+        mainrecyclerView.setVisibility((View.INVISIBLE));
 
         RapidFloatingActionContentLabelList rfaContent = new RapidFloatingActionContentLabelList(this);
         List<RFACLabelItem> items = new ArrayList<>();
@@ -124,6 +133,8 @@ public class MainActivity extends AppCompatActivity {
         password = (TextView) findViewById(R.id.password);
         img = (ImageView) findViewById(R.id.img);
 
+        img.setImageAlpha(100);
+
         // 注册
         reg.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -162,6 +173,24 @@ public class MainActivity extends AppCompatActivity {
                             log.setVisibility(View.INVISIBLE);
                             username.setVisibility(View.INVISIBLE);
                             password.setVisibility(View.INVISIBLE);
+                            User user_ = BmobUser.getCurrentUser(User.class);
+                            BmobQuery<Post> query = new BmobQuery<Post>();
+                            query.addWhereEqualTo("author", user_);   // 查询当前用户的所有帖子
+                            query.addWhereNotEqualTo("isClear", 1);
+                            query.order("-updateAt");
+                            query.findObjects(new FindListener<Post>() {
+                                @Override
+                                public void done(List<Post> list, BmobException e) {
+                                    if(e == null) {
+                                        mainrecyclerView.setVisibility(View.VISIBLE);
+                                        LinearLayoutManager mLayoutManager = new LinearLayoutManager(MainActivity.this);
+                                        mainrecyclerView.setLayoutManager(mLayoutManager);
+                                        mainrecyclerView.setHasFixedSize(true);
+                                        mAdapter = new MainAdapter(list,MainActivity.this);
+                                        mainrecyclerView.setAdapter(mAdapter);
+                                    }
+                                }
+                            });
                         }else {
                             toast("登录失败");
                         }
@@ -169,8 +198,8 @@ public class MainActivity extends AppCompatActivity {
                 });
             }
         });
-
     }
+
     public void toast(String string) {
         Toast.makeText(getApplicationContext(), string, Toast.LENGTH_LONG).show();
     }
