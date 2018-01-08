@@ -1,5 +1,8 @@
 package com.example.yuying.finalproject;
+import android.content.Context;
 import android.content.DialogInterface;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -150,13 +153,11 @@ public class DiaryEditor extends AppCompatActivity {
                 public void done(Post object, BmobException e) {
                     if(e==null){
                         mypost=object;
-                        editor_title.setText(mypost.getTitle());
+                        if(mypost.getTitle()!=null)   editor_title.setText(mypost.getTitle());
                         editor_time.setText(mypost.getCreatedAt());
-                        editor_location.setText(mypost.getAddress());
-                        setEditor_weather(mypost.getWeather());
-                        mEditor.setHtml(mypost.getContent());
-                        toast(mypost.getContent());
-                        Log.e("diary content",mypost.getContent());
+                        if(mypost.getAddress()!=null) editor_location.setText(mypost.getAddress());
+                        if(mypost.getWeather()!=null) setEditor_weather(mypost.getWeather());
+                        if(mypost.getContent()!=null) mEditor.setHtml(mypost.getContent());
                     }else{
                         Log.i("bmob","失败："+e.getMessage()+","+e.getErrorCode());
                     }
@@ -168,6 +169,7 @@ public class DiaryEditor extends AppCompatActivity {
     public void enableEdit() {
         /* 可编辑 */
         isEdit=true;
+        editor_title.setEnabled(true);
         editor_btns.setVisibility(View.VISIBLE);
         mPreview.setVisibility(View.VISIBLE);
         mEditor.setClickable(true);
@@ -178,6 +180,7 @@ public class DiaryEditor extends AppCompatActivity {
     public void disableEdit(){
         /* 禁编辑 */
         isEdit=false;
+        editor_title.setEnabled(false);
         editor_btns.setVisibility(View.GONE);
         mPreview.setVisibility(View.GONE);
         mEditor.setClickable(false);
@@ -202,6 +205,7 @@ public class DiaryEditor extends AppCompatActivity {
                 }else{
                     disableEdit();
                     /* 上传到云数据库 */
+                    mypost.setTitle(editor_title.getText().toString());
                     mypost.setContent(mEditor.getHtml());
                     mypost.setIsClear(0);
                     if(postID.equals("")){
@@ -225,7 +229,7 @@ public class DiaryEditor extends AppCompatActivity {
                             @Override
                             public void done(BmobException e) {
                                 if(e==null){
-                                    toast("更新成功:"+mypost.getUpdatedAt());
+                                    //toast("更新成功:"+mypost.getUpdatedAt());
                                 }else{
                                     toast("更新失败：" + e.getMessage());
                                 }
@@ -233,14 +237,13 @@ public class DiaryEditor extends AppCompatActivity {
                         });
                     }
                     /* 保存到本地(postID为文件名) */
-                    try (FileOutputStream fileOutputStream = openFileOutput(postID, MODE_PRIVATE)) {
-                        String fileContent= mEditor.getHtml();
-                        fileOutputStream.write(fileContent.getBytes());
-                        Toast.makeText(DiaryEditor.this, "Save successfully.", Toast.LENGTH_LONG).show();
-                    } catch (IOException ex) {
-                        Log.e("TAG", "Fail to save file.");
-                    }
-                }
+                  /* try (FileOutputStream fileOutputStream = openFileOutput(postID, MODE_PRIVATE)) {
+                       String fileContent= mEditor.getHtml();
+                       fileOutputStream.write(fileContent.getBytes());
+                   } catch (IOException ex) {
+                       Log.e("TAG", "Fail to save file.");
+                   }*/
+             }
             }
         });
     }
@@ -546,11 +549,10 @@ public class DiaryEditor extends AppCompatActivity {
                     public void done(BmobException e) {
                         if(e==null){
                             mEditor.insertImage(bmobFile.getFileUrl(),"");
-                            toast("云上传图片成功:" + bmobFile.getFileUrl());
                         }
                         else {
                             toast("云上传图片失败"+e.getMessage());
-                            Log.e("图片上传失败",e.getMessage());
+                            Log.e("云上传图片失败",e.getMessage());
                         }
                     }
                 });
@@ -666,10 +668,10 @@ public class DiaryEditor extends AppCompatActivity {
                 editor_location.setText(location);
 
                 //由定位查询天气，由于每天只有50次的查询机会，因此暂时注释，勿删！！！
-             /* searchCity = city.substring(0, city.length() - 1);
+                searchCity = city.substring(0, city.length() - 1);
                 ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
                 NetworkInfo networkInfo = cm.getActiveNetworkInfo();
-                sendRequestWithHttpURLConnection();  */
+                sendRequestWithHttpURLConnection();
             }
         });
         mLocationClient.start();

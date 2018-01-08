@@ -123,7 +123,7 @@ public class MainActivity extends AppCompatActivity {
                 rfabHelper.toggleContent();*/
                 if(position == 0){
                     intent = new Intent(MainActivity.this, DiaryEditor.class);
-                    intent.putExtra("postID","3bb1ed13f2");
+                    intent.putExtra("postID","4be0d2aca1");
                     startActivityForResult(intent, 0);
                 }
             }
