@@ -76,7 +76,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-
     public void toast(String string) {
         Toast.makeText(getApplicationContext(), string, Toast.LENGTH_LONG).show();
     }

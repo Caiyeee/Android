@@ -135,10 +135,12 @@ public class EditActivity extends AppCompatActivity {
                 /* 数据库存储定位 */
 
                 //由定位查询天气，由于每天只有50次的查询机会，因此暂时注释，勿删！！！
-             /*   searchCity = city.substring(0, city.length() - 1);
+             /*
+                searchCity = city.substring(0, city.length() - 1);
                 ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
                 NetworkInfo networkInfo = cm.getActiveNetworkInfo();
-                sendRequestWithHttpURLConnection();*/
+                sendRequestWithHttpURLConnection();
+              */
             }
         });
         mLocationClient.start();

@@ -5,7 +5,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-
+    <ImageView
+        android:id="@+id/img"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:src="@mipmap/bk"
+        android:layout_marginLeft="8dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginStart="8dp"
+        android:layout_marginRight="8dp"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="8dp"
+        android:alpha="500"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="8dp" />
   <LinearLayout
       android:orientation="vertical"
       android:layout_width="match_parent"
@@ -270,23 +286,60 @@
 
       </LinearLayout>
     </HorizontalScrollView>
+
+  <LinearLayout
+      android:id="@+id/create_detail"
+      android:gravity="center"
+      android:orientation="horizontal"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      >
+    <TextView
+        android:id="@+id/editor_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="创建时间"
+        android:textSize="12sp"
+        android:layout_marginStart="20dp"
+        />
+    <TextView
+        android:id="@+id/editor_location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="地点"
+        android:textSize="12sp"
+        android:layout_marginStart="20dp"
+        />
+
+      <ImageView
+          android:id="@+id/editor_weather"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginStart="20dp"
+          app:srcCompat="@android:drawable/btn_star" />
+  </LinearLayout>
+
     <EditText
         android:id="@+id/editor_title"
-        android:layout_width="match_parent"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_gravity="center"
         android:textColorHint="@color/colorBlack"
         android:hint="Title hear..."
         android:textSize="12sp"
+        android:alpha="0.5"
         />
     <jp.wasabeef.richeditor.RichEditor
         android:id="@+id/editor"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
+        android:backgroundTint="@color/colorWhite"
+        android:alpha="0.5"
         />
     <TextView
         android:id="@+id/preview"
+        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
