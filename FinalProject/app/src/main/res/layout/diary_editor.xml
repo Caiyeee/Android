@@ -21,7 +21,6 @@
             android:layout_height="0dp"
             android:layout_weight="1"
             android:maxHeight="800dp"
-            android:scaleType="fitXY"
             android:id="@+id/make_image"
             android:background="@drawable/bg2"/>
         <android.support.constraint.ConstraintLayout
@@ -409,7 +408,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="0dp"
                 android:layout_marginTop="15dp"
-                android:alpha="0.2"
+                android:alpha="0.8"
                 android:layout_weight="1" />
             <TextView
                 android:layout_width="fill_parent"
