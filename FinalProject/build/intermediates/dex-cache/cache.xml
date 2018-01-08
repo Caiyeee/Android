@@ -3,24 +3,6 @@
 
     <item
         is-multidex="true"
-        jar="D:\Android\FinalProject\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="26.0.2"
-        sha1="3be78ebc2706b2e1fe2f12d5726887a92d6c183b">
-        <dex dex="D:\Android\FinalProject\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run_ad48d5e0dfd6e8d68c98e910d09c80f527ace3d9\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\zhemeng\.android\build-cache\543d0c155680815d5dfa3ef179aa6c426e44b6b3\output\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="26.0.2"
-        sha1="a38dc57bd3a0900f291f38e4786cde461aece5a9">
-        <dex dex="D:\Android\FinalProject\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_acbeb86ceeb077661f0624b4b06dfdb7af3956f7\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
         jar="D:\Android\FinalProject\app\libs\BaiduLBS_Android.jar"
         jumboMode="true"
         optimize="true"
@@ -34,8 +16,17 @@
         jumboMode="true"
         optimize="true"
         revision="26.0.2"
-        sha1="26ebffd009661e509eb0732ee40f65c77b47c1f3">
+        sha1="ee909b6f6e0a5aa1a81dc9f33f337e9d78ea1b5c">
         <dex dex="D:\Android\FinalProject\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_b2c047822be51ff94379df2b1ed1895d94ac43c2\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\Android\FinalProject\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="3be78ebc2706b2e1fe2f12d5726887a92d6c183b">
+        <dex dex="D:\Android\FinalProject\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run_ad48d5e0dfd6e8d68c98e910d09c80f527ace3d9\classes.dex" />
     </item>
 
 </items>
