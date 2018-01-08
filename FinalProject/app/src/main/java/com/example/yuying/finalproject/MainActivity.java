@@ -276,7 +276,6 @@ public class MainActivity extends AppCompatActivity {
                     mainrecyclerView.setVisibility(View.VISIBLE);
                     mListView.clearTextFilter();
                     Log.i("b", "bb");
-
                 }
                 return false;
             }
@@ -298,13 +297,15 @@ public class MainActivity extends AppCompatActivity {
             public void done(List<Post> list, BmobException e) {
                 if(e == null) {
                     for(int i = 0; i < list.size(); i++) {
-                        if(list.get(i).getContent().contains(keywords) || list.get(i).getTitle().contains(keywords) ){
+                        if((list.get(i).getContent()!=null && list.get(i).getContent().contains(keywords)) ||  (list.get(i).getTitle()!=null &&list.get(i).getTitle().contains(keywords))){
                             selsctPostList.add(list.get(i));
                         }
                     }
                     for(int i = 0; i < selsctPostList.size();i++)
                         Log.d("内容",selsctPostList.get(i).getContent());
-
+                }else  {
+                    toast("查询失败");
+                    Log.i("fail", e.getMessage());
                 }
             }
         });
