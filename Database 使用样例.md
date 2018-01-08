@@ -230,6 +230,21 @@ query.getObject(postId, new QueryListener<GameScore>() {
 });
 
     }
+  
+  // 删除delete
+  Post p2 = new Post();
+  p2.setObjectId("6b6c11c537");
+  p2.delete(new UpdateListener() {
+      @Override
+      public void done(BmobException e) {
+          if(e==null){
+              toast("删除成功:"+p2.getUpdatedAt());
+          }else{
+              toast("删除失败：" + e.getMessage());
+          }
+      }
+
+  });
 
 
 

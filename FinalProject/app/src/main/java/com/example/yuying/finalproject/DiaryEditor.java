@@ -66,6 +66,7 @@ import cn.bmob.v3.listener.SaveListener;
 import cn.bmob.v3.listener.UpdateListener;
 import cn.bmob.v3.listener.UploadFileListener;
 import jp.wasabeef.richeditor.RichEditor;
+import rx.Subscription;
 
 
 public class DiaryEditor extends AppCompatActivity {
@@ -139,7 +140,7 @@ public class DiaryEditor extends AppCompatActivity {
             @Override
             public void run() {
                 Bitmap cachebmp = loadBitmapFromLinearLayout(edit_area);
-                bitmap = Bitmap.createBitmap(createWatermarkBitmap(cachebmp, "@caiye"));
+                bitmap = Bitmap.createBitmap(createWatermarkBitmap(cachebmp, user.getUsername()));
                 Drawable drawable = new BitmapDrawable(bitmap);
                 image.setBackground(drawable);
             }
@@ -148,41 +149,25 @@ public class DiaryEditor extends AppCompatActivity {
         share.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                title_hid.setText(editor_title.getText());
-                editor_title.setVisibility(View.INVISIBLE);
-                title_hid.setVisibility(View.VISIBLE);
-                btn_mode.setVisibility(View.INVISIBLE);
-                share.setVisibility(View.INVISIBLE);
-                editorLayout.setVisibility(View.INVISIBLE);
-                imageLayout.setVisibility(View.VISIBLE);
-                new android.os.Handler().post(runnable);
+                if(isEdit)
+                    toast("请先保存");
+                else{
+                    title_hid.setText(editor_title.getText());
+                    editor_title.setVisibility(View.INVISIBLE);
+                    title_hid.setVisibility(View.VISIBLE);
+                    btn_mode.setVisibility(View.INVISIBLE);
+                    share.setVisibility(View.INVISIBLE);
+                    editorLayout.setVisibility(View.INVISIBLE);
+                    imageLayout.setVisibility(View.VISIBLE);
+                    new android.os.Handler().post(runnable);
+                }
             }
         });
         //下载图片按钮监听
         saveImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FileOutputStream fos;
-                try {
-                    // 判断手机设备是否有SD卡
-                    boolean isHasSDCard = Environment.getExternalStorageState().equals(
-                            android.os.Environment.MEDIA_MOUNTED);
-                    if (isHasSDCard) {
-                        // SD卡根目录
-                        File sdRoot = Environment.getExternalStorageDirectory();
-                        File file = new File(sdRoot, editor_title.getText()+".PNG");
-                        fos = new FileOutputStream(file);
-                        toast("已保存至手机根目录");
-                    } else{
-                        Log.i("sdcard","no");
-                        throw new Exception("创建文件失败!");
-                    }
-                    bitmap.compress(Bitmap.CompressFormat.PNG, 90, fos);
-                    fos.flush();
-                    fos.close();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+                downloadPic();
             }
         });
         //返回按钮监听
@@ -195,6 +180,41 @@ public class DiaryEditor extends AppCompatActivity {
                 share.setVisibility(View.VISIBLE);
                 editorLayout.setVisibility(View.VISIBLE);
                 imageLayout.setVisibility(View.INVISIBLE);
+            }
+        });
+
+        shareImg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String picPath = Environment.getExternalStorageDirectory().getPath() +"/"+ editor_title.getText()+".PNG";
+            //    Log.d("path",picPath);
+                final BmobFile bmobFile = new BmobFile(new File(picPath));
+                bmobFile.uploadblock(new UploadFileListener() {
+                    @Override
+                    public void done(BmobException e) {
+                        if(e == null){
+                            String address = bmobFile.getFileUrl();
+                            User user = BmobUser.getCurrentUser(User.class);  // 获取当前用户
+                            Share myShare = new Share();
+                            myShare.setUser(user);
+                            myShare.setPc(address);
+                            myShare.save(new SaveListener<String>() {
+                                @Override
+                                public void done(String id, BmobException e) {
+                                    if(e == null)
+                                        toast("分享成功");
+                                    else {
+                                        toast("分享失败");
+                                        Log.d("share_error", e.getMessage());
+                                    }
+                                }
+                            });
+                        } else {
+                            toast("上传失败");
+                            Log.d("error",e.getMessage());
+                        }
+                    }
+                });
             }
         });
 
@@ -923,12 +943,37 @@ public class DiaryEditor extends AppCompatActivity {
                 canvas.drawBitmap(target, 0, 0, p);
 
                 // 在xx位置开始添加水印
-                canvas.drawText("shudong  " + str, w / 3, h - 30, p);
+                canvas.drawText("shudong  @ " + str, w / 3, h - 30, p);
 
                 canvas.save(Canvas.ALL_SAVE_FLAG);
                 canvas.restore();
 
                 return bmp;
+            }
+
+            public boolean downloadPic(){
+                FileOutputStream fos;
+                try {
+                    // 判断手机设备是否有SD卡
+                    boolean isHasSDCard = Environment.getExternalStorageState().equals(
+                            android.os.Environment.MEDIA_MOUNTED);
+                    if (isHasSDCard) {
+                        // SD卡根目录
+                        File sdRoot = Environment.getExternalStorageDirectory();
+                        File file = new File(sdRoot, editor_title.getText()+".PNG");
+                        fos = new FileOutputStream(file);
+                        toast("已保存至手机根目录");
+                    } else{
+                        throw new Exception("创建文件失败!");
+                    }
+                    bitmap.compress(Bitmap.CompressFormat.PNG, 90, fos);
+                    fos.flush();
+                    fos.close();
+                    return true;
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    return false;
+                }
             }
 
 }

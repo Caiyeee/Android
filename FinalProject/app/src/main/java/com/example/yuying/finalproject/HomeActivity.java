@@ -174,6 +174,10 @@ public class HomeActivity extends AppCompatActivity {
                     Intent intent = new Intent(HomeActivity.this, DiaryEditor.class);
                     intent.putExtra("postID", "");
                     startActivity(intent);
+                } else if(position == 2){
+                    Intent intent = new Intent(HomeActivity.this,Community.class);
+                    startActivity(intent);
+                    startActivity(intent);
                 }
                 else if(position == 3){
                     Intent intent = new Intent(HomeActivity.this, DustbinActivity.class);
@@ -190,8 +194,13 @@ public class HomeActivity extends AppCompatActivity {
                     intent.putExtra("postID", "");
                     startActivity(intent);
                 }
+                else if(position == 2){
+                    Intent intent = new Intent(HomeActivity.this,Community.class);
+                    startActivity(intent);
+                }
                 else if(position == 3){
                     Intent intent = new Intent(HomeActivity.this, DustbinActivity.class);
+                    startActivity(intent);
                     startActivity(intent);
                 }
             }

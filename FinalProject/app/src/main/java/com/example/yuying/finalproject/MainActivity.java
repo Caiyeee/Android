@@ -27,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         intent = new Intent(MainActivity.this, HomeActivity.class);
+    //    intent = new Intent(MainActivity.this,Community.class);
         reg = (Button) findViewById(R.id.reg);
         log = (Button) findViewById(R.id.log);
         username = (TextView) findViewById(R.id.username);
