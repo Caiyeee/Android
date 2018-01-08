@@ -244,7 +244,7 @@ public class HomeActivity extends AppCompatActivity {
         BmobQuery<Post> query = new BmobQuery<Post>();
         query.addWhereEqualTo("author", user);   // 查询当前用户的所有帖子
         query.addWhereNotEqualTo("isClear", 1);
-        query.order("-updateAt");
+        query.order("updateAt");
         query.findObjects(new FindListener<Post>() {
             @Override
             public void done(List<Post> list, BmobException e) {
