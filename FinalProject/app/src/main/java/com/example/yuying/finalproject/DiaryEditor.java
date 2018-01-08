@@ -335,7 +335,6 @@ public class DiaryEditor extends AppCompatActivity {
 
         findViewById(R.id.action_txt_color).setOnClickListener(new View.OnClickListener() {
             private boolean isChanged;
-
             @Override public void onClick(View v) {
                 mEditor.setTextColor(isChanged ? Color.BLACK : Color.RED);
                 isChanged = !isChanged;
@@ -344,7 +343,6 @@ public class DiaryEditor extends AppCompatActivity {
 
         findViewById(R.id.action_bg_color).setOnClickListener(new View.OnClickListener() {
             private boolean isChanged;
-
             @Override public void onClick(View v) {
                 mEditor.setTextBackgroundColor(isChanged ? Color.TRANSPARENT : Color.YELLOW);
                 isChanged = !isChanged;
@@ -408,7 +406,7 @@ public class DiaryEditor extends AppCompatActivity {
 
         findViewById(R.id.action_insert_link).setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) {
-                mEditor.insertLink("https://github.com/wasabeef", "wasabeef");
+                mEditor.insertLink("https://github.com/zyy-7", "github.com");
             }
         });
         findViewById(R.id.action_insert_checkbox).setOnClickListener(new View.OnClickListener() {
@@ -587,11 +585,9 @@ public class DiaryEditor extends AppCompatActivity {
              Toast.makeText(this, "需要存储权限", Toast.LENGTH_SHORT).show();
         }
     }
-
     public void toast(String string) {
         Toast.makeText(getApplicationContext(), string, Toast.LENGTH_LONG).show();
     }
-
 
     void setEditor_weather(String weatherDescribe ){
         for(int i = 0; i < weatherDescribe.length(); i++) {
@@ -668,17 +664,17 @@ public class DiaryEditor extends AppCompatActivity {
                 editor_location.setText(location);
 
                 //由定位查询天气，由于每天只有50次的查询机会，因此暂时注释，勿删！！！
-                searchCity = city.substring(0, city.length() - 1);
+              /*  searchCity = city.substring(0, city.length() - 1);
                 ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
                 NetworkInfo networkInfo = cm.getActiveNetworkInfo();
-                sendRequestWithHttpURLConnection();
+                sendRequestWithHttpURLConnection(); */
             }
         });
         mLocationClient.start();
     }
 
     //  子线程中不能直接修改 UI 界面，需要 handler 进行UI 界面的修改
-    private Handler handler = new Handler() {
+     private Handler handler = new Handler() {
         public void handleMessage(Message message) {
             switch (message.what) {
                 case UPDATE_CONTENT:

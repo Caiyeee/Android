@@ -262,4 +262,65 @@ public class HomeActivity extends AppCompatActivity {
     public void toast(String string) {
         Toast.makeText(getApplicationContext(), string, Toast.LENGTH_LONG).show();
     }
+
+    @Override
+    protected void onRestart(){
+        super.onRestart();
+        toast("restart");
+        User user = BmobUser.getCurrentUser(User.class);
+        BmobQuery<Post> query = new BmobQuery<Post>();
+        query.addWhereEqualTo("author", user);   // 查询当前用户的所有帖子
+        query.addWhereNotEqualTo("isClear", 1);
+        query.order("-updateAt");
+        query.findObjects(new FindListener<Post>() {
+            @Override
+            public void done(final List<Post> list, BmobException e) {
+                if (e == null) {
+                    mAdapter = new MainAdapter(list, HomeActivity.this);
+                    mainrecyclerView.setAdapter(mAdapter);
+                    mAdapter.setOnItemClickListener(new MainAdapter.OnItemClickListener() {
+                        @Override
+                        public void onClick(int position) {
+                            Intent intentedit = new Intent(HomeActivity.this, DiaryEditor.class);
+                            intentedit.putExtra("postID", list.get(position).getObjectId());
+                            startActivityForResult(intentedit, 0);
+                        }
+
+                        @Override
+                        public void onLongClick(final int position) {
+                            User user = BmobUser.getCurrentUser(User.class);  // 获取当前用户
+                            Post myPost = new Post();
+                            myPost.setObjectId(list.get(position).getObjectId());
+                            myPost.setIsClear(1);
+                            myPost.update(list.get(position).getObjectId(), new UpdateListener() {
+                                @Override
+                                public void done(BmobException e) {
+                                    if (e == null) {
+                                        toast("删除成功");
+                                        list.remove(position);
+                                        mAdapter.notifyDataSetChanged();
+                                    } else {
+                                        Toast.makeText(HomeActivity.this, "删除失败：" + e.getMessage(), Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+                            });
+
+                            // 添加到回收站中
+                            Dustbin dustbin = new Dustbin();
+                            dustbin.setPost(myPost);
+                            dustbin.setUser(user);
+                            dustbin.save(new SaveListener<String>() {
+                                @Override
+                                public void done(String s, BmobException e) {
+                                    if (e == null) {
+                                        toast("添加到回收站中");
+                                    }
+                                }
+                            });
+                        }
+                    });
+                }
+            }
+        });
+    }
 }
