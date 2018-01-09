@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@mipmap/bk"
+    android:background="@mipmap/bg0"
     android:orientation="vertical">
 
 
@@ -13,7 +13,8 @@
         android:text="社区"
         android:textSize="30sp"
         android:layout_marginTop="15dp"
-        android:gravity="center_horizontal" />
+        android:gravity="center_horizontal"
+        android:textColor="@color/colorBlack"/>
 a
     <ListView
         android:layout_width="fill_parent"

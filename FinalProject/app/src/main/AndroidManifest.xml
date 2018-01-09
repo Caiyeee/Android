@@ -39,7 +39,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".DiaryEditor" android:windowSoftInputMode="adjustPan|stateHidden"/>
+        <activity android:name=".DiaryEditor" />
         <activity android:name=".HomeActivity" android:windowSoftInputMode="adjustPan|stateHidden"></activity>
         <activity android:name=".Community" android:windowSoftInputMode="adjustPan|stateHidden" />
         <activity android:name=".DustbinActivity" android:windowSoftInputMode="adjustPan|stateHidden"></activity>

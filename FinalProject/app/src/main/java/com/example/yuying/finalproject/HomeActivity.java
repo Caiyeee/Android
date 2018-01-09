@@ -90,7 +90,9 @@ public class HomeActivity extends AppCompatActivity {
                                 public void done(BmobException e) {
                                     if (e == null) {
                                         toast("删除成功");
+                                     //   toast(String.valueOf(list.size()) + "hhh");
                                         list.remove(position);
+                                     //   toast(String.valueOf(list.size()));
                                         mAdapter.notifyDataSetChanged();
                                     } else {
                                         Toast.makeText(HomeActivity.this, "删除失败：" + e.getMessage(), Toast.LENGTH_SHORT).show();

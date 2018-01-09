@@ -2,31 +2,184 @@
 <items version="2" >
 
     <item
-        is-multidex="true"
-        jar="D:\Android\FinalProject\app\libs\BaiduLBS_Android.jar"
-        jumboMode="true"
+        is-multidex="false"
+        jar="C:\Users\caiye\.android\build-cache\084b25cd8253317ffc8ccd7f76b37873356b712b\output\jars\libs\androidasync-2.1.6.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.2"
+        sha1="4c88f1359a331cff1ea593267d1f63dca63b364b">
+        <dex dex="E:\Git\Android\FinalProject\app\build\intermediates\pre-dexed\debug\androidasync-2.1.6_7c12b98f1876b375decbcd596e70598cd88e5003.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\caiye\.gradle\caches\modules-2\files-2.1\com.nineoldandroids\library\2.4.0\e9b63380f3a242dbdbf103a2355ad7e43bad17cb\library-2.4.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.2"
+        sha1="e9b63380f3a242dbdbf103a2355ad7e43bad17cb">
+        <dex dex="E:\Git\Android\FinalProject\app\build\intermediates\pre-dexed\debug\library-2.4.0_f249f46b3af86f70b02baa9c64c142b2842181b9.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="E:\Git\Android\FinalProject\app\libs\BaiduLBS_Android.jar"
+        jumboMode="false"
         optimize="true"
         revision="26.0.2"
         sha1="921eac32e5ef9177cad57cb66aa594766549cebd">
-        <dex dex="D:\Android\FinalProject\app\build\intermediates\transforms\dex\debug\folders\1000\2\BaiduLBS_Android_86c3a8647d910e15234b3b36a86820a43edef1d4\classes.dex" />
+        <dex dex="E:\Git\Android\FinalProject\app\build\intermediates\pre-dexed\debug\BaiduLBS_Android_b4e3171b69bcdd131c68d038d3ec7923a9e9af5e.jar" />
     </item>
     <item
-        is-multidex="true"
-        jar="D:\Android\FinalProject\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
-        jumboMode="true"
+        is-multidex="false"
+        jar="C:\Users\caiye\.android\build-cache\c16494a80341717ba8e8e0edb5920ab38b1e68e5\output\jars\classes.jar"
+        jumboMode="false"
         optimize="true"
         revision="26.0.2"
-        sha1="ee909b6f6e0a5aa1a81dc9f33f337e9d78ea1b5c">
-        <dex dex="D:\Android\FinalProject\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_b2c047822be51ff94379df2b1ed1895d94ac43c2\classes.dex" />
+        sha1="a2c9ce94bbc3c8bc1834c596dc5c8eca8fc04166">
+        <dex dex="E:\Git\Android\FinalProject\app\build\intermediates\pre-dexed\debug\classes_909681870ecf544eedc663f12171e9c8e3ee08ef.jar" />
     </item>
     <item
-        is-multidex="true"
-        jar="D:\Android\FinalProject\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
-        jumboMode="true"
+        is-multidex="false"
+        jar="C:\Users\caiye\.android\build-cache\08a612f09b786b9f58bdb700013b8a87cab30cdf\output\jars\libs\okio-1.7.0.jar"
+        jumboMode="false"
         optimize="true"
         revision="26.0.2"
-        sha1="3be78ebc2706b2e1fe2f12d5726887a92d6c183b">
-        <dex dex="D:\Android\FinalProject\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run_ad48d5e0dfd6e8d68c98e910d09c80f527ace3d9\classes.dex" />
+        sha1="f64e0f80ef26fbc722b4bc9f024370d5b1e8f6d6">
+        <dex dex="E:\Git\Android\FinalProject\app\build\intermediates\pre-dexed\debug\okio-1.7.0_47ae7f1c79dfbde3d414f8729737fd7aa09e36a8.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\caiye\.gradle\caches\modules-2\files-2.1\cn.bmob.android\bmob-push\0.8\2fe391ed9034cd023de1da05cb8da77e08b46245\bmob-push-0.8.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.2"
+        sha1="2fe391ed9034cd023de1da05cb8da77e08b46245">
+        <dex dex="E:\Git\Android\FinalProject\app\build\intermediates\pre-dexed\debug\bmob-push-0.8_5607d12fa7763e16ed0a9795bd2587c1b21bc9cd.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\caiye\.android\build-cache\08a612f09b786b9f58bdb700013b8a87cab30cdf\output\jars\libs\BmobSDK_3.5.5_20170420.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.2"
+        sha1="f67cfc97fcbde8b4764f01135b10afa716ae1a40">
+        <dex dex="E:\Git\Android\FinalProject\app\build\intermediates\pre-dexed\debug\BmobSDK_3.5.5_20170420_c84a66576bc8fe70dcd1d36e616c7197d6e83483.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\caiye\.android\build-cache\08a612f09b786b9f58bdb700013b8a87cab30cdf\output\jars\libs\rxjava-1.1.6.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.2"
+        sha1="79f0c1e382e8b62e91064ef6b71130dda83f338e">
+        <dex dex="E:\Git\Android\FinalProject\app\build\intermediates\pre-dexed\debug\rxjava-1.1.6_24286eb4427cee997b64e2f1484edec2f79c18d7.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\caiye\.android\build-cache\08a612f09b786b9f58bdb700013b8a87cab30cdf\output\jars\libs\gson-2.6.2.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.2"
+        sha1="cea3a9be08d0dcf89783b2cc87c8787fdb2a0d12">
+        <dex dex="E:\Git\Android\FinalProject\app\build\intermediates\pre-dexed\debug\gson-2.6.2_92e1d112c27e3aa13ab182110747f4b83312e11c.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\caiye\.android\build-cache\084b25cd8253317ffc8ccd7f76b37873356b712b\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.2"
+        sha1="46b64293efb94feb03e6270d400f95b2664513f6">
+        <dex dex="E:\Git\Android\FinalProject\app\build\intermediates\pre-dexed\debug\classes_06b1d97e3ba6dd8afac7e42af240c90b4f110d19.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\caiye\.android\build-cache\08a612f09b786b9f58bdb700013b8a87cab30cdf\output\jars\libs\okhttp-3.3.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.2"
+        sha1="e009af854d43130a9a13bcba900ddd1124e835d5">
+        <dex dex="E:\Git\Android\FinalProject\app\build\intermediates\pre-dexed\debug\okhttp-3.3.1_2888b4dd9940da699a77a5079601fbfb40e13499.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\caiye\.android\build-cache\abb33d7cfb4fc7a09a006494b4d2055fa3f911c4\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.2"
+        sha1="21a28ff219324575b509d7c471487450d0c04584">
+        <dex dex="E:\Git\Android\FinalProject\app\build\intermediates\pre-dexed\debug\classes_79e4de73612cd28e8057773d078e8b65889016ff.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\caiye\.gradle\caches\modules-2\files-2.1\cn.bmob.android\http-legacy\1.0\5320fd78dd7f154e586970d4f02befc9b58432aa\http-legacy-1.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.2"
+        sha1="5320fd78dd7f154e586970d4f02befc9b58432aa">
+        <dex dex="E:\Git\Android\FinalProject\app\build\intermediates\pre-dexed\debug\http-legacy-1.0_db36bc2c84d65b443da29520bc7d6c4cd9d36a2d.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\caiye\.android\build-cache\64e01e7e75b45f998d584b0aec0c15a142a396bd\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.2"
+        sha1="8e876c1a156a79caa35250fb66ce1a4c566d6c4d">
+        <dex dex="E:\Git\Android\FinalProject\app\build\intermediates\pre-dexed\debug\classes_5e36e6d90e0093ae48cc018fd87368faf3cf1158.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\caiye\.android\build-cache\10ff85b2d808ba83bce950a7eac9b4de0f882903\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.2"
+        sha1="7ace574bd540f619e04e8217be64111fdf1f2a67">
+        <dex dex="E:\Git\Android\FinalProject\app\build\intermediates\pre-dexed\debug\classes_cd29948c041feec39a755eac0ae30bc4a1490585.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\caiye\.android\build-cache\08a612f09b786b9f58bdb700013b8a87cab30cdf\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.2"
+        sha1="ac71d1248d0f3577b39093396e6ff35582a5d7a4">
+        <dex dex="E:\Git\Android\FinalProject\app\build\intermediates\pre-dexed\debug\classes_46d1ff89539a29dc7af5081d52a1f2d98d315f82.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\caiye\.android\build-cache\084b25cd8253317ffc8ccd7f76b37873356b712b\output\jars\libs\BmobNewIM_2.0.5_20160601.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.2"
+        sha1="b535a2906149ccebadc4b1cab0126130916842ea">
+        <dex dex="E:\Git\Android\FinalProject\app\build\intermediates\pre-dexed\debug\BmobNewIM_2.0.5_20160601_b67bedf8f1a38aab3cb8209f4823dde4178111aa.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\caiye\.android\build-cache\08a612f09b786b9f58bdb700013b8a87cab30cdf\output\jars\libs\rxandroid-1.2.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.2"
+        sha1="84127ad71f76445b8215afceb38e8b05f58eafa6">
+        <dex dex="E:\Git\Android\FinalProject\app\build\intermediates\pre-dexed\debug\rxandroid-1.2.0_1b85d0744f50bd0817aa1f1476fc5126e9044326.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\caiye\.android\build-cache\da635711fabab940b55c3da528ea9b761eef4ffe\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.2"
+        sha1="82eb31ad68fa20921374c7178af932a6366cc232">
+        <dex dex="E:\Git\Android\FinalProject\app\build\intermediates\pre-dexed\debug\classes_9268f7454986834d910fc7870a72589897a41d59.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\caiye\.gradle\caches\modules-2\files-2.1\cn.bmob.android\bmob-sms\1.0.1\df9db564e2842696a68deca39b0186aebf3dc07c\bmob-sms-1.0.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.2"
+        sha1="df9db564e2842696a68deca39b0186aebf3dc07c">
+        <dex dex="E:\Git\Android\FinalProject\app\build\intermediates\pre-dexed\debug\bmob-sms-1.0.1_b234871926da6fe0146f5fd5cbca5263acba5425.jar" />
     </item>
 
 </items>

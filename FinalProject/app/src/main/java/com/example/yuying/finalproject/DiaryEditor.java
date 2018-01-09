@@ -1,5 +1,6 @@
 package com.example.yuying.finalproject;
 import android.Manifest;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -9,6 +10,8 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -76,7 +79,6 @@ public class DiaryEditor extends AppCompatActivity {
     private TextView editor_location;
     private ImageView editor_weather;
     private RichEditor mEditor;
-    private TextView mPreview;
     private FloatingActionButton btn_list;
     private Button btn_mode;
     protected static final int CHOOSE_PICTURE = 0;
@@ -121,7 +123,6 @@ public class DiaryEditor extends AppCompatActivity {
         editor_weather=(ImageView) findViewById(R.id.editor_weather);
         editor_title=(EditText)findViewById(R.id.editor_title);
         mEditor = (RichEditor) findViewById(R.id.editor);
-        mPreview = (TextView) findViewById(R.id.preview);
         btn_list=(FloatingActionButton) findViewById(R.id.btn_list);
         btn_mode=(Button)findViewById(R.id.mode);
         edit_area = (LinearLayout) findViewById(R.id.edit_area);
@@ -159,7 +160,7 @@ public class DiaryEditor extends AppCompatActivity {
                     share.setVisibility(View.INVISIBLE);
                     editorLayout.setVisibility(View.INVISIBLE);
                     imageLayout.setVisibility(View.VISIBLE);
-                    new android.os.Handler().post(runnable);
+                    new Handler().post(runnable);
                 }
             }
         });
@@ -167,7 +168,9 @@ public class DiaryEditor extends AppCompatActivity {
         saveImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                downloadPic();
+                boolean b = downloadPic();
+                if(b)   toast("已保存至手机根目录");
+                else    toast("保存失败");
             }
         });
         //返回按钮监听
@@ -186,6 +189,7 @@ public class DiaryEditor extends AppCompatActivity {
         shareImg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                downloadPic();
                 String picPath = Environment.getExternalStorageDirectory().getPath() +"/"+ editor_title.getText()+".PNG";
             //    Log.d("path",picPath);
                 final BmobFile bmobFile = new BmobFile(new File(picPath));
@@ -223,14 +227,6 @@ public class DiaryEditor extends AppCompatActivity {
         setBtnListner();
         setEditorListener();
 
-        /* 测试显示html源码 */
-//        toast(user.getUsername());
-//        mEditor.setOnTextChangeListener(new RichEditor.OnTextChangeListener() {
-//            /* html源码预览 */
-//            @Override public void onTextChange(String text) {
-//                mPreview.setText(text);
-//            }
-//        });
     }
 
     public void initEditor(){
@@ -279,7 +275,6 @@ public class DiaryEditor extends AppCompatActivity {
         btn_mode.setBackgroundResource(R.mipmap.save);
         editor_title.setEnabled(true);
         editor_btns.setVisibility(View.VISIBLE);
-        mPreview.setVisibility(View.VISIBLE);
         mEditor.setClickable(true);
         mEditor.setFocusable(true);
         mEditor.setFocusableInTouchMode(true);
@@ -291,7 +286,6 @@ public class DiaryEditor extends AppCompatActivity {
         btn_mode.setBackgroundResource(R.mipmap.edit);
         editor_title.setEnabled(false);
         editor_btns.setVisibility(View.GONE);
-        mPreview.setVisibility(View.GONE);
         mEditor.setClickable(false);
         mEditor.setFocusable(false);
         mEditor.setFocusableInTouchMode(false);
@@ -538,7 +532,6 @@ public class DiaryEditor extends AppCompatActivity {
                             mEditor.setHtml(new String(contents));
                             isEdit=false;
                             mEditor.setEnabled(false);
-                            mPreview.setVisibility(View.GONE);
                             postID=fileList[i];
                             editor_title.setText("无法显示题目");
                         } catch (IOException e){
@@ -656,6 +649,7 @@ public class DiaryEditor extends AppCompatActivity {
                     public void done(BmobException e) {
                         if(e==null){
                             mEditor.insertImage(bmobFile.getFileUrl(),"");
+                            Log.d("",bmobFile.getFileUrl());
                         }
                         else {
                             toast("云上传图片失败"+e.getMessage());
@@ -773,10 +767,10 @@ public class DiaryEditor extends AppCompatActivity {
                 editor_location.setText(location);
 
                 //由定位查询天气，由于每天只有50次的查询机会，因此暂时注释，勿删！！！
-              /*  searchCity = city.substring(0, city.length() - 1);
+                searchCity = city.substring(0, city.length() - 1);
                 ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
                 NetworkInfo networkInfo = cm.getActiveNetworkInfo();
-                sendRequestWithHttpURLConnection(); */
+                sendRequestWithHttpURLConnection();
             }
         });
         mLocationClient.start();
@@ -962,7 +956,6 @@ public class DiaryEditor extends AppCompatActivity {
                         File sdRoot = Environment.getExternalStorageDirectory();
                         File file = new File(sdRoot, editor_title.getText()+".PNG");
                         fos = new FileOutputStream(file);
-                        toast("已保存至手机根目录");
                     } else{
                         throw new Exception("创建文件失败!");
                     }

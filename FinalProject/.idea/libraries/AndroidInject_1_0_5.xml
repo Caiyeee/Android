@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="AndroidInject-1.0.5">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.android/build-cache/64e01e7e75b45f998d584b0aec0c15a142a396bd/output/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.android/build-cache/64e01e7e75b45f998d584b0aec0c15a142a396bd/output/res" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
