@@ -9,8 +9,6 @@
     android:background="@color/colorWhite"
     android:focusableInTouchMode="true">
 
-
-
     <ImageView
         android:id="@+id/img"
         android:layout_width="0dp"
@@ -87,10 +85,10 @@
 
     <EditText
         android:id="@+id/password"
+        android:inputType="textPassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:inputType="textPersonName"
         android:hint="密码"
         android:layout_marginRight="8dp"
         app:layout_constraintRight_toRightOf="parent"

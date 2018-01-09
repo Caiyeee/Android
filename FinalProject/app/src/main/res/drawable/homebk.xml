@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <shape xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <!--填充背景色 -->
+    <solid android:color="#ffffff" />
+
     <!--内容与边框的间距-->
     <padding
         android:bottom="10dp"
