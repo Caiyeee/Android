@@ -544,7 +544,7 @@ public class DiaryEditor extends AppCompatActivity {
     /* 选择图片 */
     public void showChoosePicDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("设置头像");
+        builder.setTitle("插入图片");
         String[] items = { "选择本地照片", "拍照" };
         builder.setNegativeButton("取消", null);
         builder.setItems(items, new DialogInterface.OnClickListener() {

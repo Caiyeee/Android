@@ -37,7 +37,7 @@
             android:textSize="20sp"
             android:layout_marginLeft="20dp"
             app:layout_constraintLeft_toRightOf="@+id/share_dot"
-            app:layout_constraintBottom_toBottomOf="@+id/share_dot"/>
+            app:layout_constraintTop_toTopOf="parent"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

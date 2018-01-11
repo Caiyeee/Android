@@ -1,6 +1,8 @@
 package com.example.yuying.finalproject;
 
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
@@ -9,6 +11,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -19,9 +22,11 @@ import android.webkit.WebView;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.baidu.location.g.e;
 
@@ -41,6 +46,7 @@ import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.BmobUser;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.FindListener;
+import cn.bmob.v3.listener.SaveListener;
 import jp.wasabeef.recyclerview.adapters.ScaleInAnimationAdapter;
 import jp.wasabeef.richeditor.RichEditor;
 
@@ -53,7 +59,11 @@ public class Community extends AppCompatActivity {
 //    myAdapter listViewAdapter;
     public SimpleAdapter simpleAdapter;
     private Handler mHandler;
+    private ImageView show_image;
+    private LinearLayout communityLayout;
+    public List<Share> share = new ArrayList<>();
     public List<Map<String,Object>> data = new ArrayList<Map<String,Object>>();
+    private int[] pic = {R.mipmap.cake,R.mipmap.yuantong,R.mipmap.haha,R.mipmap.ba};
 //    public List<Share> data = new ArrayList<Share>();
 
     @Override
@@ -62,6 +72,9 @@ public class Community extends AppCompatActivity {
         setContentView(R.layout.community);
 
         listView = (ListView) findViewById(R.id.listview);
+        show_image = (ImageView) findViewById(R.id.show_image);
+        communityLayout = (LinearLayout) findViewById(R.id.communityLayout);
+        show_image.setVisibility(View.INVISIBLE);
 
 
         BmobQuery<Share> query = new BmobQuery<Share>();
@@ -76,79 +89,138 @@ public class Community extends AppCompatActivity {
                         final Map<String,Object> map = new HashMap<String, Object>();
                         map.put("name",list.get(i).getUser().getUsername());
                         map.put("time",list.get(i).getCreatedAt());
-                        map.put("image","http://bmob-cdn-16180.b0.upaiyun.com/2018/01/08/edf63852200a4a45a1b3b0e1aff0ee80.PNG");
+                        map.put("image",R.mipmap.haha);
+//                        if(i%4==0)  map.put("image",String.valueOf(R.mipmap.cake));
+//                        else if(i%4==1) map.put("image",String.valueOf(R.mipmap.haha));
+//                        else if(i%4==2) map.put("image",String.valueOf(R.mipmap.yuantong));
+//                        else if(i%4==3) map.put("image",String.valueOf(R.mipmap.ba));
                         data.add(map);
+                        share.add(list.get(i));
 //                        data.add(list.get(i));
                     }
                     simpleAdapter = new SimpleAdapter(Community.this,data,R.layout.sharepiece,new String[]{"name","time","image"},
                             new int[]{R.id.share_username,R.id.share_time,R.id.share_image});
-                    simpleAdapter.setViewBinder(new CustomViewBinder());
+            //        simpleAdapter.setViewBinder(new CustomViewBinder());
                     listView.setAdapter(simpleAdapter);
 //                    listViewAdapter = new myAdapter(Community.this,data);
 //                    listView.setAdapter(listViewAdapter);
-                    new Thread(){
-                        public void run(){
-                            new AnotherTask().execute("JSON");
-                        }
-                    }.start();
+//                    new Thread(){
+//                        public void run(){
+//                            new AnotherTask().execute("JSON");
+//                        }
+//                    }.start();
                 } else
                     Log.d("error",e.getMessage());
             }
         });
 
-    }
-
-    private class AnotherTask extends AsyncTask<String, Void, String>{
-        @Override
-        protected void onPostExecute(String result) {
-            simpleAdapter.notifyDataSetChanged();
-        }
-        @Override
-        protected String doInBackground(String... params) {
-            for(int i=0; i<data.size(); i++){
-                final Bitmap bitmap=getBitmap(data.get(i).get("image").toString());
-                data.get(i).put("image",bitmap);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                communityLayout.setVisibility(View.INVISIBLE);
+                show_image.setVisibility(View.VISIBLE);
+                show_image.setBackgroundResource(Integer.parseInt(String.valueOf(data.get(position).get("image"))));
             }
-            return params[0];
-        }
+        });
+        listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, final int position, long id) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(Community.this);
+                builder.setTitle("选择操作");
+                String[] items = { "收藏", "评论" };
+                builder.setNegativeButton("取消", null);
+                builder.setItems(items, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        switch (which) {
+                            case 0: // 收藏
+                                Star star = new Star();
+                                User user = BmobUser.getCurrentUser(User.class);  // 获取当前用户
+                                star.setUser(user);
+                                star.setShare(share.get(position));
+                                star.save(new SaveListener<String>() {
+                                    @Override
+                                    public void done(String s, BmobException e) {
+                                        if(e==null)
+                                            Toast.makeText(getApplicationContext(),"收藏成功",Toast.LENGTH_SHORT).show();
+                                        else{
+                                            Log.e("mark error",e.getMessage());
+                                            Toast.makeText(getApplicationContext(),"收藏失败",Toast.LENGTH_SHORT).show();
+                                        }
+                                    }
+                                });
+                                break;
+                            case 1: // 评论
+
+                                break;
+                        }
+                    }
+                });
+                builder.create().show();
+                return false;
+            }
+        });
+        show_image.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                communityLayout.setVisibility(View.VISIBLE);
+                show_image.setVisibility(View.INVISIBLE);
+            }
+        });
+
     }
 
+//    private class AnotherTask extends AsyncTask<String, Void, String>{
+//        @Override
+//        protected void onPostExecute(String result) {
+//            simpleAdapter.notifyDataSetChanged();
+//        }
+//        @Override
+//        protected String doInBackground(String... params) {
+//            for(int i=0; i<data.size(); i++){
+//                final Bitmap bitmap=getBitmap(data.get(i).get("image").toString());
+//                data.get(i).put("image",bitmap);
+//            }
+//            return params[0];
+//        }
+//    }
 
-    public Bitmap getBitmap(String path){
-        Bitmap bm=null;
-        try{
-//            URL url=new URL(path);
-//            URLConnection connection=url.openConnection();
-//            connection.connect();
-//            InputStream inputStream=connection.getInputStream();
-            InputStream in = new URL(path).openStream();
-            bm= BitmapFactory.decodeStream(in);
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return  bm;
-    }
+
+//    public Bitmap getBitmap(String path){
+//        Bitmap bm=null;
+//        try{
+////            URL url=new URL(path);
+////            URLConnection connection=url.openConnection();
+////            connection.connect();
+////            InputStream inputStream=connection.getInputStream();
+//            InputStream in = new URL(path).openStream();
+//            bm= BitmapFactory.decodeStream(in);
+//        } catch (MalformedURLException e) {
+//            e.printStackTrace();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//        return  bm;
+//    }
 }
 
 
-class CustomViewBinder implements SimpleAdapter.ViewBinder {
-    public boolean setViewValue(View view, Object data, String textRepresentation) {
-        System.out.print(data);
-        try{
-            if ((view instanceof ImageView) & (data instanceof Bitmap)) {
-                Bitmap bm = (Bitmap) data;
-                ImageView iv = (ImageView) view;
-                iv.setImageBitmap(bm);
-            }
-        }catch (Exception ex){
-            System.out.print(ex.getMessage());
-        }
-
-        return false;
-    }
-}
+//class CustomViewBinder implements SimpleAdapter.ViewBinder {
+//    public boolean setViewValue(View view, Object data, String textRepresentation) {
+//        System.out.print(data);
+//        try{
+//            if ((view instanceof ImageView) & (data instanceof Bitmap)) {
+//                Bitmap bm = (Bitmap) data;
+//                ImageView iv = (ImageView) view;
+//                iv.setImageBitmap(bm);
+//            }
+//        }catch (Exception ex){
+//            System.out.print(ex.getMessage());
+//        }
+//
+//        return false;
+//    }
+//}
 
 //class myAdapter extends BaseAdapter {
 //    private Context context;
