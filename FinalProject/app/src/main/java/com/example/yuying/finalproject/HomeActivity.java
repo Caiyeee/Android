@@ -58,6 +58,7 @@ public class HomeActivity extends AppCompatActivity {
         mListView.setVisibility(View.INVISIBLE);
 
         User user = BmobUser.getCurrentUser(User.class);
+        Log.e("user",user.getUsername());
         BmobQuery<Post> query = new BmobQuery<Post>();
         query.addWhereEqualTo("author", user);   // 查询当前用户的所有帖子
         query.addWhereNotEqualTo("isClear", 1);

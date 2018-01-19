@@ -43,6 +43,7 @@
         <activity android:name=".HomeActivity" android:windowSoftInputMode="adjustPan|stateHidden"></activity>
         <activity android:name=".Community" android:windowSoftInputMode="adjustPan|stateHidden" />
         <activity android:name=".DustbinActivity" android:windowSoftInputMode="adjustPan|stateHidden"></activity>
+        <activity android:name=".Comment" />
 
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"

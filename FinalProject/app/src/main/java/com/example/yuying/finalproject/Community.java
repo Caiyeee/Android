@@ -56,15 +56,13 @@ import jp.wasabeef.richeditor.RichEditor;
 
 public class Community extends AppCompatActivity {
     public ListView listView;
-//    myAdapter listViewAdapter;
+    myAdapter listViewAdapter;
     public SimpleAdapter simpleAdapter;
     private Handler mHandler;
-    private ImageView show_image;
     private LinearLayout communityLayout;
     public List<Share> share = new ArrayList<>();
-    public List<Map<String,Object>> data = new ArrayList<Map<String,Object>>();
     private int[] pic = {R.mipmap.cake,R.mipmap.yuantong,R.mipmap.haha,R.mipmap.ba};
-//    public List<Share> data = new ArrayList<Share>();
+    public List<Share> data = new ArrayList<Share>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -72,10 +70,7 @@ public class Community extends AppCompatActivity {
         setContentView(R.layout.community);
 
         listView = (ListView) findViewById(R.id.listview);
-        show_image = (ImageView) findViewById(R.id.show_image);
         communityLayout = (LinearLayout) findViewById(R.id.communityLayout);
-        show_image.setVisibility(View.INVISIBLE);
-
 
         BmobQuery<Share> query = new BmobQuery<Share>();
         User user = new User();
@@ -86,24 +81,10 @@ public class Community extends AppCompatActivity {
             public void done(final List<Share> list, BmobException e) {
                 if(e == null){
                     for(int i=0; i<list.size(); i++){
-                        final Map<String,Object> map = new HashMap<String, Object>();
-                        map.put("name",list.get(i).getUser().getUsername());
-                        map.put("time",list.get(i).getCreatedAt());
-                        map.put("image",R.mipmap.haha);
-//                        if(i%4==0)  map.put("image",String.valueOf(R.mipmap.cake));
-//                        else if(i%4==1) map.put("image",String.valueOf(R.mipmap.haha));
-//                        else if(i%4==2) map.put("image",String.valueOf(R.mipmap.yuantong));
-//                        else if(i%4==3) map.put("image",String.valueOf(R.mipmap.ba));
-                        data.add(map);
-                        share.add(list.get(i));
-//                        data.add(list.get(i));
+                        data.add(list.get(i));
                     }
-                    simpleAdapter = new SimpleAdapter(Community.this,data,R.layout.sharepiece,new String[]{"name","time","image"},
-                            new int[]{R.id.share_username,R.id.share_time,R.id.share_image});
-            //        simpleAdapter.setViewBinder(new CustomViewBinder());
-                    listView.setAdapter(simpleAdapter);
-//                    listViewAdapter = new myAdapter(Community.this,data);
-//                    listView.setAdapter(listViewAdapter);
+                    listViewAdapter = new myAdapter(Community.this,data);
+                    listView.setAdapter(listViewAdapter);
 //                    new Thread(){
 //                        public void run(){
 //                            new AnotherTask().execute("JSON");
@@ -117,9 +98,11 @@ public class Community extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                communityLayout.setVisibility(View.INVISIBLE);
-                show_image.setVisibility(View.VISIBLE);
-                show_image.setBackgroundResource(Integer.parseInt(String.valueOf(data.get(position).get("image"))));
+                Intent intent = new Intent(Community.this,Comment.class);
+                intent.putExtra("name",data.get(position).getUser().getUsername());
+                intent.putExtra("time",data.get(position).getCreatedAt());
+                intent.putExtra("image",R.mipmap.haha);
+                startActivity(intent);
             }
         });
         listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
@@ -158,13 +141,6 @@ public class Community extends AppCompatActivity {
                 });
                 builder.create().show();
                 return false;
-            }
-        });
-        show_image.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                communityLayout.setVisibility(View.VISIBLE);
-                show_image.setVisibility(View.INVISIBLE);
             }
         });
 
@@ -222,64 +198,61 @@ public class Community extends AppCompatActivity {
 //    }
 //}
 
-//class myAdapter extends BaseAdapter {
-//    private Context context;
-//    private List<Share> data;
-//    private boolean hasBeenMarked = false;
-//
-//    public myAdapter(Context context,List<Share> data){
-//        this.context = context;
-//        this.data = data;
-//    }
-//
-//    @Override
-//    public int getCount() {
-//        if(data != null)
-//            return data.size();
-//        return 0;
-//    }
-//
-//    @Override
-//    public Object getItem(int position) {
-//        if(data != null)
-//            return data.get(position);
-//        return null;
-//    }
-//
-//    @Override
-//    public long getItemId(int position) {
-//        return position;
-//    }
-//
-//    private class viewHolder {
-//        private TextView name;
-//        private TextView time;
-//        private ImageView star;
-//        private ImageView image;
-////        private RichEditor image;
-//    }
-//
-//    @Override
-//    public View getView(final int position, View convertView, ViewGroup parent) {
-//        final viewHolder holder;
-//        View view;
-//        if(convertView == null){
-//            view = LayoutInflater.from(context).inflate(R.layout.sharepiece,null);
-//            holder = new viewHolder();
-//            holder.name = (TextView) view.findViewById(R.id.share_username);
-//            //          holder.image = (RichEditor) view.findViewById(R.id.share_image);
-//            holder.image = (ImageView) view.findViewById(R.id.share_image);
-//            holder.star = (ImageView) view.findViewById(R.id.share_mark);
-//            holder.time = (TextView) view.findViewById(R.id.share_time);
-//            view.setTag(holder);
-//        } else {
-//            view = convertView;
-//            holder = (viewHolder) view.getTag();
-//        }
-//
-//        holder.time.setText(data.get(position).getCreatedAt());
-//        holder.name.setText(data.get(position).getUser().getUsername());
-//
+class myAdapter extends BaseAdapter {
+    private Context context;
+    private List<Share> data;
+    private boolean hasBeenMarked = false;
+
+    public myAdapter(Context context,List<Share> data){
+        this.context = context;
+        this.data = data;
+    }
+
+    @Override
+    public int getCount() {
+        if(data != null)
+            return data.size();
+        return 0;
+    }
+
+    @Override
+    public Object getItem(int position) {
+        if(data != null)
+            return data.get(position);
+        return null;
+    }
+
+    @Override
+    public long getItemId(int position) {
+        return position;
+    }
+
+    private class viewHolder {
+        private TextView name;
+        private TextView time;
+        private ImageView image;
+    }
+
+    @Override
+    public View getView(final int position, View convertView, ViewGroup parent) {
+        final viewHolder holder;
+        View view;
+        if(convertView == null){
+            view = LayoutInflater.from(context).inflate(R.layout.sharepiece,null);
+            holder = new viewHolder();
+            holder.name = (TextView) view.findViewById(R.id.share_username);
+            holder.image = (ImageView) view.findViewById(R.id.share_image);
+            holder.time = (TextView) view.findViewById(R.id.share_time);
+            view.setTag(holder);
+        } else {
+            view = convertView;
+            holder = (viewHolder) view.getTag();
+        }
+
+        holder.time.setText(data.get(position).getCreatedAt());
+        holder.name.setText(data.get(position).getUser().getUsername());
+        holder.image.setBackgroundResource(R.mipmap.haha);
+
 //        new Thread(new Runnable() {
 //            @Override
 //            public void run() {
@@ -287,7 +260,7 @@ public class Community extends AppCompatActivity {
 //                holder.image.setImageBitmap(bitmap);
 //            }
 //        }).start();
-//
+
 //        //判断该分享是否已经被该用户收藏
 //        hasBeenMarked = false;
 //        BmobQuery<Star> query = new BmobQuery<Star>();
@@ -306,14 +279,10 @@ public class Community extends AppCompatActivity {
 //                    System.out.print(e.getMessage());
 //            }
 //        });
-//        if(hasBeenMarked)
-//            holder.star.setBackgroundResource(R.mipmap.mark1);
-//        else
-//            holder.star.setBackgroundResource(R.mipmap.mark);
-//
-//        return view;
-//    }
-//
+
+        return view;
+    }
+
 //    public Bitmap getBitmap(String path){
 //        Bitmap bm=null;
 //        try{
@@ -329,5 +298,5 @@ public class Community extends AppCompatActivity {
 //        }
 //        return  bm;
 //    }
-//
-//}
+
+}

@@ -2,11 +2,13 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@mipmap/bg0">
 
     <ImageView
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
+        android:id="@+id/img_hidden"
         android:src="@mipmap/haha"
         android:visibility="gone"/>
 
