@@ -9,6 +9,10 @@ import cn.bmob.v3.BmobObject;
 public class Share extends BmobObject {
     private User user;
     private String pc;
+    private String title;
+
+    public String getTitle() {return  title;}
+    public void setTitle(String title) { this.title = title;}
 
     public User getUser() { return user; }
     public void setUser( User user ) { this.user = user; }
