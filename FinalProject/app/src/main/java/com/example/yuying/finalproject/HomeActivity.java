@@ -198,8 +198,10 @@ public class HomeActivity extends AppCompatActivity {
                     Intent intent = new Intent(HomeActivity.this, DiaryEditor.class);
                     intent.putExtra("postID", "");
                     startActivity(intent);
-                }
-                else if(position == 2){
+                }else if(position == 1) {
+                    Intent intent = new Intent(HomeActivity.this,CollectActivity.class);
+                    startActivity(intent);
+                } else if(position == 2){
                     Intent intent = new Intent(HomeActivity.this,Community.class);
                     startActivity(intent);
                 }
