@@ -191,12 +191,11 @@ public class DiaryEditor extends AppCompatActivity {
             public void onClick(View v) {
                 downloadPic();
                 String picPath = Environment.getExternalStorageDirectory().getPath() +"/"+ editor_title.getText()+".PNG";
-            //    Log.d("path",picPath);
                 final BmobFile bmobFile = new BmobFile(new File(picPath));
-                bmobFile.uploadblock(new UploadFileListener() {
+                bmobFile.uploadblock(new UploadFileListener() {//先上传图片到云
                     @Override
                     public void done(BmobException e) {
-                        if(e == null){
+                        if(e == null){//上传成功后再分享到社区
                             String address = bmobFile.getFileUrl();
                             User user = BmobUser.getCurrentUser(User.class);  // 获取当前用户
                             Share myShare = new Share();
@@ -768,10 +767,10 @@ public class DiaryEditor extends AppCompatActivity {
                 editor_location.setText(location);
 
                 //由定位查询天气，由于每天只有50次的查询机会，因此暂时注释，勿删！！！
-//                searchCity = city.substring(0, city.length() - 1);
-//                ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-//                NetworkInfo networkInfo = cm.getActiveNetworkInfo();
-//                sendRequestWithHttpURLConnection();
+                searchCity = city.substring(0, city.length() - 1);
+                ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+                NetworkInfo networkInfo = cm.getActiveNetworkInfo();
+                sendRequestWithHttpURLConnection();
             }
         });
         mLocationClient.start();
@@ -891,83 +890,68 @@ public class DiaryEditor extends AppCompatActivity {
     }
 
 
-//            private Bitmap loadBitmapFromView(View v) {
-//                int w = v.getWidth();
-//                int h = v.getHeight();
-//
-//                Bitmap bmp = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888);
-//                Canvas c = new Canvas(bmp);
-//
-//                c.drawColor(Color.WHITE);
-//                /** 如果不设置canvas画布为白色，则生成透明 */
-//
-//                v.layout(0, 0, w, h);
-//                v.draw(c);
-//
-//                return bmp;
-//            }
+    //由layout生成图片
+    private Bitmap loadBitmapFromLinearLayout(LinearLayout linearLayout) {
+        int h = 0;
+        for (int i = 0; i < linearLayout.getChildCount(); i++) {
+            linearLayout.getChildAt(i).measure(0, 0);
+            h += linearLayout.getChildAt(i).getMeasuredHeight();
+        }
+        linearLayout.measure(0, 0);
+        Bitmap bitmap = Bitmap.createBitmap(linearLayout.getMeasuredWidth(), h, Bitmap.Config.RGB_565);
+        final Canvas canvas = new Canvas(bitmap);
+        //    canvas.drawColor(Color.WHITE);
+        linearLayout.draw(canvas);
+        return bitmap;
+    }
 
-            private Bitmap loadBitmapFromLinearLayout(LinearLayout linearLayout) {
-                int h = 0;
-                for (int i = 0; i < linearLayout.getChildCount(); i++) {
-                    linearLayout.getChildAt(i).measure(0, 0);
-                    h += linearLayout.getChildAt(i).getMeasuredHeight();
-                }
-                linearLayout.measure(0, 0);
-                Bitmap bitmap = Bitmap.createBitmap(linearLayout.getMeasuredWidth(), h, Bitmap.Config.RGB_565);
-                final Canvas canvas = new Canvas(bitmap);
-                //    canvas.drawColor(Color.WHITE);
-                linearLayout.draw(canvas);
-                return bitmap;
+    // 为图片target添加水印
+    private Bitmap createWatermarkBitmap(Bitmap target, String str) {
+        int w = target.getWidth();
+        int h = target.getHeight();
+
+        Bitmap bmp = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(bmp);
+
+        Paint p = new Paint();
+
+        p.setColor(Color.GRAY);// 水印的颜色
+        p.setTextSize(30);// 水印的字体大小
+        p.setAntiAlias(true);// 去锯齿
+
+        canvas.drawBitmap(target, 0, 0, p);
+
+        // 在xx位置开始添加水印
+        canvas.drawText("shudong  @ " + str, w / 3, h - 30, p);
+
+        canvas.save(Canvas.ALL_SAVE_FLAG);
+        canvas.restore();
+
+        return bmp;
+    }
+    //保存图片到本地
+    public boolean downloadPic(){
+        FileOutputStream fos;
+        try {
+            // 判断手机设备是否有SD卡
+            boolean isHasSDCard = Environment.getExternalStorageState().equals(
+                    android.os.Environment.MEDIA_MOUNTED);
+            if (isHasSDCard) {
+                // SD卡根目录
+                File sdRoot = Environment.getExternalStorageDirectory();
+                File file = new File(sdRoot, editor_title.getText()+".PNG");
+                fos = new FileOutputStream(file);
+            } else{
+                throw new Exception("创建文件失败!");
             }
-
-            // 为图片target添加水印
-            private Bitmap createWatermarkBitmap(Bitmap target, String str) {
-                int w = target.getWidth();
-                int h = target.getHeight();
-
-                Bitmap bmp = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888);
-                Canvas canvas = new Canvas(bmp);
-
-                Paint p = new Paint();
-
-                p.setColor(Color.GRAY);// 水印的颜色
-                p.setTextSize(30);// 水印的字体大小
-                p.setAntiAlias(true);// 去锯齿
-
-                canvas.drawBitmap(target, 0, 0, p);
-
-                // 在xx位置开始添加水印
-                canvas.drawText("shudong  @ " + str, w / 3, h - 30, p);
-
-                canvas.save(Canvas.ALL_SAVE_FLAG);
-                canvas.restore();
-
-                return bmp;
-            }
-
-            public boolean downloadPic(){
-                FileOutputStream fos;
-                try {
-                    // 判断手机设备是否有SD卡
-                    boolean isHasSDCard = Environment.getExternalStorageState().equals(
-                            android.os.Environment.MEDIA_MOUNTED);
-                    if (isHasSDCard) {
-                        // SD卡根目录
-                        File sdRoot = Environment.getExternalStorageDirectory();
-                        File file = new File(sdRoot, editor_title.getText()+".PNG");
-                        fos = new FileOutputStream(file);
-                    } else{
-                        throw new Exception("创建文件失败!");
-                    }
-                    bitmap.compress(Bitmap.CompressFormat.PNG, 90, fos);
-                    fos.flush();
-                    fos.close();
-                    return true;
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    return false;
-                }
-            }
+            bitmap.compress(Bitmap.CompressFormat.PNG, 90, fos);
+            fos.flush();
+            fos.close();
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
 
 }

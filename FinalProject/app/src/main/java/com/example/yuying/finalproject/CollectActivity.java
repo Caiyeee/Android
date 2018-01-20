@@ -4,6 +4,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -101,6 +102,7 @@ public class CollectActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, final int position, long l) {
                 path = shareList.get(position).getPc();
+                Log.e("path",path);
                 new Thread(netJob).start();
                 while(bitmap==null){Log.e("while","Loading Image");}
                 if(bitmap!=null){
@@ -128,6 +130,11 @@ public class CollectActivity extends AppCompatActivity {
                 layout.setVisibility(View.VISIBLE);
             } else{
                 bitmap=null;
+                Bitmap b = ((BitmapDrawable)image_hid.getDrawable()).getBitmap();
+                if (null != b && !b.isRecycled()){
+                    b.recycle();
+                    b = null;
+                }
                 System.gc();
                 finish();
             }
