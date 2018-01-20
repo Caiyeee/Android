@@ -56,12 +56,10 @@ import jp.wasabeef.richeditor.RichEditor;
 
 public class Community extends AppCompatActivity {
     public ListView listView;
-    myAdapter listViewAdapter;
     public SimpleAdapter simpleAdapter;
-    private Handler mHandler;
-    private LinearLayout communityLayout;
-    private int[] pic = {R.mipmap.cake, R.mipmap.yuantong, R.mipmap.haha, R.mipmap.ba};
-    public List<Share> data = new ArrayList<Share>();
+    public List<Map<String,Object>> data = new ArrayList<Map<String,Object>>();
+    private Bitmap bitmap=null;
+    private String path=null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,8 +67,26 @@ public class Community extends AppCompatActivity {
         setContentView(R.layout.community);
 
         listView = (ListView) findViewById(R.id.listview);
-        communityLayout = (LinearLayout) findViewById(R.id.communityLayout);
 
+        //加载图片
+        final Runnable netJob=new Runnable() {
+            @Override
+            public void run() {
+                try{
+                    URL url=new URL(path);
+                    URLConnection connection=url.openConnection();
+                    connection.connect();
+                    InputStream inputStream=connection.getInputStream();
+                    bitmap= BitmapFactory.decodeStream(inputStream);
+                }catch (MalformedURLException e) {
+                    e.printStackTrace();
+                }  catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        };
+
+        //查询分享的列表
         BmobQuery<Share> query = new BmobQuery<Share>();
         query.order("-createdAt");
         query.include("user");
@@ -78,11 +94,47 @@ public class Community extends AppCompatActivity {
             @Override
             public void done(final List<Share> list, BmobException e) {
                 if (e == null) {
+                    //遍历查询到的数据
                     for (int i = 0; i < list.size(); i++) {
-                        data.add(list.get(i));
+                        Map<String, Object> item = new HashMap<String, Object>();
+                        item.put("name", list.get(i).getUser().getUsername());
+                        item.put("time", list.get(i).getCreatedAt());
+                        item.put("shareId", list.get(i).getObjectId());
+                        item.put("path",list.get(i).getPc());
+                        item.put("image",list.get(i).getPc());
+                        data.add(item);
                     }
-                    listViewAdapter = new myAdapter(Community.this, data);
-                    listView.setAdapter(listViewAdapter);
+                    //设置适配器
+                    simpleAdapter = new SimpleAdapter(Community.this,data,R.layout.sharepiece,new String[]{"name","time","image"},
+                            new int[]{R.id.share_username,R.id.share_time,R.id.share_image});
+                    simpleAdapter.setViewBinder(new SimpleAdapter.ViewBinder() {
+                        @Override
+                        public boolean setViewValue(View view, Object data, String textRepresentation) {
+                          /* 判断是否为要处理的图片对象 */
+                            if(view instanceof ImageView && data instanceof Bitmap ){
+                                ImageView iv=(ImageView) view;
+                                iv.setImageBitmap((Bitmap)data);
+                                return true;
+                            }
+                            return false;
+                        }
+                    });
+                    listView.setAdapter(simpleAdapter);
+
+                    //加载图片
+                    for (int i=0; i<list.size(); i++){
+                        path = data.get(i).get("image").toString();
+                        new Thread(netJob).start();
+                        while(bitmap==null){Log.e("what","loadPic");}
+                        if(bitmap!=null){
+                            data.get(i).put("image",bitmap);
+                            simpleAdapter.notifyDataSetChanged();
+                            if(bitmap!=null){
+                                bitmap=null;
+                                System.gc();
+                            }
+                        }
+                    }
                 } else
                     Log.d("error", e.getMessage());
             }
@@ -92,74 +144,13 @@ public class Community extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(Community.this, Comment.class);
-                intent.putExtra("name",data.get(position).getUser().getUsername());
-                intent.putExtra("time",data.get(position).getCreatedAt());
-                intent.putExtra("image",R.mipmap.haha);
-                intent.putExtra("shareId", data.get(position).getObjectId());
+                intent.putExtra("name",data.get(position).get("name").toString());
+                intent.putExtra("time",data.get(position).get("time").toString());
+                intent.putExtra("image",data.get(position).get("path").toString());
+                intent.putExtra("shareId", data.get(position).get("shareId").toString());
                 startActivity(intent);
             }
         });
 
     }
-}
-
-
-class myAdapter extends BaseAdapter {
-    private Context context;
-    private List<Share> data;
-    private boolean hasBeenMarked = false;
-
-    public myAdapter(Context context,List<Share> data){
-        this.context = context;
-        this.data = data;
-    }
-
-    @Override
-    public int getCount() {
-        if(data != null)
-            return data.size();
-        return 0;
-    }
-
-    @Override
-    public Object getItem(int position) {
-        if(data != null)
-            return data.get(position);
-        return null;
-    }
-
-    @Override
-    public long getItemId(int position) {
-        return position;
-    }
-
-    private class viewHolder {
-        private TextView name;
-        private TextView time;
-        private ImageView image;
-    }
-
-    @Override
-    public View getView(final int position, View convertView, ViewGroup parent) {
-        final viewHolder holder;
-        View view;
-        if(convertView == null){
-            view = LayoutInflater.from(context).inflate(R.layout.sharepiece,null);
-            holder = new viewHolder();
-            holder.name = (TextView) view.findViewById(R.id.share_username);
-            holder.image = (ImageView) view.findViewById(R.id.share_image);
-            holder.time = (TextView) view.findViewById(R.id.share_time);
-            view.setTag(holder);
-        } else {
-            view = convertView;
-            holder = (viewHolder) view.getTag();
-        }
-
-        holder.time.setText(data.get(position).getCreatedAt());
-        holder.name.setText(data.get(position).getUser().getUsername());
-        holder.image.setBackgroundResource(R.mipmap.haha);
-
-        return view;
-    }
-
 }

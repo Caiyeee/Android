@@ -9,8 +9,7 @@
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4894bb95-4fd7-499c-986f-d4b438cfc9ef" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/yuying/finalproject/CommentData.java" />
+    <list default="true" id="4894bb95-4fd7-499c-986f-d4b438cfc9ef" name="Default" comment="剩下对收藏的唯一性判断和图片加载">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/fileHashes.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/fileSnapshots.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/taskArtifacts.bin" />
@@ -19,16 +18,14 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.3/tasks/_app_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" afterPath="$PROJECT_DIR$/.gradle/3.3/tasks/_app_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.3/tasks/_app_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" afterPath="$PROJECT_DIR$/.gradle/3.3/tasks/_app_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/yuying/finalproject/CollectActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/yuying/finalproject/CollectActivity.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/yuying/finalproject/Comment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/yuying/finalproject/Comment.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/yuying/finalproject/Community.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/yuying/finalproject/Community.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/yuying/finalproject/DiaryEditor.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/yuying/finalproject/DiaryEditor.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/yuying/finalproject/HomeActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/yuying/finalproject/HomeActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/yuying/finalproject/MainActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/yuying/finalproject/MainActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_collection.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_collection.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/comment.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/comment.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/comment_piece.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/comment_piece.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/sharepiece.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/sharepiece.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/local.properties" afterPath="$PROJECT_DIR$/local.properties" />
     </list>
     <ignored path="FinalProject.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -68,49 +65,86 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="Comment.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Comment.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/yuying/finalproject/Comment.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="434">
-              <caret line="128" column="29" selection-start-line="128" selection-start-column="29" selection-end-line="128" selection-end-column="29" />
+            <state relative-caret-position="245">
+              <caret line="161" column="36" selection-start-line="161" selection-start-column="36" selection-end-line="161" selection-end-column="36" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#1478#1498#0" expanded="true" />
-                <element signature="e#2524#2531#0" expanded="true" />
-                <element signature="e#2671#3086#0" expanded="true" />
-                <element signature="e#3085#3086#0" expanded="true" />
-                <element signature="e#3159#3172#0" expanded="true" />
-                <element signature="e#3240#4307#0" expanded="true" />
-                <element signature="e#3623#3639#0" expanded="true" />
-                <element signature="e#4306#4307#0" expanded="true" />
-                <element signature="e#4364#5222#0" expanded="true" />
-                <element signature="e#4672#5196#0" expanded="true" />
-                <element signature="e#5195#5196#0" expanded="true" />
-                <element signature="e#5221#5222#0" expanded="true" />
-                <element signature="e#5281#7215#0" expanded="true" />
-                <element signature="e#6178#7170#0" expanded="true" />
-                <element signature="e#6526#6542#0" expanded="true" />
-                <element signature="e#7169#7170#0" expanded="true" />
-                <element signature="e#7214#7215#0" expanded="true" />
-                <element signature="e#7252#7511#0" expanded="true" />
-                <element signature="e#7510#7511#0" expanded="true" />
-                <element signature="e#7548#7774#0" expanded="true" />
-                <element signature="e#7773#7774#0" expanded="true" />
-                <element signature="e#7813#8039#0" expanded="true" />
-                <element signature="e#8038#8039#0" expanded="true" />
+                <element signature="e#1696#1716#0" expanded="true" />
+                <element signature="e#2963#2970#0" expanded="true" />
+                <element signature="e#3110#3406#0" expanded="true" />
+                <element signature="e#3405#3406#0" expanded="true" />
+                <element signature="e#3455#4142#0" expanded="true" />
+                <element signature="e#4141#4142#0" expanded="true" />
+                <element signature="e#4250#4263#0" expanded="true" />
+                <element signature="e#4331#5412#0" expanded="true" />
+                <element signature="e#4728#4744#0" expanded="true" />
+                <element signature="e#5411#5412#0" expanded="true" />
+                <element signature="e#5469#7389#0" expanded="true" />
+                <element signature="e#5725#5731#0" expanded="true" />
+                <element signature="e#5958#7362#0" expanded="true" />
+                <element signature="e#6400#7084#0" expanded="true" />
+                <element signature="e#7083#7084#0" expanded="true" />
+                <element signature="e#7361#7362#0" expanded="true" />
+                <element signature="e#7388#7389#0" expanded="true" />
+                <element signature="e#7448#9382#0" expanded="true" />
+                <element signature="e#8345#9337#0" expanded="true" />
+                <element signature="e#8693#8709#0" expanded="true" />
+                <element signature="e#9336#9337#0" expanded="true" />
+                <element signature="e#9381#9382#0" expanded="true" />
+                <element signature="e#9419#9678#0" expanded="true" />
+                <element signature="e#9677#9678#0" expanded="true" />
+                <element signature="e#9715#9941#0" expanded="true" />
+                <element signature="e#9940#9941#0" expanded="true" />
+                <element signature="e#9980#10206#0" expanded="true" />
+                <element signature="e#10205#10206#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="comment.xml" pinned="false" current-in-tab="false">
+      <file leaf-file-name="comment.xml" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/comment.xml">
           <provider editor-type-id="android-designer2">
             <state />
           </provider>
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="378">
-              <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+            <state relative-caret-position="501">
+              <caret line="72" column="44" selection-start-line="72" selection-start-column="44" selection-end-line="72" selection-end-column="44" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CollectActivity.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/yuying/finalproject/CollectActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="164">
+              <caret line="65" column="68" selection-start-line="65" selection-start-column="68" selection-end-line="65" selection-end-column="68" />
+              <folding>
+                <element signature="e#1757#2393#0" expanded="true" />
+                <element signature="e#2392#2393#0" expanded="true" />
+                <element signature="e#2675#3359#0" expanded="true" />
+                <element signature="e#3358#3359#0" expanded="true" />
+                <element signature="e#3422#3999#0" expanded="true" />
+                <element signature="e#3998#3999#0" expanded="true" />
+                <element signature="e#4040#4260#0" expanded="true" />
+                <element signature="e#4259#4260#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="activity_collection.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_collection.xml">
+          <provider editor-type-id="android-designer2">
+            <state />
+          </provider>
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="459">
+              <caret line="17" column="17" selection-start-line="17" selection-start-column="17" selection-end-line="17" selection-end-column="17" />
               <folding />
             </state>
           </provider>
@@ -2106,18 +2140,20 @@
         <option value="$PROJECT_DIR$/app/src/main/res/values/colors.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/diary_editor.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/community.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/sharepiece.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/yuying/finalproject/CommentData.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/yuying/finalproject/MainActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/yuying/finalproject/DiaryEditor.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/yuying/finalproject/DustbinActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/yuying/finalproject/Community.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/comment_piece.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/yuying/finalproject/Comment.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/comment.xml" />
         <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/local.properties" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/yuying/finalproject/HomeActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/sharepiece.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/yuying/finalproject/Community.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/yuying/finalproject/DiaryEditor.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_collection.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/yuying/finalproject/Comment.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/yuying/finalproject/CollectActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/comment.xml" />
       </list>
     </option>
   </component>
@@ -2180,6 +2216,10 @@
               <option name="myItemId" value="res" />
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="values" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderTypeNode" />
+            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -2215,6 +2255,20 @@
             <PATH_ELEMENT>
               <option name="myItemId" value="layout" />
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderTypeNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="FinalProject" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="res" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
@@ -2940,7 +2994,14 @@
       <option name="project" value="LOCAL" />
       <updated>1516369257680</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="剩下对收藏的唯一性判断和图片加载">
+      <created>1516386447517</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1516386447517</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -2953,15 +3014,15 @@
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3287841" sideWeight="0.50215983" order="8" side_tool="true" content_ui="tabs" />
-      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.7580645" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32775378" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.75186104" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32775378" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23076923" sideWeight="0.49784017" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24069479" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32902467" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22462203" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22300217" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24892008" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Android Model" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32991362" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
@@ -2998,7 +3059,8 @@
     <MESSAGE value="实现收藏功能，评论入口" />
     <MESSAGE value="增加分享的详情页面" />
     <MESSAGE value="修改分享的详情页面，增加相关逻辑" />
-    <option name="LAST_COMMIT_MESSAGE" value="修改分享的详情页面，增加相关逻辑" />
+    <MESSAGE value="剩下对收藏的唯一性判断和图片加载" />
+    <option name="LAST_COMMIT_MESSAGE" value="剩下对收藏的唯一性判断和图片加载" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -3015,24 +3077,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/yuying/finalproject/MainActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/yuying/finalproject/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -3141,16 +3185,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="112">
-          <caret line="30" column="0" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/mipmap-mdpi/mark.png">
       <provider selected="true" editor-type-id="images">
         <state />
@@ -3252,48 +3286,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/yuying/finalproject/Star.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="243">
-          <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="15" selection-end-column="63" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/sharepiece.xml">
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="351">
-          <caret line="55" column="41" selection-start-line="55" selection-start-column="41" selection-end-line="55" selection-end-column="41" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/yuying/finalproject/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="839">
           <caret line="79" column="11" selection-start-line="79" selection-start-column="11" selection-end-line="79" selection-end-column="11" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/yuying/finalproject/Share.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="8" column="37" selection-start-line="8" selection-start-column="27" selection-end-line="8" selection-end-column="37" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/yuying/finalproject/DiaryEditor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="365">
-          <caret line="764" column="17" selection-start-line="764" selection-start-column="17" selection-end-line="764" selection-end-column="17" />
-          <folding>
-            <element signature="method#setBtnListner#0;class#DiaryEditor#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -3308,16 +3305,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/yuying/finalproject/Community.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="594">
-          <caret line="84" column="57" selection-start-line="84" selection-start-column="57" selection-end-line="84" selection-end-column="57" />
-          <folding>
-            <element signature="e#1991#1998#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/yuying/finalproject/CommentData.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="297">
@@ -3326,29 +3313,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/comment_piece.xml">
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="6" column="30" selection-start-line="6" selection-start-column="30" selection-end-line="6" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/local.properties">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="270">
           <caret line="10" column="20" selection-start-line="10" selection-start-column="20" selection-end-line="10" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/yuying/finalproject/CollectActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-160">
-          <caret line="34" column="0" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -3380,47 +3348,169 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/comment.xml">
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/sharepiece.xml">
       <provider editor-type-id="android-designer2">
         <state />
       </provider>
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="378">
-          <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+        <state relative-caret-position="297">
+          <caret line="53" column="41" selection-start-line="53" selection-start-column="41" selection-end-line="53" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/comment_piece.xml">
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="6" column="30" selection-start-line="6" selection-start-column="30" selection-end-line="6" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/yuying/finalproject/Community.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="540">
+          <caret line="136" column="21" selection-start-line="136" selection-start-column="21" selection-end-line="136" selection-end-column="21" />
+          <folding>
+            <element signature="e#1813#1833#0" expanded="true" />
+            <element signature="e#2165#2768#0" expanded="true" />
+            <element signature="e#2767#2768#0" expanded="true" />
+            <element signature="e#2938#5384#0" expanded="true" />
+            <element signature="e#3246#3262#0" expanded="true" />
+            <element signature="e#3975#4571#0" expanded="true" />
+            <element signature="e#4570#4571#0" expanded="true" />
+            <element signature="e#5383#5384#0" expanded="true" />
+            <element signature="e#5428#6062#0" expanded="true" />
+            <element signature="e#6061#6062#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/yuying/finalproject/Star.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="10" column="21" selection-start-line="10" selection-start-column="21" selection-end-line="10" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/yuying/finalproject/Share.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="297">
+          <caret line="11" column="25" selection-start-line="11" selection-start-column="25" selection-end-line="11" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/yuying/finalproject/DiaryEditor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="354">
+          <caret line="204" column="78" selection-start-line="204" selection-start-column="78" selection-end-line="204" selection-end-column="78" />
+          <folding>
+            <element signature="method#setBtnListner#0;class#DiaryEditor#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/collect_list.xml">
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_collection.xml">
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="459">
+          <caret line="17" column="17" selection-start-line="17" selection-start-column="17" selection-end-line="17" selection-end-column="17" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/yuying/finalproject/Comment.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="434">
-          <caret line="128" column="29" selection-start-line="128" selection-start-column="29" selection-end-line="128" selection-end-column="29" />
+        <state relative-caret-position="245">
+          <caret line="161" column="36" selection-start-line="161" selection-start-column="36" selection-end-line="161" selection-end-column="36" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1478#1498#0" expanded="true" />
-            <element signature="e#2524#2531#0" expanded="true" />
-            <element signature="e#2671#3086#0" expanded="true" />
-            <element signature="e#3085#3086#0" expanded="true" />
-            <element signature="e#3159#3172#0" expanded="true" />
-            <element signature="e#3240#4307#0" expanded="true" />
-            <element signature="e#3623#3639#0" expanded="true" />
-            <element signature="e#4306#4307#0" expanded="true" />
-            <element signature="e#4364#5222#0" expanded="true" />
-            <element signature="e#4672#5196#0" expanded="true" />
-            <element signature="e#5195#5196#0" expanded="true" />
-            <element signature="e#5221#5222#0" expanded="true" />
-            <element signature="e#5281#7215#0" expanded="true" />
-            <element signature="e#6178#7170#0" expanded="true" />
-            <element signature="e#6526#6542#0" expanded="true" />
-            <element signature="e#7169#7170#0" expanded="true" />
-            <element signature="e#7214#7215#0" expanded="true" />
-            <element signature="e#7252#7511#0" expanded="true" />
-            <element signature="e#7510#7511#0" expanded="true" />
-            <element signature="e#7548#7774#0" expanded="true" />
-            <element signature="e#7773#7774#0" expanded="true" />
-            <element signature="e#7813#8039#0" expanded="true" />
-            <element signature="e#8038#8039#0" expanded="true" />
+            <element signature="e#1696#1716#0" expanded="true" />
+            <element signature="e#2963#2970#0" expanded="true" />
+            <element signature="e#3110#3406#0" expanded="true" />
+            <element signature="e#3405#3406#0" expanded="true" />
+            <element signature="e#3455#4142#0" expanded="true" />
+            <element signature="e#4141#4142#0" expanded="true" />
+            <element signature="e#4250#4263#0" expanded="true" />
+            <element signature="e#4331#5412#0" expanded="true" />
+            <element signature="e#4728#4744#0" expanded="true" />
+            <element signature="e#5411#5412#0" expanded="true" />
+            <element signature="e#5469#7389#0" expanded="true" />
+            <element signature="e#5725#5731#0" expanded="true" />
+            <element signature="e#5958#7362#0" expanded="true" />
+            <element signature="e#6400#7084#0" expanded="true" />
+            <element signature="e#7083#7084#0" expanded="true" />
+            <element signature="e#7361#7362#0" expanded="true" />
+            <element signature="e#7388#7389#0" expanded="true" />
+            <element signature="e#7448#9382#0" expanded="true" />
+            <element signature="e#8345#9337#0" expanded="true" />
+            <element signature="e#8693#8709#0" expanded="true" />
+            <element signature="e#9336#9337#0" expanded="true" />
+            <element signature="e#9381#9382#0" expanded="true" />
+            <element signature="e#9419#9678#0" expanded="true" />
+            <element signature="e#9677#9678#0" expanded="true" />
+            <element signature="e#9715#9941#0" expanded="true" />
+            <element signature="e#9940#9941#0" expanded="true" />
+            <element signature="e#9980#10206#0" expanded="true" />
+            <element signature="e#10205#10206#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/yuying/finalproject/CollectActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="164">
+          <caret line="65" column="68" selection-start-line="65" selection-start-column="68" selection-end-line="65" selection-end-column="68" />
+          <folding>
+            <element signature="e#1757#2393#0" expanded="true" />
+            <element signature="e#2392#2393#0" expanded="true" />
+            <element signature="e#2675#3359#0" expanded="true" />
+            <element signature="e#3358#3359#0" expanded="true" />
+            <element signature="e#3422#3999#0" expanded="true" />
+            <element signature="e#3998#3999#0" expanded="true" />
+            <element signature="e#4040#4260#0" expanded="true" />
+            <element signature="e#4259#4260#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="397">
+          <caret line="75" column="53" selection-start-line="75" selection-start-column="53" selection-end-line="75" selection-end-column="53" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/comment.xml">
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="501">
+          <caret line="72" column="44" selection-start-line="72" selection-start-column="44" selection-end-line="72" selection-end-column="44" />
+          <folding />
         </state>
       </provider>
     </entry>

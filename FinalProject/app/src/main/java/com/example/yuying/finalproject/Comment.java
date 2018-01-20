@@ -2,6 +2,8 @@ package com.example.yuying.finalproject;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -20,6 +22,11 @@ import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -49,6 +56,8 @@ public class Comment extends AppCompatActivity {
     private LinearLayout contentLayout;
     public SimpleAdapter simpleAdapter;
     public List<Map<String,String>> commentList = new ArrayList<Map<String,String>>();
+    private Bitmap bitmap=null;
+    private String path=null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,7 +80,10 @@ public class Comment extends AppCompatActivity {
         comment.setText("评论");
 
         //加载信息
-        Intent intent = getIntent();
+        final Intent intent = getIntent();
+        path = intent.getStringExtra("image");
+        name.setText(intent.getStringExtra("name"));
+        time.setText(intent.getStringExtra("time"));
         BmobQuery<Share> query0 = new BmobQuery<Share>();
         query0.include("user");
         query0.addWhereEqualTo("objectId",intent.getStringExtra("shareId"));
@@ -80,12 +92,31 @@ public class Comment extends AppCompatActivity {
             public void done(final List<Share> list, BmobException e) {
                 if (e == null) {
                     data = list.get(0);
-                    name.setText(data.getUser().getUsername());
-                    time.setText(data.getCreatedAt());
                 } else
                     Log.d("error_id", e.getMessage());
             }
         });
+
+        //加载图片
+        final Runnable netJob=new Runnable() {
+            @Override
+            public void run() {
+                try{
+                    bitmap=null;
+                    URL url=new URL(path);
+                    URLConnection connection=url.openConnection();
+                    connection.connect();
+                    InputStream inputStream=connection.getInputStream();
+                    bitmap= BitmapFactory.decodeStream(inputStream);
+                    Log.e("kekekekek","uiiiiiii");
+                }catch (MalformedURLException e) {
+                    e.printStackTrace();
+                }  catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        };
+        new Thread(netJob).start();
 
 
         //加载评论区
@@ -96,7 +127,7 @@ public class Comment extends AppCompatActivity {
             public void done(final List<CommentData> list, BmobException e) {
                 if (e == null) {
                     for (int i = 0; i < list.size(); i++){
-                        if(list.get(i).getShare().getObjectId().equals(data.getObjectId())){
+                        if(list.get(i).getShare().getObjectId().equals(intent.getStringExtra("shareId"))){
                             Map<String,String> map = new HashMap<String, String>();
                             map.put("name",list.get(i).getUser().getUsername());
                             map.put("content",list.get(i).getComment());
@@ -117,21 +148,39 @@ public class Comment extends AppCompatActivity {
         mark.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Star star = new Star();
-                User user = BmobUser.getCurrentUser(User.class);  // 获取当前用户
-                star.setUser(user);
-                star.setShare(data);
-                star.save(new SaveListener<String>() {
+                final User user = BmobUser.getCurrentUser(User.class);  // 获取当前用户
+                //查询是否已被收藏
+                BmobQuery<Star> query1 = new BmobQuery<Star>();
+                query1.include("user");
+                query1.include("share");
+                query1.addWhereEqualTo("share",data);
+                query1.addWhereEqualTo("user",user);
+                query1.findObjects(new FindListener<Star>() {
                     @Override
-                    public void done(String s, BmobException e) {
-                        if(e==null)
-                            Toast.makeText(getApplicationContext(),"收藏成功",Toast.LENGTH_SHORT).show();
-                        else{
-                            Log.e("mark error",e.getMessage());
-                            Toast.makeText(getApplicationContext(),"收藏失败",Toast.LENGTH_SHORT).show();
-                        }
+                    public void done(final List<Star> list, BmobException e) {
+                        if (e == null) {
+                            if(list==null || list.size()==0){
+                                Star star = new Star();
+                                star.setUser(user);
+                                star.setShare(data);
+                                star.save(new SaveListener<String>() {
+                                    @Override
+                                    public void done(String s, BmobException e) {
+                                        if(e==null)
+                                            Toast.makeText(getApplicationContext(),"收藏成功",Toast.LENGTH_SHORT).show();
+                                        else{
+                                            Log.e("mark error",e.getMessage());
+                                            Toast.makeText(getApplicationContext(),"收藏失败",Toast.LENGTH_SHORT).show();
+                                        }
+                                    }
+                                });
+                            } else
+                                Toast.makeText(getApplicationContext(),"已收藏过",Toast.LENGTH_SHORT).show();
+                        } else
+                            Log.d("errorStar", e.getMessage());
                     }
                 });
+
             }
         });
 
@@ -198,6 +247,15 @@ public class Comment extends AppCompatActivity {
                 contentLayout.setVisibility(View.VISIBLE);
             }
         });
+
+        Log.e("path",path);
+        while(bitmap==null){
+            Log.e("while","null");
+        }
+        if(bitmap!=null){
+            image.setImageBitmap(bitmap);
+            img_gone.setImageBitmap(bitmap);
+        }
     }
 
     @Override
@@ -206,8 +264,13 @@ public class Comment extends AppCompatActivity {
             if(img_gone.getVisibility()==View.VISIBLE){
                 img_gone.setVisibility(View.GONE);
                 contentLayout.setVisibility(View.VISIBLE);
-            } else
+            } else{
+              // if(bitmap!=null) bitmap.recycle();
+                bitmap=null;
+                System.gc();
                 finish();
+            }
+
             return true;
         }
         return super.onKeyDown(keyCode, event);

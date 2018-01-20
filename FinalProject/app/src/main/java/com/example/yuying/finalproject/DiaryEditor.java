@@ -202,6 +202,7 @@ public class DiaryEditor extends AppCompatActivity {
                             Share myShare = new Share();
                             myShare.setUser(user);
                             myShare.setPc(address);
+                            myShare.setTitle(editor_title.getText().toString());
                             myShare.save(new SaveListener<String>() {
                                 @Override
                                 public void done(String id, BmobException e) {
